@@ -214,6 +214,12 @@ These are pipeline validation numbers, **not** evidence of real-world stockout r
 - Live NHLMIS / DHIS2 integration.
 - Automatic ordering or automatic transfers.
 - Deep learning.
+- GS1 DataMatrix batch/expiry parsing and Bluetooth scanners (the MVP identifies
+the product by EAN-13 and captures batch/expiry on receipt).
+- Live weather-forecast ingestion (future weather uses seasonal climatology in the
+current model; the 16-day Open-Meteo forecast API is a next step).
+- Field-level offline conflict merging (the MVP validates and applies queued
+operations idempotently; it does not merge concurrent edits).
 
 ---
 

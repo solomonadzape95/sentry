@@ -147,6 +147,9 @@ with Supabase Auth before any real pilot.
 - [ ] Clinical validation of disease-to-medicine relationships
 - [ ] Real pilot data, 8–12 week operational pilot and impact measurement
 - [ ] Native Android app (PWA is the hackathon delivery; API is mobile-ready)
+- [ ] GS1 DataMatrix batch/expiry parsing and Bluetooth scanner support
+- [ ] Live 16-day weather forecast ingestion (future weather is climatology today)
+- [ ] Field-level offline conflict merging
 
 ### Known demo limitations
 

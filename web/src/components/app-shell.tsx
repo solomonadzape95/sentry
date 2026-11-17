@@ -21,11 +21,13 @@ export function AppShell({
   persona,
   personas,
   alertCount,
+  facilityCount,
 }: {
   children: React.ReactNode;
   persona: Persona;
   personas: Persona[];
   alertCount: number;
+  facilityCount: number;
 }) {
   return (
     <div className="min-h-dvh">
@@ -41,7 +43,9 @@ export function AppShell({
               Demo network
             </p>
           </div>
-          <p className="mt-1 text-xs font-medium text-white/85">FCT · 4 facilities</p>
+          <p className="mt-1 text-xs font-medium text-white/85">
+            FCT · {facilityCount} {facilityCount === 1 ? "facility" : "facilities"}
+          </p>
           <p className="text-[10px] text-white/40">17 Nov 2026 · simulated records</p>
         </div>
 

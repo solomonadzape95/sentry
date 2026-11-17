@@ -25,7 +25,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         role: scope.persona.role,
       }}
       personas={personas}
-      alertCount={data.alerts.filter((a) => a.severity !== "LOW").length}
+      alertCount={
+        data.alerts.filter(
+          (a) =>
+            a.severity !== "LOW" &&
+            (scope.isNetworkAuthority || scope.facilities.some((f) => f.id === a.facilityId)),
+        ).length
+      }
+      facilityCount={scope.facilities.length}
     >
       {children}
     </AppShell>

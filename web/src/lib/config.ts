@@ -67,7 +67,7 @@ export const NAV_SECTIONS = [
   {
     label: "Command",
     items: [
-      { href: "/", label: "Network overview", icon: "network" },
+      { href: "/dashboard", label: "Network overview", icon: "network" },
       { href: "/facilities", label: "Facilities", icon: "building" },
     ],
   },

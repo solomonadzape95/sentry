@@ -289,7 +289,7 @@ export default async function ForecastsPage({
                   values={recent.slice(-42).map((r) => r.quantity)}
                   width={240}
                   height={100}
-                  stroke="#0d7666"
+                  stroke="#0f3b2c"
                   fill
                   className="mt-2 w-full"
                 />
@@ -403,7 +403,7 @@ export default async function ForecastsPage({
             />
             <CardBody className="space-y-3">
               <div className="rounded-xl bg-brand-dark p-4 text-white">
-                <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-[#8fe3cd]">
+                <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-[#e4f44d]">
                   Suggested order quantity
                 </p>
                 <p className="tabular mt-1 text-3xl font-semibold">

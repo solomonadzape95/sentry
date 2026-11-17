@@ -118,7 +118,7 @@ export function ForecastChart({
             dataKey="band"
             stackId="band"
             stroke="none"
-            fill="#0d7666"
+            fill="#0f3b2c"
             fillOpacity={0.12}
             isAnimationActive={false}
             connectNulls
@@ -135,7 +135,7 @@ export function ForecastChart({
           <Line
             type="monotone"
             dataKey="predicted"
-            stroke="#0d7666"
+            stroke="#0f3b2c"
             strokeWidth={2.2}
             strokeDasharray="5 3"
             dot={false}

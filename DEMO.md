@@ -16,7 +16,8 @@ npm run build && npm start
 
 Open:
 
-- Dashboard: <http://localhost:3001>
+- Landing page: <http://localhost:3001>
+- Dashboard: <http://localhost:3001/dashboard>
 - Mobile: <http://localhost:3001/m>
 - If port 3001 is in use, use the port printed by Next.
 
@@ -31,9 +32,22 @@ If anything is stale, `npm run db:reset`.
 
 ---
 
-## 1. The problem, in one screen (20s)
+## 1. Open on the landing page (15s)
 
-Open `/` — **Supply command centre**.
+Open `/` first. Let the room see the product promise before the dashboard.
+
+- Headline: **Predict demand. Prevent stockouts. Protect care.**
+- The live snapshot card: Gwagwalada PHC, 11 days, 156-unit transfer.
+- Then click **Open the live demo** (or navigate to `/dashboard`).
+
+Say:
+
+> This is the whole product in one sentence: know what you have, know what you
+> will need, and move stock before the shelf is empty.
+
+## 2. The problem, in one screen (20s)
+
+Now on `/dashboard` — **Supply command centre**.
 
 Say:
 
@@ -54,7 +68,7 @@ Point at:
 
 ---
 
-## 2. The core flow: predict → match → transfer → recalculate (60s)
+## 3. The core flow: predict → match → transfer → recalculate (60s)
 
 ### Predict
 
@@ -115,7 +129,7 @@ what might run out, know where stock can move.**
 
 ---
 
-## 3. Proof: the model (30s)
+## 4. Proof: the model (30s)
 
 Open `/forecasts?facility=fac_phc&medicine=med_act`.
 
@@ -145,7 +159,7 @@ Say:
 
 ---
 
-## 4. Mobile: the operational layer (30s)
+## 5. Mobile: the operational layer (30s)
 
 Open `/m` on a phone, or show the phone frame on desktop.
 
@@ -189,7 +203,7 @@ persona's facility.
 
 ---
 
-## 5. The close (15s)
+## 6. The close (15s)
 
 > We built the inventory foundation, demonstrated the predictive advantage and proved
 > the coordination loop. The next step is not more features — it is three to five

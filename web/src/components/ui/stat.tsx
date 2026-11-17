@@ -26,7 +26,7 @@ export function Stat({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(16,36,30,0.04)] sm:p-5",
+        "rounded-[22px] border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(16,36,30,0.04)] sm:p-5",
         className,
       )}
     >
@@ -49,7 +49,7 @@ export function Sparkline({
   width = 108,
   height = 30,
   className,
-  stroke = "#0d7666",
+  stroke = "#0f3b2c",
   fill = false,
 }: {
   values: number[];

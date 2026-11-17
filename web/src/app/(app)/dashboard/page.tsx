@@ -36,6 +36,7 @@ import { EmptyState } from "@/components/ui/page-header";
 import type { StockSeries } from "@/lib/intelligence";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Network overview" };
 
 function facilityRisk(series: StockSeries[]) {
   const critical = series.filter((s) => s.risk === "CRITICAL" && s.avgDailyDemand > 0).length;
@@ -151,10 +152,10 @@ export default async function NetworkOverviewPage() {
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-inset ring-white/15">
-                <Sparkles className="h-4 w-4 text-[#8fe3cd]" />
+                <Sparkles className="h-4 w-4 text-[#e4f44d]" />
               </div>
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8fe3cd]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#e4f44d]">
                   Next best action
                 </p>
                 <p className="mt-1 max-w-2xl text-sm leading-relaxed text-white/90">
@@ -177,7 +178,7 @@ export default async function NetworkOverviewPage() {
             </div>
             <Link
               href={`/transfers?${heroQuery}`}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#8fe3cd] px-4 text-xs font-semibold text-brand-deep hover:bg-[#a8edd9] sm:self-auto"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#e4f44d] px-4 text-xs font-semibold text-brand-deep hover:bg-[#effa7b] sm:self-auto"
             >
               Review transfer
               <ArrowRight className="h-3.5 w-3.5" />
@@ -310,7 +311,7 @@ export default async function NetworkOverviewPage() {
                             values={(s.forecast?.points ?? []).slice(0, 14).map((p) => p.predicted)}
                             width={64}
                             height={22}
-                            stroke={s.risk === "CRITICAL" ? "#b42318" : "#0d7666"}
+                            stroke={s.risk === "CRITICAL" ? "#b42318" : "#0f3b2c"}
                           />
                           <span className="tabular text-[10px] text-muted">
                             {s.avgDailyDemand.toFixed(1)}/d
@@ -491,7 +492,7 @@ export default async function NetworkOverviewPage() {
               title="Open alerts"
               subtitle={`${data.alerts.filter((a) => a.severity !== "LOW").length} require attention`}
               action={
-                <Link href="/#alerts" className="text-[11px] font-medium text-brand hover:underline">
+                <Link href="/dashboard#alerts" className="text-[11px] font-medium text-brand hover:underline">
                   All alerts
                 </Link>
               }

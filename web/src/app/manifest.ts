@@ -21,7 +21,7 @@ export default function manifest(): MetadataRoute.Manifest {
     shortcuts: [
       { name: "Scan medicine", short_name: "Scan", url: "/m/scan" },
       { name: "Issue stock", short_name: "Issue", url: "/m/issue" },
-      { name: "Network overview", short_name: "Network", url: "/" },
+      { name: "Network overview", short_name: "Network", url: "/dashboard" },
     ],
   };
 }

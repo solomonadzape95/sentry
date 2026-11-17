@@ -24,7 +24,8 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const scope = await getScope();
-  if (!scope.isNetworkAuthority) redirect("/");
+  if (!scope.isNetworkAuthority)
+    redirect(scope.activeFacility ? `/facilities/${scope.activeFacility.id}` : "/inventory");
   const [data, movementCount] = await Promise.all([
     getAdminData(),
     prisma.stockMovement.count(),

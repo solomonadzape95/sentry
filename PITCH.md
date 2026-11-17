@@ -4,6 +4,8 @@
 
 A 7-slide, 3-minute structure. Pair with [DEMO.md](DEMO.md).
 
+**Open on `/` first** (landing page), then move to `/dashboard` for the live demo.
+
 ---
 
 ## Slide 1 — The stockout is visible too late

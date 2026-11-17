@@ -7,13 +7,15 @@ export function Logo({
   className,
   compact = false,
   theme = "dark",
+  href = "/",
 }: {
   className?: string;
   compact?: boolean;
   theme?: "dark" | "light";
+  href?: string;
 }) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2.5", className)}>
+    <Link href={href} className={cn("flex items-center gap-2.5", className)}>
       <div
         className={cn(
           "grid h-9 w-9 shrink-0 place-items-center rounded-xl ring-1 ring-inset",
@@ -22,7 +24,7 @@ export function Logo({
             : "bg-brand-dark ring-brand-dark/10",
         )}
       >
-        <Activity className="h-[18px] w-[18px] text-[#8fe3cd]" strokeWidth={2.4} />
+        <Activity className="h-[18px] w-[18px] text-[#e4f44d]" strokeWidth={2.4} />
       </div>
       {compact ? null : (
         <div className="leading-none">

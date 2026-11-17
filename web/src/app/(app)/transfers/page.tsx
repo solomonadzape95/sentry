@@ -119,7 +119,7 @@ export default async function TransfersPage({
         title="Stock transfers"
         description="Move verified surplus to facilities that need it, with batch traceability, approvals and a complete audit trail."
         actions={
-          <Link href="/#alerts" className={buttonClass({ variant: "secondary", size: "sm" })}>
+          <Link href="/dashboard#alerts" className={buttonClass({ variant: "secondary", size: "sm" })}>
             Network alerts
           </Link>
         }

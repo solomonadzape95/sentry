@@ -185,20 +185,20 @@ export function BarcodeScanner({
         {!scanning ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
             <div className="grid h-14 w-14 place-items-center rounded-2xl bg-white/10 ring-1 ring-inset ring-white/15">
-              <ScanLine className="h-7 w-7 text-[#8fe3cd]" />
+              <ScanLine className="h-7 w-7 text-[#e4f44d]" />
             </div>
             <p className="text-sm font-semibold text-white">Scan a medicine barcode</p>
             <p className="max-w-[240px] text-[10px] leading-relaxed text-white/45">
               Point the camera at an EAN-13 or GS1 DataMatrix label. Manual entry is always available.
             </p>
-            <Button type="button" size="sm" onClick={start} className="bg-[#8fe3cd] text-brand-deep hover:bg-[#a8edd9]">
+            <Button type="button" size="sm" onClick={start} className="bg-[#e4f44d] text-brand-deep hover:bg-[#effa7b]">
               <Camera className="h-3.5 w-3.5" /> Start camera
             </Button>
           </div>
         ) : (
           <>
-            <div className="pointer-events-none absolute inset-6 rounded-xl border border-[#8fe3cd]/50">
-              <div className="scanline h-0.5 w-full bg-[#8fe3cd] shadow-[0_0_18px_#8fe3cd]" />
+            <div className="pointer-events-none absolute inset-6 rounded-xl border border-[#e4f44d]/50">
+              <div className="scanline h-0.5 w-full bg-[#e4f44d] shadow-[0_0_18px_#e4f44d]" />
             </div>
             <button
               type="button"

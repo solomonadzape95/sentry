@@ -34,7 +34,8 @@ const modelName: Record<string, string> = {
 
 export default async function ModelPage() {
   const scope = await getScope();
-  if (!scope.isNetworkAuthority) redirect("/");
+  if (!scope.isNetworkAuthority)
+    redirect(scope.activeFacility ? `/facilities/${scope.activeFacility.id}` : "/inventory");
   const [runs, data] = await Promise.all([getModelRuns(), getNetworkData()]);
   const best = runs[0];
   const baseline = runs.find((r) => r.model === "SEASONAL_NAIVE");

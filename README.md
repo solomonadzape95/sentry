@@ -12,6 +12,11 @@ surplus stock is — before the shelf is empty.
 
 ## What works
 
+### Landing and shell
+
+- Public landing page at `/` with a live network snapshot, product story and clear demo entry.
+- Dashboard at `/dashboard`, with a shared cream / forest / lime design language across web and mobile.
+
 ### Inventory foundation
 
 - Medicine catalogue with barcodes, pack sizes and supplier lead times.
@@ -67,10 +72,11 @@ npm run dev
 
 Open:
 
-- Web dashboard: <http://localhost:3000>
+- Landing page: <http://localhost:3000>
+- Dashboard: <http://localhost:3000/dashboard>
 - Mobile PWA: <http://localhost:3000/m>
 
-If port 3000 is busy, Next prints the actual port.
+If port 3000 is busy, Next prints the actual port. The landing page owns `/`; the dashboard is at `/dashboard`.
 
 The installable PWA and its offline shell register only in a production build. Use
 `npm run build && npm start` (or the root `npm run build && npm start`) for the

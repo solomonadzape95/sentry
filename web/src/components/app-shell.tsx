@@ -33,12 +33,12 @@ export function AppShell({
     <div className="min-h-dvh">
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-[264px] flex-col bg-brand-dark lg:flex">
         <div className="px-5 pb-5 pt-6">
-          <Logo />
+          <Logo href="/dashboard" />
         </div>
 
         <div className="mx-3 mb-4 rounded-xl border border-white/8 bg-white/[0.04] px-3 py-2.5">
           <div className="flex items-center gap-2">
-            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#8fe3cd]" />
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#e4f44d]" />
             <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-white/50">
               Demo network
             </p>
@@ -84,7 +84,7 @@ export function AppShell({
                 Simulated facility data
               </div>
               <Link
-                href="/#alerts"
+                href="/dashboard#alerts"
                 className="relative grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-muted shadow-sm hover:text-ink"
                 aria-label="Open alerts"
               >

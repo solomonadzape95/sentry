@@ -13,7 +13,7 @@ export function Card({
     <div
       id={id}
       className={cn(
-        "rounded-2xl border border-line bg-surface shadow-[0_1px_2px_rgba(16,36,30,0.04)]",
+        "rounded-[22px] border border-line bg-surface shadow-[0_1px_2px_rgba(16,36,30,0.04)]",
         className,
       )}
     >
@@ -49,7 +49,7 @@ export function CardHeader({
           </div>
         ) : null}
         <div>
-          <h2 className="text-[15px] font-semibold text-ink">{title}</h2>
+          <h2 className="text-[15px] font-medium tracking-[-0.02em] text-ink">{title}</h2>
           {subtitle ? <p className="mt-0.5 text-xs text-muted">{subtitle}</p> : null}
         </div>
       </div>

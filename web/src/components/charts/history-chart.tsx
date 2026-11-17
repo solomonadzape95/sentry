@@ -14,7 +14,7 @@ import { formatShortDate } from "@/lib/format";
 export function HistoryChart({
   data,
   height = 230,
-  color = "#0d7666",
+  color = "#0f3b2c",
   unit = "units",
 }: {
   data: { date: string; label: string; value: number }[];

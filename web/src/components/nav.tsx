@@ -25,7 +25,7 @@ const icons = {
 } as const;
 
 const visibility: Record<string, string[]> = {
-  "/": ["NETWORK_AUTHORITY"],
+  "/dashboard": ["NETWORK_AUTHORITY"],
   "/facilities": ["NETWORK_AUTHORITY", "FACILITY_MANAGER"],
   "/inventory": ["NETWORK_AUTHORITY", "FACILITY_MANAGER", "INVENTORY_OFFICER"],
   "/forecasts": ["NETWORK_AUTHORITY", "FACILITY_MANAGER", "INVENTORY_OFFICER"],
@@ -52,9 +52,7 @@ export function SidebarNav({ role }: { role: string }) {
             {section.items.map((item) => {
               const Icon = icons[item.icon];
               const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <Link
                   key={item.href}
@@ -67,7 +65,7 @@ export function SidebarNav({ role }: { role: string }) {
                   )}
                 >
                   <Icon
-                    className={cn("h-4 w-4", active ? "text-[#8fe3cd]" : "text-white/45")}
+                    className={cn("h-4 w-4", active ? "text-[#e4f44d]" : "text-white/45")}
                     strokeWidth={2}
                   />
                   {item.label}
@@ -84,7 +82,7 @@ export function SidebarNav({ role }: { role: string }) {
 export function MobileNav({ role }: { role: string }) {
   const pathname = usePathname();
   const items = [
-    { href: "/", label: "Network overview" },
+    { href: "/dashboard", label: "Network overview" },
     { href: "/facilities", label: "Facilities" },
     { href: "/inventory", label: "Inventory" },
     { href: "/forecasts", label: "Forecasts" },
@@ -94,7 +92,7 @@ export function MobileNav({ role }: { role: string }) {
     <div className="scrollbar-thin flex gap-1.5 overflow-x-auto border-b border-line bg-canvas px-4 py-2 lg:hidden">
       {items.map((item) => {
         const active =
-          item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+          pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
           <Link
             key={item.href}

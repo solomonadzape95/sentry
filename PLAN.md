@@ -115,7 +115,9 @@ with Supabase Auth before any real pilot.
 
 ### Built and verified
 
-- [x] Next.js dashboard + mobile PWA shell
+- [x] Public landing page at `/` with a live demo snapshot
+- [x] Next.js dashboard at `/dashboard` + mobile PWA shell
+- [x] Shared cream / forest / lime design language across landing, dashboard and mobile
 - [x] SQLite/Prisma schema covering facilities, users, medicines, batches,
       movements, consumption, suppliers, purchase orders, weather, disease,
       forecasts, alerts, transfers, audit logs and model runs

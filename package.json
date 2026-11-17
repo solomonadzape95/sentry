@@ -1,0 +1,23 @@
+{
+  "name": "aisec",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Predictive medicine supply intelligence \u2014 hackathon build",
+  "scripts": {
+    "data": "cd ml && uv run python run.py",
+    "db:seed": "cd web && npx tsx prisma/seed.ts",
+    "db:reset": "cd web && npx prisma db push --force-reset && npx tsx prisma/seed.ts",
+    "setup": "cd ml && uv sync && uv run python run.py && cd ../web && npx prisma db push && npx tsx prisma/seed.ts",
+    "dev": "cd web && npm run dev",
+    "build": "cd web && npm run build",
+    "start": "cd web && npm run start",
+    "lint": "cd web && npm run lint",
+    "typecheck": "cd web && npx tsc --noEmit",
+    "presetup": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\"",
+    "predev": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\"",
+    "prebuild": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\"",
+    "prestart": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\"",
+    "predb:seed": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\"",
+    "predb:reset": "node -e \"const fs=require('fs');if(!fs.existsSync('web/.env'))fs.copyFileSync('web/.env.example','web/.env')\""
+  }
+}

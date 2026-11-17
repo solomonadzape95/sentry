@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #f3f6f4;
+  --color-surface: #ffffff;
+  --color-ink: #10241e;
+  --color-muted: #5f736c;
+  --color-line: #dfe8e4;
+  --color-brand: #0d7666;
+  --color-brand-dark: #0a332c;
+  --color-brand-deep: #07251f;
+  --color-brand-soft: #e5f4ef;
+  --color-ok: #067647;
+  --color-ok-soft: #dcfae6;
+  --color-warn: #b54708;
+  --color-warn-soft: #fef0c7;
+  --color-danger: #b42318;
+  --color-danger-soft: #fee4e2;
+  --color-info: #175cd3;
+  --color-info-soft: #eff8ff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background: #c7ece4;
+    color: var(--color-brand-deep);
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.025em;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #c5d4ce transparent;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 118, 102, 0.25);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(13, 118, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 118, 102, 0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-ring 2.4s infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(180px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.scanline {
+  animation: scanline 3s ease-in-out infinite;
+}
+
+.recharts-surface:focus {
+  outline: none;
+}

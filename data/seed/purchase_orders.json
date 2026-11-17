@@ -1,0 +1,1 @@
+[{"reference":"PO-PHC-ACT-0926","facilityId":"fac_phc","supplierId":"sup_central","medicineId":"med_act","quantity":200,"status":"CONFIRMED","orderedAt":"2026-11-10","expectedAt":"2026-12-08"},{"reference":"PO-GH-PCM-0926","facilityId":"fac_gh","supplierId":"sup_emzor","medicineId":"med_pcm","quantity":8000,"status":"DELIVERED","orderedAt":"2026-10-24","expectedAt":"2026-11-05"}]

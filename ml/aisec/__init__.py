@@ -1,0 +1,1 @@
+"""Aisec forecasting pipeline."""

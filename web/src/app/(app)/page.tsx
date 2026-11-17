@@ -210,7 +210,7 @@ export default async function NetworkOverviewPage() {
         <Stat
           label="Expiry exposure"
           value={formatNaira(data.totals.expiringValue)}
-          sub="value expiring within 60 days"
+          sub="value expiring within 90 days"
           icon={<AlertTriangle className="h-4 w-4" />}
           tone={data.totals.expiringValue > 0 ? "warning" : "default"}
         />

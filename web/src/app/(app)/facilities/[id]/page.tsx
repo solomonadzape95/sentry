@@ -199,7 +199,7 @@ export default async function FacilityPage({
           tone={critical > 0 ? "danger" : "success"}
         />
         <Stat
-          label="Expiring in 60 days"
+          label="Expiring in 90 days"
           value={formatNaira(expiringValue)}
           sub={`${expiryWatch.length} batches to review`}
           icon={<CalendarClock className="h-4 w-4" />}

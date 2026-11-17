@@ -167,7 +167,7 @@ export default async function InventoryPage({
           tone={riskCount > 0 ? "danger" : "success"}
         />
         <Stat
-          label="Expiring within 60 days"
+          label="Expiring within 90 days"
           value={formatNaira(expiringValue)}
           sub={`${nearExpiryBatches.length} batches to action`}
           icon={<CalendarClock className="h-4 w-4" />}

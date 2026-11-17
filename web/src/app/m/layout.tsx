@@ -42,7 +42,7 @@ export default async function MobileLayout({ children }: { children: React.React
       </div>
 
       <p className="hidden max-w-[418px] text-center text-[10px] leading-relaxed text-white/30 sm:block">
-        Demo clock 17 Nov 2026 · Simulated facility data · Camera scanning requires permission
+        Demo clock 17 Nov 2026 · Simulated data · Camera scanning needs HTTPS or localhost
       </p>
     </div>
   );

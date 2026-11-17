@@ -205,6 +205,7 @@ persona's facility.
 |---|---|
 | No wifi at venue | Everything runs locally: SQLite, cached weather, local data. Do not run `npm run data` on stage. |
 | Camera permission fails | Manual search and demo barcode labels are always available. |
+| Phone camera blocked over LAN http | Camera APIs need HTTPS or localhost. Demo scanning on the laptop, use an HTTPS tunnel, or use manual fallback. |
 | Projector too small | Use the dashboard, not the phone frame. `/m` also works at desktop width. |
 | Demo state dirty | `npm run db:reset` takes a few seconds. |
 | Numbers differ slightly | Narrate the live numbers. The story is the direction: ~11 days → ~49 days, alert clears. |

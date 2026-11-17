@@ -74,7 +74,9 @@ If port 3000 is busy, Next prints the actual port.
 
 The installable PWA and its offline shell register only in a production build. Use
 `npm run build && npm start` (or the root `npm run build && npm start`) for the
-full mobile experience.
+full mobile experience. Camera scanning requires a secure context: use `localhost`
+on the demo laptop, or an HTTPS tunnel/deployment for a phone. Manual entry and the
+demo barcode labels work everywhere.
 
 ### Demo clock
 

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisec.health/contracts/malaria_prevalence.schema.json",
+  "title": "MalariaPrevalence",
+  "type": "object",
+  "required": [
+    "source_id",
+    "state",
+    "survey",
+    "year",
+    "rdt_positive_pct",
+    "microscopy_positive_pct",
+    "source_url"
+  ],
+  "properties": {
+    "source_id": { "type": "string" },
+    "state": { "type": "string" },
+    "zone": { "type": ["string", "null"] },
+    "survey": { "type": "string" },
+    "year": { "type": "integer" },
+    "rdt_positive_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+    "rdt_sample": { "type": ["integer", "null"], "minimum": 0 },
+    "microscopy_positive_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+    "microscopy_sample": { "type": ["integer", "null"], "minimum": 0 },
+    "source_url": { "type": "string" },
+    "is_illustrative": { "type": "boolean", "default": false },
+    "retrieved_at": { "type": "string", "format": "date-time" }
+  }
+}

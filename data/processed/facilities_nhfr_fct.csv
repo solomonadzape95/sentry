@@ -1,0 +1,577 @@
+source_id,source_facility_id,nhfr_id,grid3_id,dhis2_org_unit_id,name,short_name,facility_type,ownership,level,address,ward,lga,state,latitude,longitude,catchment_population,services,is_verified,is_illustrative,retrieved_at
+hdx_nhfr_facilities,2472,fa6d4998-e692-4cd1-bd23-28ca14426e76,,,Oripisaka Primary Health Care,,Primary,Primary Health Center,,,FCTABJ02,Abaji,Fct,,,,,False,False,2026-11-17T22:26:44.387354Z
+hdx_nhfr_facilities,2477,c6d5d4a6-40e0-4430-9353-18bc01323a60,,,Owner Occupier Model Primary Health Center,,Primary,Primary Health Center,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:26:44.405650Z
+hdx_nhfr_facilities,2478,c0f41bf4-c5af-4838-adfa-41c2e6f31bb5,,,Bwari Primary Health Center,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:26:44.410834Z
+hdx_nhfr_facilities,2479,fa5d1603-656c-49f1-aa3f-796aa4e4ba2e,,,Durumi Primary Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:26:44.413724Z
+hdx_nhfr_facilities,2482,ba93af5d-8b19-46e5-a81a-5bc73cef8b76,,,Kilankwa Primary Health Center,,Primary,Primary Health Center,,,FCTGWA08,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:26:44.422046Z
+hdx_nhfr_facilities,2483,7873c8ab-3865-4772-a75b-13f92431f9a3,,,Kilankwa Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:26:44.425336Z
+hdx_nhfr_facilities,2486,0abda6a5-103e-4404-bfa8-c372963e75c5,,,Aleyita Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:44.436055Z
+hdx_nhfr_facilities,2487,ebedc02c-64f3-48c3-86d0-83b525a010e1,,,Galadinmawa Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:44.438630Z
+hdx_nhfr_facilities,2489,f917d0a1-5c2e-4ac3-8894-239668026c4d,,,Apo Primary Health Center,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:44.445110Z
+hdx_nhfr_facilities,2490,26aec85d-b7d6-475a-a9c4-cd3fd7d5f1c6,,,Wumba Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:44.448189Z
+hdx_nhfr_facilities,2491,e0baa86a-de96-46e4-9056-8b8abe81682d,,,Kobi Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:44.450821Z
+hdx_nhfr_facilities,2689,9f94321a-8353-4b60-9eff-bdf1916504bf,,,Divine Mercy Hospital,,Primary,Primary Health Center,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:26:45.152109Z
+hdx_nhfr_facilities,4003,a926efa4-d855-47ab-babd-6293ad1dcc49,,,Massan Health Clinic,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:48.511217Z
+hdx_nhfr_facilities,4004,a34d0bec-56ad-4aac-8460-f97b9d915e9d,,,Agbade Hospital and Maternity,,Primary,Maternity Home,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:26:48.513606Z
+hdx_nhfr_facilities,4341,5d488993-e2d1-45e0-ba13-fd29195160a3,,,Taprobane Medical Center,,Primary,Medical Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:49.353112Z
+hdx_nhfr_facilities,4356,37fe3ca1-b093-4b4c-9560-8bd0c17ec2b7,,,Nigeria Police Hospital,,Secondary,Military and Paramilitary Clinic,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:26:49.395732Z
+hdx_nhfr_facilities,4357,ec9a2222-3830-4bf3-90cd-47308d545f40,,,Petterevera Maternity and Health Services,,Primary,Maternity Home,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:26:49.398941Z
+hdx_nhfr_facilities,4360,be445574-cd3f-4d21-9dad-73d23f469f76,,,Kasada Hospital,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:26:49.405885Z
+hdx_nhfr_facilities,4366,26693763-36ea-4825-9068-34a789912302,,,Medical Mission of Mary,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:49.421795Z
+hdx_nhfr_facilities,4367,87d22620-5212-4c55-94c8-aff187eeb02c,,,Jabi Federal Medical Center,,Secondary,Federal Medical Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:49.424334Z
+hdx_nhfr_facilities,4368,0bb8a8c5-9384-4083-9987-51c005a1eb77,,,Zinta Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:49.426844Z
+hdx_nhfr_facilities,4369,bca44915-2df8-4b9f-9c3f-f1d0bb8f23d2,,,Wassa Health Post,,Primary,Dispensary,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:49.429219Z
+hdx_nhfr_facilities,4620,a4524a18-979c-4515-9683-5b2216d18e87,,,Shenegu Health Post,,Primary,Dispensary,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:26:50.049910Z
+hdx_nhfr_facilities,4621,c870dcae-4968-48c3-93cb-e9c037cb66c4,,,Padan Gbagyi Primary Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:26:50.052594Z
+hdx_nhfr_facilities,4622,ec81d1d5-a8af-42dc-9001-697400203631,,,Our Lady of Fatima Catholic Hospital,,Primary,Private Non Profit,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:26:50.055298Z
+hdx_nhfr_facilities,4623,15b699a6-4c26-4425-a9fc-3ae84d12bd56,,,Sos Medical Center,,Primary,Medical Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:26:50.057961Z
+hdx_nhfr_facilities,4636,d69a3f84-c173-4253-9ee0-02340c70fc44,,,Chukukwu Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:26:50.091751Z
+hdx_nhfr_facilities,4777,588ab12b-c997-4c07-a8d5-0b49e0e06fa5,,,Shadalafiya Primary Health Care Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:50.484863Z
+hdx_nhfr_facilities,4939,51148684-9f1d-4662-8549-6378741cc6a9,,,Anagada Primary Health Care Center,,Primary,Primary Health Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:26:50.955879Z
+hdx_nhfr_facilities,5208,7dd050c9-8da1-454e-bed9-c215f8bec9c1,,,Dakwa Health Post,,Primary,Dispensary,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:26:51.684768Z
+hdx_nhfr_facilities,6196,2ab5c25e-937f-49f6-a04b-81975079ff48,,,Dei Dei Primary Health Center,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:26:54.093246Z
+hdx_nhfr_facilities,6200,1318b473-4391-4e98-accc-599a1558bb16,,,Kawu Primary Health Center,,Primary,Primary Health Center,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:26:54.104353Z
+hdx_nhfr_facilities,6211,0b575a5b-ae1a-43af-a0e7-acdf11e81818,,,Shere Primary Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:26:54.131527Z
+hdx_nhfr_facilities,7108,e30b74fa-8fb2-4e92-8839-9f988f1c1b24,,,Ibrahim Abu Memorial Clinic,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:26:56.417927Z
+hdx_nhfr_facilities,7352,1d0de2cf-f200-4b99-823a-d50fac7105c9,,,Gurara Primary Health Care Center Izom,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:26:56.993872Z
+hdx_nhfr_facilities,8699,2c1fef6b-f46b-4d06-a2fd-d85ef6e2dc74,,,Gods Able Clinic,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:00.235586Z
+hdx_nhfr_facilities,8965,6b78bd8a-81ce-42c0-a1e0-7a01cd38f9c7,,,Karu Ecwa Comprehensive Medical Center,,Primary,Private Non Profit,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:00.961338Z
+hdx_nhfr_facilities,8966,3c38ee06-508d-4649-bebb-ae298b53ed64,,,College of Education Clinic,,Primary,Educational Clinic,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:00.963896Z
+hdx_nhfr_facilities,8967,5a093ab0-fec0-4b49-86f5-068b72827d11,,,Acupuncture Hospital,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:00.966614Z
+hdx_nhfr_facilities,8970,040c5b54-5251-4fa8-90cf-39b38e98d362,,,National Hospital Abuja,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:00.973503Z
+hdx_nhfr_facilities,9425,bc3811a0-4148-4d53-aa92-b0f36856d3bb,,,Kasada Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:02.161655Z
+hdx_nhfr_facilities,10692,105f9e44-ac48-45ca-8e1e-04d14199d8f4,,,Wuse District Hospital,,Secondary,District Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:05.238050Z
+hdx_nhfr_facilities,10825,154b22f4-37a7-497d-a689-eb84784287de,,,Hands Wellness Clinic Physiotherapi,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:05.555422Z
+hdx_nhfr_facilities,10837,8e7e1eea-102b-41e9-bfd0-a33a65cfe9fd,,,Yaupe Health Post,,Primary,Dispensary,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:05.583381Z
+hdx_nhfr_facilities,10838,26a787d7-0634-4b80-aa42-9d0b39ce7b08,,,Piko 1 Primary Health Care,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:05.585655Z
+hdx_nhfr_facilities,10839,1ee68c96-934d-4c0b-b04b-4f337c79c214,,,Leda Primary Health Care,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:05.587933Z
+hdx_nhfr_facilities,10840,bad11614-8bf2-4c94-acd9-047cc44bf2b7,,,Bwari General Hospital,,Secondary,General Hospital,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:05.592348Z
+hdx_nhfr_facilities,11128,1308b16f-e5d4-4164-8fae-26887b1e3b7a,,,Cornelian Maternity Gidan Mangoro,,Primary,Maternity Home,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:06.251151Z
+hdx_nhfr_facilities,11193,b6ec571a-8523-477b-a563-b335ef1d255b,,,Takushara Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:06.406979Z
+hdx_nhfr_facilities,11194,8da4d187-ba43-435b-9647-952aea91f642,,,Kungbobokun Health Center,,Primary,Primary Health Center,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:27:06.409540Z
+hdx_nhfr_facilities,11195,eeaa5aee-f7d5-4181-acb0-39f980f0d016,,,Yelwa Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:06.411811Z
+hdx_nhfr_facilities,12700,30208bfc-8e17-43b1-b508-5dd8ea5c673e,,,Aviation Medical Center,,Primary,Medical Center,,,FCTABC06,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:09.861785Z
+hdx_nhfr_facilities,13257,ff997c8f-e3fb-44fc-92fc-a58aa43b76e0,,,Dukpa Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:11.141772Z
+hdx_nhfr_facilities,13258,e19f3466-1f48-4d56-ae01-8a290062a3ca,,,Kiyi Health Clinic,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:11.146237Z
+hdx_nhfr_facilities,13259,5a0cb2d2-560e-4732-8a89-4c5223628fcb,,,Gaube Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:11.148524Z
+hdx_nhfr_facilities,13260,58a907ce-c410-4d1e-afeb-8152f15049b8,,,Gumbo Primary Health Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:11.150738Z
+hdx_nhfr_facilities,13261,03dc807a-7941-4cff-a97d-27cf9967ebf7,,,Sheda Sarki Primary Health Care,,Primary,Primary Health Center,,,FCTKWL05,Kwali,Fct,,,,,False,False,2026-11-17T22:27:11.152960Z
+hdx_nhfr_facilities,13265,5d01b8eb-9316-4860-bd0b-7205303a40c1,,,Tungan Kwasou Health Post,,Primary,Dispensary,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:11.161856Z
+hdx_nhfr_facilities,13267,7e71c6e3-c2a6-4db0-aad5-f04b6fee4670,,,Sumit Hospital,,Primary,Primary Health Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:11.166485Z
+hdx_nhfr_facilities,16302,ce5dc21d-052f-4f62-8811-27ccec970207,,,Adagba Health Clinic,,Primary,Primary Health Center,,,FCTABJ10,Abaji,Fct,,,,,False,False,2026-11-17T22:27:18.200637Z
+hdx_nhfr_facilities,17021,8467b935-ac53-403b-acd9-2edd399d9c5f,,,Umuogerem Health Center,,Primary,Primary Health Center,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:19.908278Z
+hdx_nhfr_facilities,18581,b9edacd6-c2de-4fc1-9386-0978bf275a76,,,Yenche Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ10,Kuje,Fct,,,,,False,False,2026-11-17T22:27:23.794608Z
+hdx_nhfr_facilities,19055,a9f1c137-736c-4988-ac84-ada0c066aec0,,,Kings Care Hospital,,Primary,Primary Health Center,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:25.031203Z
+hdx_nhfr_facilities,19061,2e5740e4-202f-4c05-bf24-044556dac6c5,,,Paikon Kore Primary Health Center,,Primary,Primary Health Center,,,FCTGWA07,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:25.049022Z
+hdx_nhfr_facilities,19062,5c9020be-1b15-4f03-a909-a7934a58eaf7,,,Tunga Maje Primary Health Center,,Primary,Primary Health Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:25.052665Z
+hdx_nhfr_facilities,20516,ef365cdf-358d-490d-820e-169aa6ca3876,,,Fgc Health Clinic,,Primary,Educational Clinic,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:28.671546Z
+hdx_nhfr_facilities,20517,f9f48335-ddc9-45f3-807b-f7e080bf371e,,,Choice Maternity Hospital,,Primary,Maternity Home,,,FCTKWL06,Kwali,Fct,,,,,False,False,2026-11-17T22:27:28.674266Z
+hdx_nhfr_facilities,20518,f052389c-a062-4a9f-ac28-4170578491f0,,,Redmees Maternity,,Primary,Maternity Home,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:27:28.676575Z
+hdx_nhfr_facilities,20519,e7a613e3-90df-421f-bbee-1b89a924250a,,,Queen Clinic and Maternity,,Primary,Maternity Home,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:28.678886Z
+hdx_nhfr_facilities,20520,6fa8995f-932f-4030-95a4-1cf07aeb5f2f,,,Gabic Divine Clinic and Maternity Ltd,,Primary,Maternity Home,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.682550Z
+hdx_nhfr_facilities,20521,faf53313-9adf-4b8a-a78e-7d5810f6d4ae,,,Mapa Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.685110Z
+hdx_nhfr_facilities,20522,18fd7d61-898b-40b4-aa46-9ab3ab854bcd,,,Unity Clinic and Maternity,,Primary,Maternity Home,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.687460Z
+hdx_nhfr_facilities,20523,92b8004d-a13a-4c69-a177-137a7d0091f8,,,Madonna Hospital and Maternity,,Primary,Maternity Home,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.689741Z
+hdx_nhfr_facilities,20524,8fd14efb-20ac-47a8-90bb-207dc6313195,,,Junex Hospital and Maternity,,Primary,Maternity Home,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.692020Z
+hdx_nhfr_facilities,20525,45b42cd7-9b88-44cf-9d08-a6d677b88771,,,Mayor Clinic and Maternity,,Primary,Maternity Home,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:28.694978Z
+hdx_nhfr_facilities,20526,47bd017d-64cd-40f1-8993-fc1bf1d0ea86,,,Alheri Clinic and Maternity Gwako,,Primary,Maternity Home,,,FCTGWA03,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:28.697636Z
+hdx_nhfr_facilities,20527,f2e6445b-f142-43d7-98f0-ef6bd202fca3,,,Leleyi Gwari Primary Health Center,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:27:28.700177Z
+hdx_nhfr_facilities,20528,4e848e49-904a-4414-83ad-34098962a594,,,Gawu Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:28.703650Z
+hdx_nhfr_facilities,20529,1ddb5979-5e50-4332-822d-9971646064c4,,,Shekwonya Maternity Home,,Primary,Maternity Home,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:28.706405Z
+hdx_nhfr_facilities,20530,df4cf9fa-0583-437c-b904-169cea2212ca,,,The Comforter Clinic and Diagnostic Center Limited,,Primary,Laboratory,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:28.709112Z
+hdx_nhfr_facilities,20531,b8a6e2c7-4f8b-4aef-8c8d-bd8c3b360917,,,First Hospital Maternity Karu,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:28.711563Z
+hdx_nhfr_facilities,20532,f2fb10c5-bf43-437f-9395-1c1d1c4ee233,,,Gethsemane Hospital and Maternity,,Primary,Maternity Home,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.714247Z
+hdx_nhfr_facilities,20533,5737880f-428f-4797-b7e2-f20dbcb3bd40,,,Miracle Seed Clinic and Maternity,,Primary,Maternity Home,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:28.717498Z
+hdx_nhfr_facilities,20684,0e36f7f3-b992-4687-806c-59f143a969c1,,,Yaba Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTABJ10,Abaji,Fct,,,,,False,False,2026-11-17T22:27:29.102521Z
+hdx_nhfr_facilities,20685,1a478ba2-ba0c-4c9a-988b-f2b25e5b89bf,,,Ketti Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:29.104879Z
+hdx_nhfr_facilities,20686,71b26653-63ab-4506-a121-3ae2f7d1ccdf,,,Jikwoyi Primary Health Care,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:29.107264Z
+hdx_nhfr_facilities,20787,1f4da49a-965c-4c4b-a0ef-4d05cf708869,,,Gasakpa 1 Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:29.372222Z
+hdx_nhfr_facilities,20788,6ddc24f6-8b67-4298-8a8a-750af4314cbb,,,Mamagi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ08,Abaji,Fct,,,,,False,False,2026-11-17T22:27:29.374543Z
+hdx_nhfr_facilities,20789,07969dc4-08ff-4af1-9913-9f0aa1aa27a8,,,Rubochi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:29.376959Z
+hdx_nhfr_facilities,20791,a0d9a261-dd35-45e5-ba98-0046639da09a,,,Kwaita Hausa Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:27:29.383034Z
+hdx_nhfr_facilities,20792,28ed3546-bbc5-4d3d-9b0b-9e2757dd3c70,,,Fsp Health Center,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:27:29.385484Z
+hdx_nhfr_facilities,20793,4224d60f-a8a8-46ed-964c-36c9cd5fcb47,,,Kwali Health Post,,Primary,Dispensary,,,FCTKWL06,Kwali,Fct,,,,,False,False,2026-11-17T22:27:29.387750Z
+hdx_nhfr_facilities,21281,d89fc4a8-e562-4124-bb8f-2887bc6b2d12,,,Jigo Health Post,,Primary,Dispensary,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:27:30.662803Z
+hdx_nhfr_facilities,21768,4e5cfcfe-1c03-4cb3-97de-074a7337660a,,,Alpha Clinic,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.119819Z
+hdx_nhfr_facilities,21769,528fd332-7837-468d-87ef-296352e83e00,,,Mpape Clinics Limited,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.293053Z
+hdx_nhfr_facilities,21770,acd38ae0-7763-4aab-94bd-483b6a8be450,,,Gideon Legacy Hospital,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.592906Z
+hdx_nhfr_facilities,21645,da01ec06-5d92-4db8-8e70-39667c2af8be,,,Tungan Bijimi Health Post,,Primary,Dispensary,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.647512Z
+hdx_nhfr_facilities,21771,7f15d44b-37f1-4c9e-ade8-7460eebe34cc,,,Asher Hospital Kubwa,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.698524Z
+hdx_nhfr_facilities,21757,9fe2a6fd-1d3a-433a-a4aa-11c986bfa8e4,,,Walleco Clinic,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.795342Z
+hdx_nhfr_facilities,21758,456a8ba1-c6b6-4362-9960-7284b1adf7c2,,,Hetti Hospital,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.869870Z
+hdx_nhfr_facilities,21739,0fb7be26-2807-4a9a-bd28-fd94c6d47572,,,Bodi Primary Health Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:31.905696Z
+hdx_nhfr_facilities,21740,05eadebf-43db-4eb3-8efd-9e8ebc085a01,,,Tunga Adaka Primary Health Clinic,,Primary,Primary Health Center,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.908378Z
+hdx_nhfr_facilities,21741,7ec0af27-9318-4e4f-802e-fd1369efcad0,,,Giri Kpasere,,Primary,Primary Health Center,,,FCTGWA03,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.911783Z
+hdx_nhfr_facilities,21742,69e1f4be-b6b8-4e91-b761-1097a06c6550,,,Ruwa Primary Health Clinic,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.914282Z
+hdx_nhfr_facilities,21743,0659c0ce-f33e-4b2d-be84-0d6076aa1216,,,Zhigakuchi Primary Health Care,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.916646Z
+hdx_nhfr_facilities,21744,1c25f8d8-ced0-438f-a9be-e68c359b42a4,,,Giri Primary Health Center,,Primary,Primary Health Center,,,FCTGWA03,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.918922Z
+hdx_nhfr_facilities,21745,ebb7007b-62d6-451a-8cb8-5e6547631223,,,Ike Health Post,,Primary,Dispensary,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.921183Z
+hdx_nhfr_facilities,21746,37f14aae-6918-4d8f-b8dd-73053862fc13,,,Rafin Zurfi Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.923576Z
+hdx_nhfr_facilities,21747,4b9081c5-7b1e-4e1f-89a5-ce06abce2087,,,Kundu Primary Health Center,,Primary,Primary Health Center,,,FCTKWL05,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.925835Z
+hdx_nhfr_facilities,21748,7abdd054-b091-47aa-8a13-783805e219b6,,,Koroko Primary Health Center,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.928081Z
+hdx_nhfr_facilities,21749,a6b25565-0904-4013-b6c2-bda9efaf75f0,,,Rafin Daji Primary Health Center,,Primary,Primary Health Center,,,FCTABJ05,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.930328Z
+hdx_nhfr_facilities,21751,f7ddc67f-71ae-4a24-ae6f-0cc3205ad843,,,Kpache Health Clinic,,Primary,Primary Health Center,,,FCTABJ10,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.935697Z
+hdx_nhfr_facilities,21752,d4857576-0953-4262-8342-1154233c8972,,,Yewuti Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.938053Z
+hdx_nhfr_facilities,21753,24337010-6d5f-4571-8466-0b92acdd37e5,,,Piri Primary Health Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.941093Z
+hdx_nhfr_facilities,21754,be1b18a9-7a65-429d-b2e9-f625d9c65a9c,,,Dogon Ruwa Primary Health Center,,Primary,Primary Health Center,,,FCTABJ05,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.943979Z
+hdx_nhfr_facilities,21755,98ed1ce0-9883-4c33-9e3f-dbd14347de50,,,Gomani Primary Health Center,,Primary,Primary Health Center,,,FCTKWL05,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.946553Z
+hdx_nhfr_facilities,21756,545988b9-3f97-477c-b49a-23fc3a346979,,,Petti Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.948889Z
+hdx_nhfr_facilities,21759,30b58e35-a7d8-44ab-969c-0663a872ad03,,,Wuna Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.951932Z
+hdx_nhfr_facilities,21760,b10816df-8553-469f-8a7e-89d0d8d7f25f,,,Faith Clinic,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.954653Z
+hdx_nhfr_facilities,21761,16c9b71b-9860-4e9e-b229-2045232dc055,,,Public Health Clinic,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:27:31.957174Z
+hdx_nhfr_facilities,21762,0b13d1fc-42c1-4f1f-9ecd-f4e0bbfc9992,,,Garki Hospital Abuja,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:31.959554Z
+hdx_nhfr_facilities,21763,fbbe431a-7583-409c-afaa-fbc1d33acc5c,,,Primus International Super Speciality Hosiptal,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:31.961990Z
+hdx_nhfr_facilities,21764,2d929574-ee05-4d74-a735-ffdf9c9a023a,,,Ledi 1 Primary Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.964498Z
+hdx_nhfr_facilities,21765,2528bd2a-7a57-4f35-bdb4-375ea3c0f56f,,,Gigbe Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.966892Z
+hdx_nhfr_facilities,21766,954909ef-237e-4658-a72e-7740e4238035,,,Unity Primary Health Center Tufa,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:31.969138Z
+hdx_nhfr_facilities,21772,c2ac2755-35af-42ae-8cb6-4715f926397e,,,Sherepe Primary Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.976235Z
+hdx_nhfr_facilities,21773,2c28b2ab-9924-4bd9-95f7-a99ab9ffeeff,,,Mabushi Public Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:31.978881Z
+hdx_nhfr_facilities,21774,c3b9c437-0cac-4e09-abeb-f8d8f14bf100,,,Ikwa Primary Health Center,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.981412Z
+hdx_nhfr_facilities,21775,25f63cc6-07ae-4619-87b9-5c7d2e16a7f8,,,Ojochogwu Out Patient Clinic,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.983745Z
+hdx_nhfr_facilities,21776,fe0328c8-33b8-4785-bc63-19fd97ef7d0d,,,Posing Hospital,,Primary,Primary Health Center,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.986224Z
+hdx_nhfr_facilities,21777,522e35fc-eef9-4694-a075-f869dc7cea55,,,Kurmin Daudu Model Primary Health Care,,Primary,Primary Health Center,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.988624Z
+hdx_nhfr_facilities,21778,cb76ec44-7953-40a4-9093-233baed36414,,,Salisu Hospital,,Primary,Primary Health Center,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.990970Z
+hdx_nhfr_facilities,21779,2e6ed0a4-4aae-4ddb-8f7e-b562a557e887,,,Gaza Hospital,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:31.993506Z
+hdx_nhfr_facilities,21780,48e7ea13-13f8-4069-b1de-ba9ba507b4f7,,,Oiza Clinic,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.996309Z
+hdx_nhfr_facilities,21781,9a43cef4-82f0-4146-8cf4-d7f28c7bb223,,,Samhev Musulucin and Meternity,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:31.999169Z
+hdx_nhfr_facilities,21782,1b6338fc-b5fc-4e35-a22c-f42540b5aa77,,,Madalla Hospital,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.001656Z
+hdx_nhfr_facilities,21783,badef80f-4031-4aae-bf1f-2d4f7c944b4a,,,St Peters Catholic Hospital,,Primary,Private Non Profit,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:32.003995Z
+hdx_nhfr_facilities,21784,fa4d9c7e-d8cd-42d3-a3a6-45308c41c872,,,Awaura Comprehensive Promary Health Care,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:32.007212Z
+hdx_nhfr_facilities,21785,e6ef9095-f909-4233-a080-900fd58eb3fa,,,Abattoir Primary Health Center,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:27:32.009905Z
+hdx_nhfr_facilities,21786,5293f1ba-7f0c-4929-b1fb-04e2cf7911a1,,,Rimba Primary Health Care,,Primary,Primary Health Center,,,FCTABJ03,Abaji,Fct,,,,,False,False,2026-11-17T22:27:32.012232Z
+hdx_nhfr_facilities,21787,8d0d6f73-53ae-481a-b810-7a973146334c,,,Ozoro Primary Health Center,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.014450Z
+hdx_nhfr_facilities,21788,0fb67dd4-029e-4983-a9b7-a2c6fbb21df6,,,Garki Village Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.016649Z
+hdx_nhfr_facilities,21789,ea6e086d-38f4-4242-97f5-6087a6074506,,,Dafara Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:32.019014Z
+hdx_nhfr_facilities,21790,401e9d3d-3bb5-4066-a97b-4b2a415135a7,,,Gasaki Primary Health Center,,Primary,Primary Health Center,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.021445Z
+hdx_nhfr_facilities,21791,13224d6a-c99b-407f-acfa-aa657a6c3421,,,Pyakasa Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.023760Z
+hdx_nhfr_facilities,21792,d8235608-1706-4a76-8842-1a30c684532f,,,Kabusa Health Post,,Primary,Dispensary,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.026028Z
+hdx_nhfr_facilities,21793,cd145a92-f0f1-4fad-bc89-e19470a936f0,,,Burum Health Post,,Primary,Dispensary,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.028296Z
+hdx_nhfr_facilities,21794,10c63f22-60ff-41a9-ad71-2a78b9708406,,,Kurudu Health Post,,Primary,Dispensary,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.031539Z
+hdx_nhfr_facilities,21795,7287dfbf-9570-4977-9074-8a7c2632b7f6,,,Hulumi Health Clinic,,Primary,Primary Health Center,,,FCTABC06,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.033906Z
+hdx_nhfr_facilities,21796,fa68490e-1d02-411c-9a05-f32d9618dd1b,,,Abuja Clinic,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.036167Z
+hdx_nhfr_facilities,21797,5e227dd3-dcdb-4749-8ee2-81e10c80a233,,,Stephen Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.038387Z
+hdx_nhfr_facilities,21798,918be923-16bc-4138-82df-69e8ba46bf3b,,,Pigba Medical Center,,Primary,Medical Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.040639Z
+hdx_nhfr_facilities,21799,ab941e2a-e88d-44a9-a0a4-f2a6c92ad5f0,,,Moli Medical Center,,Primary,Medical Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.043488Z
+hdx_nhfr_facilities,21800,2d226813-1718-4340-93d2-7f6457a7a2ee,,,Gawu Comprehensive Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:32.046209Z
+hdx_nhfr_facilities,21801,ee788aae-40b4-42f6-b2e2-2e0b20255ab0,,,Nukuchi Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.048580Z
+hdx_nhfr_facilities,21802,92fc5e97-31d5-461c-8c1d-066b6995b9e8,,,Kubwa Muslim Community Hospital,,Primary,Private Non Profit,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.051018Z
+hdx_nhfr_facilities,21803,769b3b83-4cef-4a13-97fe-5e2c1965e1ba,,,Omega Medical Center Mpape,,Primary,Medical Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.053300Z
+hdx_nhfr_facilities,21804,01725b2c-2907-43ca-9a5f-e00afd2501a2,,,Shishipe Primary Health Center,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.055546Z
+hdx_nhfr_facilities,21805,d7540328-414f-4a10-9929-ef51e23fc559,,,Sumpe Health Post,,Primary,Dispensary,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:32.057897Z
+hdx_nhfr_facilities,21806,fed1a776-aa0f-4503-b5f8-c9a690491b80,,,Kagini Primary Health Center,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.060519Z
+hdx_nhfr_facilities,21807,4ca48dbc-e29f-4464-9f57-1bd15836536a,,,Gwarinpa Primary Health Care Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.062815Z
+hdx_nhfr_facilities,21808,cf7a25b8-46c5-4b77-a31c-98aed0d80d13,,,Customs Medical Center,,Secondary,Military and Paramilitary Clinic,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.065151Z
+hdx_nhfr_facilities,21809,1d286cb0-f8b3-462a-a891-d4dee6f3612f,,,National Assembly Clinic,,Secondary,Federal Staff Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.067694Z
+hdx_nhfr_facilities,21810,fab9c5d7-d26a-428c-9a58-7fe5d7d3db4e,,,Gwarinpa Federal Staff Hospital,,Secondary,Federal Staff Clinic,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:32.070096Z
+hdx_nhfr_facilities,22105,2821a595-174f-41b6-94f3-972869169958,,,Anguwan Dodo,,Primary,Primary Health Center,,,FCTGWA01,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:32.870016Z
+hdx_nhfr_facilities,22452,099fffb4-8513-4aa1-a1eb-6e338fa953e6,,,Dagiri Primary Health Center,,Primary,Primary Health Center,,,FCTGWA01,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:33.736947Z
+hdx_nhfr_facilities,22499,a9968f40-53ed-4307-9d4a-a40c6daf9d6e,,,Bwari Town Clinic,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:27:33.766950Z
+hdx_nhfr_facilities,22477,29809b75-e986-4cb6-b172-1678b16b105e,,,Kwaoita Hausa Primary Health Care,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:33.801099Z
+hdx_nhfr_facilities,22478,d3a8b35a-7157-499c-848c-e12cf3221d37,,,Kabi Kasa Primary Health Care Center,,Primary,Primary Health Center,,,FCTKUJ05,Kuje,Fct,,,,,False,False,2026-11-17T22:27:33.803382Z
+hdx_nhfr_facilities,22479,aa3bb2b2-2d46-4035-9296-0037c1d4508b,,,Bari Bari Primary Health Center,,Primary,Primary Health Center,,,FCTABJ05,Abaji,Fct,,,,,False,False,2026-11-17T22:27:33.805713Z
+hdx_nhfr_facilities,22480,278208b3-05dc-4130-b081-c62912566af6,,,Old Kutunku Primary Health Center,,Primary,Primary Health Center,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:33.808163Z
+hdx_nhfr_facilities,22481,1fde81e6-6e54-45f5-9b61-bd6836b2475c,,,Wako Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:27:33.810689Z
+hdx_nhfr_facilities,22482,249a7236-3385-411b-9f98-afc7148f0260,,,Kwaita Model Primary Health Center,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:33.813278Z
+hdx_nhfr_facilities,22483,a82eef57-ff52-44bc-99e4-52f849a513e4,,,Gurdi Health Center,,Primary,Primary Health Center,,,FCTABJ05,Abaji,Fct,,,,,False,False,2026-11-17T22:27:33.815705Z
+hdx_nhfr_facilities,22484,981bed19-8911-45a4-90d3-bc66771cecc2,,,Karu Primary Health Care,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.817969Z
+hdx_nhfr_facilities,22485,39d28b76-e95d-44dd-be8e-e20e3c460f4b,,,Gbagalape Primary Health Care,,Primary,Primary Health Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.820242Z
+hdx_nhfr_facilities,22486,fe654321-5880-4c1a-9e85-b89a22c9e718,,,Gudun Karya Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:27:33.822478Z
+hdx_nhfr_facilities,22487,0abe2a17-3c2c-41f8-ad5f-fb1de25a4dd8,,,Piwoyi Primary Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.825437Z
+hdx_nhfr_facilities,22488,5f895711-00a0-4a13-9efa-523b47e2c7e0,,,Gawu Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:33.827930Z
+hdx_nhfr_facilities,22489,657094cf-e2c7-4cd2-8df7-cc855194c8f8,,,Tolulo Health Post,,Primary,Dispensary,,,FCTBWR04,Bwari,Fct,,,,,False,False,2026-11-17T22:27:33.830272Z
+hdx_nhfr_facilities,22490,9652d109-1c9f-4d3d-ba3a-f4c208a85fc1,,,Dutse Alhaji Primary Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:33.832628Z
+hdx_nhfr_facilities,22491,b237cb9d-f543-4c08-ae8a-365f7cbf5b12,,,Ajana Primary Health Care Center,,Primary,Primary Health Center,,,FCTABJ08,Abaji,Fct,,,,,False,False,2026-11-17T22:27:33.834972Z
+hdx_nhfr_facilities,22492,77c3ed7b-ca11-42b8-b803-b7f1e922a0ac,,,Nuku Primary Health Center,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:27:33.838189Z
+hdx_nhfr_facilities,22493,35749a49-821e-44cf-816c-866b5f63f6c5,,,Kuchiyako Party Healthcare Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:33.840582Z
+hdx_nhfr_facilities,22494,6c374a9a-76d0-485c-ae27-3f05f51cc8a4,,,Gui Health Post,,Primary,Dispensary,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.843038Z
+hdx_nhfr_facilities,22495,1bc5c440-eaa0-4552-aa8e-4f0688af121a,,,Kujekwa Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ07,Kuje,Fct,,,,,False,False,2026-11-17T22:27:33.845409Z
+hdx_nhfr_facilities,22496,7b57f132-713d-4ef1-8559-f2931677da01,,,Lugbe Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.848126Z
+hdx_nhfr_facilities,22497,8dadced0-1b0c-42ba-b1a0-265ee3568930,,,Kuchigoro Primary Health Care Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:33.851145Z
+hdx_nhfr_facilities,22498,099bf1bd-8aee-4670-a119-2bd080b113b3,,,Igu Primary Health Care Center,,Primary,Primary Health Center,,,FCTBWR04,Bwari,Fct,,,,,False,False,2026-11-17T22:27:33.853931Z
+hdx_nhfr_facilities,22500,b3b20251-8538-47bd-ac75-eeefc9e9f3e1,,,Kuduru Primary Health Center,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:27:33.856726Z
+hdx_nhfr_facilities,22988,21e74fc1-3423-4f98-93ee-0c5bb739c19c,,,Anagada Primary Health Center,,Primary,Primary Health Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:35.162144Z
+hdx_nhfr_facilities,23088,50beacd0-c7f8-4990-bc97-8f1876743977,,,Achimbi Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:35.429086Z
+hdx_nhfr_facilities,23233,d36237a4-62de-4586-81d6-f6fd67297fd1,,,Aqwai Health Post,,Primary,Dispensary,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:35.775476Z
+hdx_nhfr_facilities,23987,9822e7f1-d2cf-4073-bd35-2d5a878c3589,,,Odu Primary Health Center,,Primary,Primary Health Center,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:37.511081Z
+hdx_nhfr_facilities,24046,70387a6c-ee77-4857-b73c-9fd528e76db6,,,University of Abuja Teaching Hospital,,Tertiary,Teaching Hospital,,,FCTGWA08,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:37.645566Z
+hdx_nhfr_facilities,24086,03af89e3-21e1-4642-933a-602061443b7c,,,Fsp Health Center,,Primary,Primary Health Center,,,FCTKWL06,Kwali,Fct,,,,,False,False,2026-11-17T22:27:37.746253Z
+hdx_nhfr_facilities,24307,3c17b0f0-e8fb-4afc-930b-e2e1483eca8d,,,Nakowa Clinic Kutunku,,Primary,Private Non Profit,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:38.296445Z
+hdx_nhfr_facilities,24541,df5e6900-5549-420b-855e-e598c0bcd366,,,63 Naf Hospital,,Secondary,Military and Paramilitary Clinic,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.867946Z
+hdx_nhfr_facilities,24542,7c4f9f9a-b058-468d-9dc2-b336727c2831,,,Zhudi Amac Clinic,,Primary,Private Non Profit,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.870194Z
+hdx_nhfr_facilities,24543,fdca12d8-9657-47de-a1ef-171131b7ecb1,,,Amac Hospital,,Primary,Private Non Profit,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.872540Z
+hdx_nhfr_facilities,24545,41ab9f84-5fbf-4321-a1cc-43f44495e9fc,,,Duda Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:27:38.877504Z
+hdx_nhfr_facilities,24547,7726362f-4eea-4344-b482-a64015081154,,,Usuma Hospital,,Primary,Private Non Profit,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:38.882251Z
+hdx_nhfr_facilities,24548,c3930280-1186-42ad-9042-d9f5bb164cac,,,Gss Health Center,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.884526Z
+hdx_nhfr_facilities,24549,c4f6136d-24d2-4f48-b7aa-1f3d0255b1aa,,,Gbkaiya Primary Health Center,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:27:38.886770Z
+hdx_nhfr_facilities,24550,afa0556b-9323-4ef0-b34b-b406a04163d9,,,Hammersmith Medical Center,,Primary,Medical Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.889114Z
+hdx_nhfr_facilities,24551,0226a187-7ab2-4f64-ac39-855fbefab546,,,Living Faith Church Clinic,,Primary,Private Non Profit,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.891392Z
+hdx_nhfr_facilities,24553,b95d1787-ca5f-4848-9cf1-986d0fdeb18b,,,Nysc Clinic,,Primary,Private Non Profit,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:38.896097Z
+hdx_nhfr_facilities,24554,98ef47b9-d3a5-4145-bc88-0ec4bdc6bf01,,,Nigerian Air Force Clinic,,Primary,Private Non Profit,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:27:38.898304Z
+hdx_nhfr_facilities,24576,a99df27d-5a1f-4512-92ca-cd99e50e7a6f,,,Saburi Health Center,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:38.951815Z
+hdx_nhfr_facilities,24580,8513a576-809b-41d3-b814-f101b2fc5a36,,,Divine Clinic,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:38.961286Z
+hdx_nhfr_facilities,24581,d876d0a6-ff26-4293-9cb4-fd8550149777,,,Lafiak Hospital,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:38.963666Z
+hdx_nhfr_facilities,24598,544297c5-c377-4f2f-b3ec-c91775df53e4,,,Kefat Medical Center,,Primary,Medical Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:39.003433Z
+hdx_nhfr_facilities,24609,31dfabe6-e3ce-4d05-ae7d-886a74797ded,,,Kuje General Hospital,,Secondary,General Hospital,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:39.029414Z
+hdx_nhfr_facilities,27381,b5c0a330-061a-444f-9e64-f1301ce552a9,,,Kings Care Hospital Ltd,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:45.381608Z
+hdx_nhfr_facilities,27382,9feced0a-3dfd-4918-80d7-9b65787cbfcd,,,Hi Fi Clinics,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:45.383834Z
+hdx_nhfr_facilities,27383,e5a8601a-8c73-4557-9f19-eaf4b35d9d96,,,Minat Clinic and Maternity Tungwa Maje,,Primary,Maternity Home,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:45.386057Z
+hdx_nhfr_facilities,27384,27359c35-77f3-46dc-aecd-0493a147d773,,,Capital Doctors Clinic,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:45.388283Z
+hdx_nhfr_facilities,27385,5b4e6ad5-6443-460e-979f-e18ed12fa576,,,St Georges Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:45.390528Z
+hdx_nhfr_facilities,27386,c3824cdc-94e5-4073-b75e-dbfe419fcc8f,,,Our Ladys Maternity Homes,,Primary,Maternity Home,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:45.392746Z
+hdx_nhfr_facilities,27930,77fb61ad-b7c4-4240-8f2e-b87d6303a51b,,,Kaida Sabo Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:46.706344Z
+hdx_nhfr_facilities,27931,abf6b64a-309f-431a-bfa1-0f310abbabc0,,,Mayday Specialist Hospital,,Tertiary,Specialist Hospital,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.708717Z
+hdx_nhfr_facilities,27932,e5887195-7ba9-4e08-b6e6-a0872f0e04f5,,,Omega Medical Lab and Scan Center,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.710984Z
+hdx_nhfr_facilities,27933,7e53f840-2835-4e96-b4e5-b4cf8888abed,,,Ruz Medical and Diagnostic Center,,Primary,Laboratory,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.713470Z
+hdx_nhfr_facilities,27934,8bb39ddd-3e42-4587-be3c-653a6001e2bd,,,Arewa Specialist Hospital,,Tertiary,Specialist Hospital,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.715848Z
+hdx_nhfr_facilities,27935,05f79f11-dc7c-4844-9fea-d4bd43896c9d,,,Primed Clinic and Diagnostic,,Primary,Laboratory,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.718135Z
+hdx_nhfr_facilities,27936,1999a7dc-9883-4415-a8db-15b251773846,,,Alfad Specialist Medical Center,,Tertiary,Specialist Hospital,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:46.720542Z
+hdx_nhfr_facilities,27937,cc9d8be7-0ae8-46cd-b26d-73907a400298,,,Princess Mary Specialist Hospital,,Tertiary,Specialist Hospital,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.722851Z
+hdx_nhfr_facilities,27938,1a1d7440-e0dc-4b5a-83ec-b4258f430adf,,,Iduna Specialist Hospital,,Tertiary,Specialist Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.725187Z
+hdx_nhfr_facilities,27939,1e6859fa-ec20-4239-b1f4-aa5ab407e552,,,Ecwa Clinic and Maternity,,Primary,Maternity Home,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.727526Z
+hdx_nhfr_facilities,27940,b974b0e0-9627-4f62-b0a7-f82dba376b21,,,Decency Amana Specialist Medical,,Tertiary,Specialist Hospital,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.729855Z
+hdx_nhfr_facilities,27941,dda31944-63f3-450d-9f56-1e2bff250f3b,,,G and S Specialist Clinic,,Tertiary,Specialist Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.732200Z
+hdx_nhfr_facilities,27942,156b1b93-2841-43d6-84b0-e327c50fdb25,,,Medicaid Radioagnostic,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.734684Z
+hdx_nhfr_facilities,28008,ea579e15-9cc3-4f58-a1d0-0988b360995b,,,Gwarimpa Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:46.879163Z
+hdx_nhfr_facilities,28122,c43d41e2-de64-4452-bede-cc4d8e0c99f3,,,Jorab Hospital,,Primary,Primary Health Center,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.127173Z
+hdx_nhfr_facilities,28148,149da7ba-9272-4b59-b4c6-efd2c3260cb0,,,Lifeway Medical Center,,Primary,Medical Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.186496Z
+hdx_nhfr_facilities,28149,db1fbfa6-58c7-4abb-ad06-276dcea8f572,,,Giri Clinic and Maternity,,Primary,Maternity Home,,,FCTGWA03,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.188774Z
+hdx_nhfr_facilities,28150,e92c29cc-1dfe-4f32-ad2d-a8f1336c72e9,,,Alheri Clinic and Maternity,,Primary,Maternity Home,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.191236Z
+hdx_nhfr_facilities,28151,0cd76d2c-01e0-45ed-a342-3855be091dc0,,,Jamad Clinic,,Primary,Primary Health Center,,,FCTGWA01,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.193549Z
+hdx_nhfr_facilities,28152,5152d2df-3dc1-4912-ad0a-a5e4d288ba17,,,Gwagwalada Clinic and Maternity,,Primary,Maternity Home,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.195843Z
+hdx_nhfr_facilities,28153,11497073-1357-4fe2-ad2e-2d924802a832,,,Choice Maternity and Nursing Home,,Primary,Maternity Home,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:27:47.198060Z
+hdx_nhfr_facilities,28154,0861bc41-82e9-4304-8b15-408e68cd5510,,,King Clinic and Maternity,,Primary,Maternity Home,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.200287Z
+hdx_nhfr_facilities,28155,65f0dd73-8091-41b5-92d9-16c9bbe43bfa,,,Blessed Trinity Hospital,,Primary,Primary Health Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.202529Z
+hdx_nhfr_facilities,28156,f7630fde-606c-4b1e-aa28-db98039588b1,,,Fountain Head Hospital,,Primary,Primary Health Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.204746Z
+hdx_nhfr_facilities,28157,73fe5592-8710-40ac-bf75-48c8bf2a31e6,,,Rouz Hospital and Maternity,,Primary,Maternity Home,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.206963Z
+hdx_nhfr_facilities,28158,2127d16f-537d-40d0-bceb-f5da4383deea,,,Prolfa Hospital,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.209196Z
+hdx_nhfr_facilities,28159,e38ec536-ce11-4de4-a873-41cf016ccb92,,,Fct Hospital Management Board,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.211414Z
+hdx_nhfr_facilities,28160,ff65258e-17f1-4fe6-8474-f951e32ad933,,,Abuja Clinic,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.213632Z
+hdx_nhfr_facilities,28161,b816831c-43ee-49b3-87b1-44eae2c282a2,,,Foundation Prevention Clinic,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.215857Z
+hdx_nhfr_facilities,28162,90e3c86a-bf85-453b-87d3-226853424861,,,Limi Hospital and Maternity Limited,,Primary,Maternity Home,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.218173Z
+hdx_nhfr_facilities,28163,c7a2a19e-2720-429c-aaaf-dd331fb26304,,,Bepos Clini and Maternity,,Primary,Maternity Home,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.220473Z
+hdx_nhfr_facilities,28164,31a5b853-9110-457d-8406-9181900fd6cf,,,Rainbow Hospital,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.222856Z
+hdx_nhfr_facilities,28165,9ecabed4-dfca-4baf-9b53-29393a85a010,,,Awmecare Clinic and Maternity,,Primary,Maternity Home,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.225130Z
+hdx_nhfr_facilities,28166,150a8017-1a5b-4798-97bd-dc51a54d1ddf,,,White Diamond Clinic and Maternity,,Primary,Maternity Home,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.227435Z
+hdx_nhfr_facilities,28167,887ab2d2-4bd9-461b-a89a-c74917b3a8c5,,,Leblon Clinic and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.229956Z
+hdx_nhfr_facilities,28168,dffd597b-1457-4f5f-8305-b449403ccafa,,,Egahi Clinic and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.232439Z
+hdx_nhfr_facilities,28169,6e25fb3f-3ddc-447c-9515-8703d3b8003c,,,Nisa Premier Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.234709Z
+hdx_nhfr_facilities,28170,327b20cb-db61-455f-9c93-85f519dbd20d,,,Guinue Savannah Medical Center,,Primary,Medical Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.236941Z
+hdx_nhfr_facilities,28171,c75a35fb-6f9d-49de-8a4a-07320e53e324,,,Vinette Hospital and Maternity,,Primary,Maternity Home,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.241556Z
+hdx_nhfr_facilities,28172,dcdaf09d-6f71-4fae-bd78-ec80c4f843a7,,,Diamond Medical Center,,Primary,Medical Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.243853Z
+hdx_nhfr_facilities,28173,b36ecb51-427b-433d-b2f1-d6548564b1f0,,,Our Lady Clinic and Maternity,,Primary,Maternity Home,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.246085Z
+hdx_nhfr_facilities,28174,c630a66c-a8d4-4db2-baf8-e3b60f5babf7,,,Zenith Medical and Kidney Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.248326Z
+hdx_nhfr_facilities,28175,3d4d9c02-2d55-421c-97f4-962517f3ae4b,,,Bethel Clinic and Maternity,,Primary,Maternity Home,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.250556Z
+hdx_nhfr_facilities,28176,74dc76ad-5fcd-4fa8-ad45-eaa84302723d,,,Faith Medical Center,,Primary,Medical Center,,,FCTABC06,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.252892Z
+hdx_nhfr_facilities,28177,f2b61183-0144-4e40-bf5e-48e2c837bfdb,,,Sauki Good Samaritan Clinic,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.255223Z
+hdx_nhfr_facilities,28178,b74fe3b2-769c-4dd0-b7fa-6f9ff2ee7456,,,Karu Ecwa Clinic,,Primary,Private Non Profit,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.257497Z
+hdx_nhfr_facilities,28179,c7f3308b-27bc-4ec1-ae43-09f24fc241fe,,,St Patrick Clinic and Maternity,,Primary,Maternity Home,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.260175Z
+hdx_nhfr_facilities,28180,2311a70e-433d-4032-93cf-b2430dfe362c,,,Kella Clinic and Maternity,,Primary,Maternity Home,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.262496Z
+hdx_nhfr_facilities,28182,eea291a6-c704-49e2-9b03-14c0a7b2407b,,,Alibu and Maternity,,Primary,Maternity Home,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.266967Z
+hdx_nhfr_facilities,28183,2d86e8bb-7739-4daf-801e-9aa63c18ec4e,,,Bismol Medical Center,,Primary,Medical Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.269475Z
+hdx_nhfr_facilities,28185,cab374d7-358b-4c1d-badd-84d49e764cc5,,,Saferon Hospital Ltd,,Primary,Primary Health Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.274383Z
+hdx_nhfr_facilities,28186,30f25be5-6164-4afa-a323-e9820a4b942a,,,Albama Clinic,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.276598Z
+hdx_nhfr_facilities,28187,eb75efb7-9e2b-4e6d-9a27-26b20e736d48,,,Nufin Allah Maternity Home,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.278835Z
+hdx_nhfr_facilities,28188,eaf6d7ad-f990-47fc-92cd-7227a5a0e59f,,,Rapha Hospital and Maternity,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.281060Z
+hdx_nhfr_facilities,28189,3de262c6-622c-4f96-8fb2-8ee2e3ca804c,,,Samrock Hospital,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.283341Z
+hdx_nhfr_facilities,28190,d6063429-d125-40a8-b758-6049f0d825f4,,,Mercy Maternity Home,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.285561Z
+hdx_nhfr_facilities,28191,551439f8-923f-4ad4-ad35-bb4db1165c3a,,,Rose of Sharon Clinic,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.287811Z
+hdx_nhfr_facilities,28192,c250a444-1b4e-4727-816e-d05df21f5a67,,,Midland Clinic and Maternity,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.290050Z
+hdx_nhfr_facilities,28193,18cd7788-afaf-4aab-94eb-05ec28ab683e,,,Fredrickson Mecal Clinic,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.292432Z
+hdx_nhfr_facilities,28194,5d7c2b9f-56f9-47cd-9d73-3c4806d40e4c,,,Arewa Clinic,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.294672Z
+hdx_nhfr_facilities,28195,1f97e800-6bc0-436a-bef6-bf3e7c42f9fc,,,Femili Clinic and Maternity,,Primary,Maternity Home,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.296977Z
+hdx_nhfr_facilities,28196,a751481a-da62-4bae-8c4a-be5e40ca81e6,,,Comforter Place,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.299225Z
+hdx_nhfr_facilities,28197,4c75209c-cb36-48fc-b1ca-87c853cfa710,,,Precious Life Medical Center,,Primary,Medical Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.301417Z
+hdx_nhfr_facilities,28198,32d962fb-0770-4080-b799-0077d2fd6000,,,Mery Clinic,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.303613Z
+hdx_nhfr_facilities,28199,56bd4b2f-fdf6-41c0-811a-d5ed21b9f90b,,,Al Nur Maternity Home,,Primary,Maternity Home,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.306016Z
+hdx_nhfr_facilities,28200,58ffd8ca-2879-4b13-9a66-d743b537f43d,,,Jerab Hospital,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.308276Z
+hdx_nhfr_facilities,28201,3677eec3-d58d-471f-a62d-36520baa718c,,,St Micheal Clinic and Maternity,,Primary,Maternity Home,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.310495Z
+hdx_nhfr_facilities,28202,9bba00c6-6ee4-4cdb-9ed7-72e608bb6b94,,,Hemado Clinic,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.312710Z
+hdx_nhfr_facilities,28203,5a25e134-9ab1-44ea-bd70-1be2d4beded1,,,Vinto Clinic,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.314923Z
+hdx_nhfr_facilities,28204,f21d0a4f-eab9-4d09-a606-9340f15154a6,,,Stevan Hospital and Maternity,,Primary,Maternity Home,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.317129Z
+hdx_nhfr_facilities,28205,5a499897-c885-49c0-99e4-a9aa63f96917,,,Allison Hospital and Maternity,,Primary,Maternity Home,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:47.319348Z
+hdx_nhfr_facilities,28206,94869723-56a0-41da-b809-103038a3346a,,,Peace Care Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.321619Z
+hdx_nhfr_facilities,28207,03f8ba70-d8fb-4960-b3ad-9f3939cdb84b,,,Jilf Hospital and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.323881Z
+hdx_nhfr_facilities,28208,a81692e4-0475-4803-98ed-8e1d02491c76,,,Relina Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.326107Z
+hdx_nhfr_facilities,28209,6db6e17f-6ee7-4cbe-a615-00aca05cce46,,,Camel Wood Medical Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.328334Z
+hdx_nhfr_facilities,28210,9b0343af-08e6-4234-95da-c89ad16f730e,,,Jedonec Clinic and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.330545Z
+hdx_nhfr_facilities,28211,a9ff95d1-6867-4a72-95d5-c6f8b75bc6f1,,,Ebony Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.332765Z
+hdx_nhfr_facilities,28212,0a663448-c42b-438b-8fe2-b43dc0b1628d,,,4 Bn Mrs Clinic,,Secondary,Military and Paramilitary Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.334965Z
+hdx_nhfr_facilities,28213,c1ef35c0-c7f6-4416-9448-2f0914d89539,,,Wellpoint Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.337198Z
+hdx_nhfr_facilities,28214,72b255e4-7ac7-47a3-a95d-8818eeb36c70,,,Recovery Medical Services,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.339544Z
+hdx_nhfr_facilities,28215,9a1d7b51-94b6-4337-86fa-44404ce6023b,,,Faith Nursing Home,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.341773Z
+hdx_nhfr_facilities,28216,00a3abc7-d6d6-4ae1-843a-0bf111271012,,,Camek Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.344012Z
+hdx_nhfr_facilities,28217,9f837072-f3c8-49f5-8dbf-5f1228f11984,,,Kings House Medical Center,,Primary,Medical Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.346271Z
+hdx_nhfr_facilities,28218,f5c99b2f-9238-46a7-a8ed-876f4aba509f,,,The Crown Hosptal,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.348668Z
+hdx_nhfr_facilities,28219,35e9c8fa-e6b0-47a1-8006-fb4cf5d4531e,,,Viewpoint Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.350943Z
+hdx_nhfr_facilities,28220,c26870dc-1bf8-4e40-8dc5-c62a8583d9e6,,,Cream Medics and Materity Homes,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.353295Z
+hdx_nhfr_facilities,28221,52f5bdee-557d-4dac-bf8c-17ffe266a3de,,,Suzzy Ville Clinic and Maternity,,Primary,Maternity Home,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.355561Z
+hdx_nhfr_facilities,28222,b49bcd25-4b46-4600-80f9-93c6addd925b,,,Access Hospital,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.357770Z
+hdx_nhfr_facilities,28223,6cf8f67d-e027-4419-9d3e-b7f0b88f8bc1,,,Julius Berger Medical Services Ltd,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.359990Z
+hdx_nhfr_facilities,28224,a08aca2e-dcf7-40f6-a9ae-9cc413c7cc62,,,Dr Hassan Clinic and Diagnostic Center,,Primary,Laboratory,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.362230Z
+hdx_nhfr_facilities,28225,feb6e27a-89b5-4e8e-91da-736e585a2cd7,,,Abuja Clinics Ltd,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.364461Z
+hdx_nhfr_facilities,28226,8ab1450c-fa6c-4f6f-abb9-e72e28481d4c,,,Laura Hospital and Maternity,,Primary,Maternity Home,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.366666Z
+hdx_nhfr_facilities,28227,05db4ec6-2b72-4d63-b920-7bf5fefabb1c,,,Bwari Medical Center,,Primary,Medical Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.368867Z
+hdx_nhfr_facilities,28228,5c0d8643-459a-4d43-9c70-cad6ab3045a4,,,Gbbic Divine Clinic Bwari,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.371080Z
+hdx_nhfr_facilities,28229,c58db3e9-fb29-4799-b21f-7e387dfb0b1b,,,Maryland Clinic Sabon Gari,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.373345Z
+hdx_nhfr_facilities,28231,e9371eb2-d190-4b1a-b2fe-be677ccfc160,,,Royal Lords Hospital 7 Maternity,,Primary,Maternity Home,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.377889Z
+hdx_nhfr_facilities,28232,6eae1f79-e178-4853-ab06-e6b7018fd77b,,,St Vincent Catholic Hospital,,Primary,Private Non Profit,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.380072Z
+hdx_nhfr_facilities,28233,cf89d9c9-c14b-4d30-8b79-598d67c57e3b,,,Salihu Memeorial Hospital,,Primary,Primary Health Center,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.382291Z
+hdx_nhfr_facilities,28234,03f61e3c-3d98-40f6-98cd-5abe5affa6e0,,,Bapha Clinic and Maternity,,Primary,Maternity Home,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:27:47.386676Z
+hdx_nhfr_facilities,28235,9562b209-e2b0-48b8-bf73-7e90a0f94514,,,Maraba Clinic and Maternity,,Primary,Maternity Home,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.388858Z
+hdx_nhfr_facilities,28236,0a6eca72-deb6-42e6-ac12-f5b5ceca53cd,,,Smart Motherhood Maternity,,Primary,Maternity Home,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.391307Z
+hdx_nhfr_facilities,28237,ad621cb0-7027-44fa-9594-963aa215af32,,,Suleja Clinic,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.393618Z
+hdx_nhfr_facilities,28239,a08eb10b-1159-4218-ba5d-2360d8aa1bff,,,Azony Maternity,,Primary,Maternity Home,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.402684Z
+hdx_nhfr_facilities,28240,5019bcfc-aa5e-469a-ae51-3b920014aea6,,,Luna Hospital,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.405248Z
+hdx_nhfr_facilities,28242,6eeb3bd4-b284-43de-999f-6b1e966669f9,,,Samto Medical Services,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.409795Z
+hdx_nhfr_facilities,28243,c461da99-1922-4a08-8eed-72b828769fff,,,Jikwoyi Native Hospital,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.412330Z
+hdx_nhfr_facilities,28244,401728ed-9ca7-482b-ae36-f9aa0609a7cf,,,Sophy Hospital and Maternity,,Primary,Maternity Home,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.414621Z
+hdx_nhfr_facilities,28245,1b810264-5676-403c-b8b9-8d64c7acd06f,,,Vintage Medical Center,,Primary,Medical Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.417100Z
+hdx_nhfr_facilities,28246,bc18207d-cc8e-4abc-8a96-9e5381fc73f1,,,Asher Hospital and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.419421Z
+hdx_nhfr_facilities,28247,6476674e-91d0-425b-86a8-71a3be3b932e,,,The Central Clinic,,Primary,Primary Health Center,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.421738Z
+hdx_nhfr_facilities,28264,80c29a5b-a531-4f31-8cd5-6c09039e810c,,,Asokoro District Hospital,,Secondary,District Hospital,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.461049Z
+hdx_nhfr_facilities,28265,3023b48c-b997-44e2-8d15-dd06e24a7f4f,,,Efab Medical Center,,Primary,Medical Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:47.463394Z
+hdx_nhfr_facilities,28266,a86bf4eb-0ef5-4a38-b66d-b5375f500ef7,,,Gurfata Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:47.465640Z
+hdx_nhfr_facilities,28705,920fff62-4c03-4db6-b93d-1cd83333a1ec,,,Unity Clinic,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:48.489323Z
+hdx_nhfr_facilities,28733,45d43c8b-1d6d-43e1-b58a-cf1a89a046f2,,,Boku Sarki Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:48.557726Z
+hdx_nhfr_facilities,28734,0d7ca58e-c537-4c61-bd76-e9abaa6bf485,,,Bid Wagun Memorial Clinic,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:48.560540Z
+hdx_nhfr_facilities,28735,5ed22986-f470-49be-b1e1-4152f2e3fe50,,,Haske Clinic,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:48.563006Z
+hdx_nhfr_facilities,28736,a089536a-61b8-4f17-96c2-27f0091b0df8,,,Tufa Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:48.565436Z
+hdx_nhfr_facilities,29638,ca56cfde-512e-43b1-ba80-a212992d202c,,,Kabimangoro Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ05,Kuje,Fct,,,,,False,False,2026-11-17T22:27:50.614340Z
+hdx_nhfr_facilities,29640,4ef2efff-0e03-4704-a037-285f791432ad,,,Kasada Health Clinic,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:50.618943Z
+hdx_nhfr_facilities,29654,b5ee71a1-5092-4a03-8048-b369e946552a,,,Budupe Primary Health Care,,Primary,Primary Health Center,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:27:50.652636Z
+hdx_nhfr_facilities,30410,f0a782a7-0d15-42ad-abbd-688f8dc6e75e,,,Tugan Madaki Primary Health Care,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:52.497413Z
+hdx_nhfr_facilities,30493,5b47a601-f438-459a-ae35-e6d0d1d9ae69,,,Chikuku Soho Community Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:52.751462Z
+hdx_nhfr_facilities,30494,759d7493-e09b-4ff2-9dd5-8f63e9f5339b,,,Damakusa Primary Health Center,,Primary,Primary Health Center,,,FCTKWL05,Kwali,Fct,,,,,False,False,2026-11-17T22:27:52.754556Z
+hdx_nhfr_facilities,30495,ad4d407b-d7a9-4a62-a7ff-933fdd1210f6,,,Kaida Tsoho Primary Health Care,,Primary,Primary Health Center,,,FCTGWA07,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:52.757103Z
+hdx_nhfr_facilities,30661,91fb7b13-cba4-4e25-99c0-c2992082ddb5,,,Panunuke Primary Health Center,,Primary,Primary Health Center,,,FCTBWR04,Bwari,Fct,,,,,False,False,2026-11-17T22:27:53.191735Z
+hdx_nhfr_facilities,30760,78e04705-ea9a-4de2-827b-3d00b24056f6,,,Wuse General Hospital,,Secondary,General Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:53.484302Z
+hdx_nhfr_facilities,31343,914c3cb7-4939-4045-8074-320ac5c8720f,,,Kohadahanu Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:54.805333Z
+hdx_nhfr_facilities,31507,168f9faa-c6cf-4435-bbc1-2a88085616e5,,,Nakowa Clinic,,Primary,Private Non Profit,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:55.183596Z
+hdx_nhfr_facilities,31651,9176c864-90f5-4a9e-a221-5fb1385cf2a2,,,Byazhin Primary Health Center,,Primary,Primary Health Center,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:27:55.503083Z
+hdx_nhfr_facilities,31652,f96c5473-8c9b-4136-a7ea-f10a78c7e84e,,,Kogo Primary Health Center,,Primary,Primary Health Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:55.505308Z
+hdx_nhfr_facilities,31723,a636faf1-caf6-45ea-99ec-664c0bc44c25,,,Maitama General Hospital,,Secondary,General Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:55.663407Z
+hdx_nhfr_facilities,31755,e256e935-ee1a-44f1-b1af-bd893faf632b,,,Maitama District Hospital,,Secondary,District Hospital,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:55.734971Z
+hdx_nhfr_facilities,31970,01b220a3-7435-4083-9b66-d4fb12c4bbf5,,,Dei Dei Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:56.220582Z
+hdx_nhfr_facilities,32429,0ca93328-e5a5-4e2d-a389-f9a0201c403b,,,Kwaoita Hausa Model Primary Health Care Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.321379Z
+hdx_nhfr_facilities,32430,05025101-1ead-4fe0-9b73-212233024281,,,Petti Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.323647Z
+hdx_nhfr_facilities,32431,4dabaecd-18ba-4e53-a177-158ee51d8dde,,,Leleyi Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.326110Z
+hdx_nhfr_facilities,32432,2604e930-8bfb-4892-ae23-e56f02fecf7b,,,Yebu Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.328364Z
+hdx_nhfr_facilities,32433,ca9f325f-8719-4f4c-9217-70926dd439a9,,,Kigbe Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.330560Z
+hdx_nhfr_facilities,32434,c4af1859-0801-41d5-89f7-9a5b6aaff9e3,,,Kundu Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL02,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.332860Z
+hdx_nhfr_facilities,32435,faa2e09e-e2e2-47c4-a6c9-624d0fa3eee1,,,Lanto Health Clinic,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.335461Z
+hdx_nhfr_facilities,32436,f5d4d666-a18a-42d5-b479-518853dcf462,,,Gurfata Clinic,,Primary,Private Non Profit,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:57.338102Z
+hdx_nhfr_facilities,32437,d2ce6140-a7ef-4bb0-b042-1a61bb1feb3d,,,Madalla Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:57.340362Z
+hdx_nhfr_facilities,32438,9e961881-8f4a-448c-97ba-7972e6f96df3,,,Karshi Primary Health Care,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.342618Z
+hdx_nhfr_facilities,32486,67fcc951-46c5-4a08-83cc-e40550cbc1d6,,,Crystal Paediatric Clinic,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.460018Z
+hdx_nhfr_facilities,32566,4fedd490-b063-43cd-8c18-54cb6b07d21e,,,Nandi Basic Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.716533Z
+hdx_nhfr_facilities,32652,3d32318e-cfce-4434-a51b-c55a97bf5a88,,,Pandagi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ08,Abaji,Fct,,,,,False,False,2026-11-17T22:27:57.923002Z
+hdx_nhfr_facilities,32653,416dd5b6-48d3-407f-a4dc-10995bada0ae,,,Manderegi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:57.925230Z
+hdx_nhfr_facilities,32654,e3f81e15-94f7-49d5-8704-5d8fc7ad8d49,,,Lowcost Primary Health Center,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:27:57.927500Z
+hdx_nhfr_facilities,32655,ec1bd74e-e7a5-4cee-b767-563f08b4775d,,,Divine Health Clinic,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:27:57.929985Z
+hdx_nhfr_facilities,32656,0c8e5b42-2669-41bf-a198-294fb73ab334,,,Paikon Kore Health Clinic,,Primary,Primary Health Center,,,FCTGWA07,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:57.932339Z
+hdx_nhfr_facilities,32657,19d149ec-68fd-4689-9f0e-4bc11b70a2cf,,,Gwagwalada Township Clinic,,Primary,Primary Health Center,,,FCTGWA06,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:57.934770Z
+hdx_nhfr_facilities,32658,5002d62d-5432-49f7-9c53-58d5d2314ff8,,,Toton Gambiya Health Clinic,,Primary,Primary Health Center,,,FCTKUJ09,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.937067Z
+hdx_nhfr_facilities,32659,ebb2f68c-b99b-4de8-aa1b-4988cf198e46,,,Kulo Health Clinic,,Primary,Primary Health Center,,,FCTKUJ09,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.939277Z
+hdx_nhfr_facilities,32660,c341e990-a0fa-4844-af79-823986cd45a2,,,Gwargwada Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ04,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.941621Z
+hdx_nhfr_facilities,32661,03f095d4-53dc-46ba-88ff-53b41b6afca9,,,Gombe Health Clinic,,Primary,Primary Health Center,,,FCTKUJ04,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.943910Z
+hdx_nhfr_facilities,32662,e3b7213e-8d5e-4b3e-96d2-9b74b0bd3eb8,,,Kilankwa 2 Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.946274Z
+hdx_nhfr_facilities,32663,76b4b88a-b3e8-41b9-9bac-2c7363f41731,,,Unboni Kamadi Tsoho Primary Health Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.948548Z
+hdx_nhfr_facilities,32664,e9610fc8-51a6-4aea-a506-575dd23110bd,,,Ike Primary Health Clinic,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.951140Z
+hdx_nhfr_facilities,32665,0b8a998e-6925-47ff-b6fb-90f8fb56b42b,,,Kwali Basic Health Center,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.953438Z
+hdx_nhfr_facilities,32666,bf3e7481-1e1d-40c1-8260-6bc094e68ef2,,,Ubasharu Primary Health Center,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.955689Z
+hdx_nhfr_facilities,32667,aff66c3e-eb6a-4e56-a57a-adef22f12f02,,,Kwaita Hausa Primary Health Care,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.957919Z
+hdx_nhfr_facilities,32668,b38287ca-576f-4b5a-bf69-6dd677afe2e9,,,Farakuti Health Clinic,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.960280Z
+hdx_nhfr_facilities,32669,a7c850b5-42c2-4bcc-8b54-b90b0419ae60,,,Wako Primary Health Care,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.962697Z
+hdx_nhfr_facilities,32670,84e6757d-5f4b-4074-b955-5753b93ff647,,,Piri Primary Health Care,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:27:57.965062Z
+hdx_nhfr_facilities,32671,2bf9df87-bff9-4701-90cd-65e8feccbfdf,,,United Health Care,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.967371Z
+hdx_nhfr_facilities,32672,6d7520e8-b1f7-443c-8e4b-476d7db62710,,,Intergrated Health Care,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.969605Z
+hdx_nhfr_facilities,32673,9b19f724-6e45-45d4-ac21-702f5318392b,,,Shadalafiya Primary Health Care,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.971961Z
+hdx_nhfr_facilities,32674,e3f590ba-7aa0-48d1-bd47-7bc61c9b9e6a,,,Kobi Primary Health Center,,Primary,Primary Health Center,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.974267Z
+hdx_nhfr_facilities,32675,7ae4fdc4-ff20-4353-842b-b3ee0d066970,,,Hulumi Primary Health Care,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.976736Z
+hdx_nhfr_facilities,32676,ac5ad1a0-c009-431d-b156-58bef9dea471,,,Kugbo Primary Health Care,,Primary,Primary Health Center,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.979001Z
+hdx_nhfr_facilities,32677,86ceeade-abea-49f2-b384-186e6438d9fb,,,Gugu Primary Health Care,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.981425Z
+hdx_nhfr_facilities,32678,a614c65f-03eb-40ca-98a8-05cc9eea6776,,,Kuseki Primary Health Care,,Primary,Primary Health Center,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:57.983840Z
+hdx_nhfr_facilities,32679,7bc7f021-35a9-4787-b891-a7ef16342e8b,,,Anagada Health Clinic,,Primary,Primary Health Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:57.986196Z
+hdx_nhfr_facilities,32680,6cfa7e59-a08b-4683-8df3-b42615b1d5a6,,,Kabinmangoro Health Clinic,,Primary,Primary Health Center,,,FCTKUJ05,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.988436Z
+hdx_nhfr_facilities,32681,214b8759-91c6-45d6-b8bb-789bd1dbdf68,,,Nekan Health Clinic,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.990827Z
+hdx_nhfr_facilities,32682,e0808342-2249-4964-85fb-91b8e2f19ef0,,,Sabo Health Clinic,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.993524Z
+hdx_nhfr_facilities,32683,98328c63-bc00-4f0a-9727-43f5e3de65db,,,Gadoro Health Clinic,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.995876Z
+hdx_nhfr_facilities,32684,7971ba79-4e7a-4102-b9d9-bcc681998b8d,,,Yanga Health Clinic,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:57.998189Z
+hdx_nhfr_facilities,32685,a044f138-9dff-4d93-aa6d-db463bc39568,,,Kusaki Health Clinic,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.000419Z
+hdx_nhfr_facilities,32686,3bc6cf96-4645-4f7e-834e-d42880c74427,,,Godoji Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.002711Z
+hdx_nhfr_facilities,32687,3551f88f-93bf-4998-80b9-a482d604b058,,,Kazuga Gata Basic Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.004952Z
+hdx_nhfr_facilities,32688,31365e99-56a0-4931-a8b2-e96ea4d2d2c0,,,Kabinkasa Health Clinic,,Primary,Primary Health Center,,,FCTKUJ05,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.007151Z
+hdx_nhfr_facilities,32689,c7ff2aea-df73-4aa0-a2b8-f79ecb441d0d,,,Zagabutu Health Clinic,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.009336Z
+hdx_nhfr_facilities,32690,5a827b14-35bc-48c3-92a1-4c8dd87e8faa,,,Tufa Primary Health Care,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:58.011679Z
+hdx_nhfr_facilities,32691,0761ad2e-7bc1-46e9-a80c-002cf788562b,,,Boku Madaki Primary Health Care,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:27:58.013983Z
+hdx_nhfr_facilities,32692,0d784a00-bd12-4cee-8372-1cc06dfa2722,,,Abuchi Gwari Health Post,,Primary,Dispensary,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:58.016211Z
+hdx_nhfr_facilities,32693,0e5f9161-133e-45ed-b308-7c9d44c59598,,,Deide Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.018518Z
+hdx_nhfr_facilities,32694,948ca5b9-df90-497a-bc20-3c5997c085f5,,,Gbagarape Primary Health Care,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.020764Z
+hdx_nhfr_facilities,32695,f5ece564-83b0-4b2a-a69f-7bdf905e96a1,,,Gaba Primary Health Care,,Primary,Primary Health Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.023265Z
+hdx_nhfr_facilities,32696,673b4ff3-889e-4f71-8260-e340aa6614ae,,,Kute Health Clinic,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.025491Z
+hdx_nhfr_facilities,32697,8fb97433-42fd-4847-9201-5458c95dafb9,,,Galuwyi Health Clinic,,Primary,Primary Health Center,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.027835Z
+hdx_nhfr_facilities,32698,499b8165-52d5-43cf-8b81-0c07cf9747f1,,,Base Primary Health Clinic,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.030148Z
+hdx_nhfr_facilities,32699,ee239ce8-d8a3-44f4-be27-a5eea99b4a36,,,Jikowyi Primary Health Care,,Primary,Primary Health Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.032375Z
+hdx_nhfr_facilities,32700,d43246d1-fa68-40f5-b52a-6d31d65486ef,,,Kurudu Primary Health Care,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.041770Z
+hdx_nhfr_facilities,32701,b68adaa8-6f39-4169-ab0c-22c869622196,,,Lefu Basic Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:58.044687Z
+hdx_nhfr_facilities,32702,a32b9a66-40e8-4d0a-9ae8-54564a862dce,,,Zamwawasiyi Primary Health Care,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:58.047018Z
+hdx_nhfr_facilities,32703,ae9163c6-a89e-416c-9b28-161af3034de9,,,Haske Primary Health Clinic,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:58.049253Z
+hdx_nhfr_facilities,32704,dd8888c4-220f-42ff-9ec7-cda009b1e032,,,Dakwa Primary Health Center,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.051541Z
+hdx_nhfr_facilities,32705,b2987f50-1cb8-4be3-a183-be15031c9bf4,,,Army Headquarters Clinic,,Secondary,Military and Paramilitary Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.053976Z
+hdx_nhfr_facilities,32706,2067ad7b-7e45-4b0c-9ef5-e629129352a5,,,Police Hospital,,Secondary,Military and Paramilitary Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.056257Z
+hdx_nhfr_facilities,32707,c6639211-304a-4602-a2a3-516e94a3b7aa,,,Cbn Staff Clinic,,Secondary,Federal Staff Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.058624Z
+hdx_nhfr_facilities,32708,edd173ac-3adc-472b-b3da-42feda40a70a,,,Naval Headquarters Sickbay,,Secondary,Military and Paramilitary Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.060898Z
+hdx_nhfr_facilities,32709,1a8d43ab-1e02-4c33-8c5d-0d4228d020ec,,,Inec Staff Clinic,,Secondary,Federal Staff Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.063142Z
+hdx_nhfr_facilities,32710,c185e3c3-126d-4c3a-9076-de1de967472b,,,Mogadishu Cantonment Hospital,,Secondary,Military and Paramilitary Clinic,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.065397Z
+hdx_nhfr_facilities,32711,e4606647-931f-4fbd-8f82-c676a5159a1f,,,Garki Federal Staff Hospital,,Secondary,Federal Staff Clinic,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.067671Z
+hdx_nhfr_facilities,32712,3cd29dc0-323a-4487-a9b3-8d66fde60502,,,Frsc Medical Center,,Secondary,Federal Staff Clinic,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.069932Z
+hdx_nhfr_facilities,32713,95c3e76a-eb9f-4578-94b1-aa4fb244f1b5,,,Kuje Prison Hospital,,Secondary,Military and Paramilitary Clinic,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.072149Z
+hdx_nhfr_facilities,32714,0f40401e-0e16-4013-903d-3c35caf6922e,,,Nnpc Medical Center,,Secondary,Federal Staff Clinic,,,FCTABC12,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.074392Z
+hdx_nhfr_facilities,32733,08e10d7c-0b21-48ac-a3be-c1a3a6d17518,,,Zhiko Health Post,,Primary,Dispensary,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.116838Z
+hdx_nhfr_facilities,32740,26c62e93-bc79-4f21-a41a-58aef2ff6907,,,Rubochi Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ09,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.132877Z
+hdx_nhfr_facilities,32741,799a36ef-3f08-406f-a743-261c9194b5db,,,Family Health Care,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.135104Z
+hdx_nhfr_facilities,32742,132cf411-66ce-4dd7-a133-52c2e3ae8841,,,Dutse Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.137330Z
+hdx_nhfr_facilities,32743,e0fdc5cf-d9de-4d06-97a6-3a73e44e7c0c,,,Kuje Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.139665Z
+hdx_nhfr_facilities,32744,8bae724d-70d8-43a2-b2ad-16368444d07a,,,Gwagwa Ward Primary Health Center,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.141933Z
+hdx_nhfr_facilities,32745,99b1e8e2-10b4-4401-9305-f9889c670cb1,,,Durumi Health Post,,Primary,Dispensary,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.144205Z
+hdx_nhfr_facilities,32746,03c59b51-149b-42af-a6c0-54baeae3b6d1,,,Kuchibuyi Health Post,,Primary,Dispensary,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.146441Z
+hdx_nhfr_facilities,32747,131fa866-dae4-4404-8fd4-cc1a42460490,,,Lower Usman D Primary Health Center,,Primary,Primary Health Center,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.148935Z
+hdx_nhfr_facilities,32748,df821ba9-ae1c-4f9a-8e33-3a584f59bb77,,,Barangoni Primary Health Care,,Primary,Primary Health Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.151450Z
+hdx_nhfr_facilities,32749,612f9e44-ac81-441d-97fd-7d8b55f3888b,,,Mpape Primary Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.153745Z
+hdx_nhfr_facilities,32750,2b8de8b1-9bff-4f6a-86bf-f278698093f3,,,Dutse Makaranta Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.155985Z
+hdx_nhfr_facilities,32751,c2c22ad5-229a-4e8e-95d8-707bde18840b,,,Abaji General Hospital,,Secondary,General Hospital,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:27:58.160876Z
+hdx_nhfr_facilities,32752,41fc22e6-ac2e-4d70-82c4-5bb06996fb2b,,,Rubochi General Hospital,,Secondary,General Hospital,,,FCTKUJ09,Kuje,Fct,,,,,False,False,2026-11-17T22:27:58.170538Z
+hdx_nhfr_facilities,32753,fde87240-466a-4ba2-8671-eefc7921149f,,,Kwali General Hospital,,Secondary,General Hospital,,,FCTKWL06,Kwali,Fct,,,,,False,False,2026-11-17T22:27:58.172980Z
+hdx_nhfr_facilities,32754,afd963b8-49b6-432a-9d13-eeb1252e9002,,,Karshi General Hospital,,Secondary,General Hospital,,,FCTABC08,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.175286Z
+hdx_nhfr_facilities,32755,238f6007-b578-40ec-9fe3-d80f6b8b4a00,,,Gwarimpa General Hospital,,Secondary,General Hospital,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:27:58.177563Z
+hdx_nhfr_facilities,32756,2fb4079c-cf80-4fec-9ada-57730a45697d,,,Kubwa General Hospital,,Secondary,General Hospital,,,FCTBWR10,Bwari,Fct,,,,,False,False,2026-11-17T22:27:58.179799Z
+hdx_nhfr_facilities,33079,77f1b2b2-03f9-4e08-bee4-c32fdff757d5,,,Pabeyi Health Clinic,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:27:59.051618Z
+hdx_nhfr_facilities,33081,32627847-fea1-48b5-8b4c-f16d17ec0138,,,Bida Health Clinic,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:59.056612Z
+hdx_nhfr_facilities,33082,5882cc59-254b-4142-82b1-1498903386cd,,,Achimbi Health Clinic,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:27:59.058967Z
+hdx_nhfr_facilities,33214,e6430d08-e544-4b39-97c0-30c610c67542,,,Lanto Health Center,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:27:59.419857Z
+hdx_nhfr_facilities,33448,64a335ce-6640-44f0-8805-373fbd937394,,,Jikwoyi Medical Center,,Primary,Medical Center,,,FCTABC09,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:00.023331Z
+hdx_nhfr_facilities,33624,7453cbba-5951-4271-890d-296ad758b7b9,,,National Primary Health Institution Wulmo,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:00.500117Z
+hdx_nhfr_facilities,33682,24c87338-64a5-402c-b227-cac8db90d36a,,,Hunigade Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.729113Z
+hdx_nhfr_facilities,33683,0e15ad28-8b61-444a-b439-76cb86e6c0a9,,,Tube Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ04,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.735184Z
+hdx_nhfr_facilities,33684,66623e9e-0306-4396-ad88-9ece150bc640,,,Bako Health Center,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:28:00.738083Z
+hdx_nhfr_facilities,33685,09a09906-c53a-4e2b-bb18-64bf7f0bbbd5,,,Bako Primary Health Care Durumi 3,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:28:00.743859Z
+hdx_nhfr_facilities,33686,ad12c452-bd89-48da-aa02-57a51e4a12d6,,,Kawu Koro Primary Health Care,,Primary,Primary Health Center,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:28:00.748972Z
+hdx_nhfr_facilities,33687,9c0d0f72-e942-4ac1-b61c-8da479503313,,,Wumi Primary Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:00.754584Z
+hdx_nhfr_facilities,33688,f2903a43-a75d-4a0c-9a40-5576e3c6c82c,,,Rije Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.757439Z
+hdx_nhfr_facilities,33689,cc0c064f-1961-4313-8ee9-4b61f221c584,,,Dakuma Primary Health Care,,Primary,Primary Health Center,,,FCTBWR05,Bwari,Fct,,,,,False,False,2026-11-17T22:28:00.760571Z
+hdx_nhfr_facilities,33690,2d7aa5f9-54c6-46fb-b9ce-e33230495364,,,Sabon Lugbe Primary Health Care,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:00.763329Z
+hdx_nhfr_facilities,33691,4c8f752b-ca6a-4d55-905d-93948ed45fac,,,Pani Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ09,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.768294Z
+hdx_nhfr_facilities,33751,49dc9f32-4a8b-4af8-8853-a6fdcd7f252f,,,Biriri Dispensary,,Primary,Dispensary,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:00.965971Z
+hdx_nhfr_facilities,33752,a044f0d7-19d7-4eb5-b300-9ea5c718165a,,,Gaube Primary Health Care,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.968397Z
+hdx_nhfr_facilities,33753,cf521238-61a4-43fd-af14-3da14947f549,,,Kurudu Primary Health Center,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:00.970817Z
+hdx_nhfr_facilities,33754,2aed4fb4-b80b-453d-a752-e5e7ac88d00f,,,Yaupe Primary Health Center,,Primary,Primary Health Center,,,FCTBWR01,Bwari,Fct,,,,,False,False,2026-11-17T22:28:00.973472Z
+hdx_nhfr_facilities,33755,f49819a0-7e85-41ec-90c5-695bea0feeab,,,Abaji Central Primary Health Center,,Primary,Primary Health Center,,,FCTABJ02,Abaji,Fct,,,,,False,False,2026-11-17T22:28:00.976857Z
+hdx_nhfr_facilities,33756,bc7c6bf0-3697-498e-b134-9a77daa5bf05,,,Abuja Community Clinic,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:28:00.979310Z
+hdx_nhfr_facilities,33757,a6caeca5-ef17-460b-b44e-072912f01f4c,,,Zuba Primary Health Center,,Primary,Primary Health Center,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:00.981709Z
+hdx_nhfr_facilities,33771,4880b3d5-79c4-4ecb-b29c-c843f05fd9cb,,,Damagaza Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.022380Z
+hdx_nhfr_facilities,33772,c0721221-05d2-4635-bbe9-09ae52df5ad9,,,Kabusa Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.025256Z
+hdx_nhfr_facilities,33773,4c393a2e-c15a-4942-9677-65a954bcf14a,,,Abuchi Primary Health Center,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:01.028682Z
+hdx_nhfr_facilities,33774,0245ce0c-f53e-4cfd-9e35-8508b1d60cee,,,Waru Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.031707Z
+hdx_nhfr_facilities,33775,e0edd7b1-5555-4961-9679-3aec046f0524,,,Gui Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:28:01.038324Z
+hdx_nhfr_facilities,33776,881fe37d-0e21-41d4-80dc-458f50fa5799,,,Gosa Primary Health Center,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.041982Z
+hdx_nhfr_facilities,33777,01986ca6-a75f-42c1-b296-74070093b3d5,,,Zhigbado Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:01.044272Z
+hdx_nhfr_facilities,33778,136650e5-98c6-4e2e-bcf6-67f9459e44c7,,,Dnako Sabin Gari Primary Health Center,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.046498Z
+hdx_nhfr_facilities,33779,ba9de5c7-1943-41da-8895-42f4c790f937,,,Kpakuru Primary Health Center,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.048724Z
+hdx_nhfr_facilities,33780,bb54e456-1df2-4cad-a7da-1769388d1b67,,,Kpeyegyi Primary Health Center,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.050993Z
+hdx_nhfr_facilities,33781,ebd3d1bd-b1ad-4f84-b2c4-fc811819ca55,,,Sukuku Primary Health Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:28:01.054488Z
+hdx_nhfr_facilities,33782,03e2cf3f-292f-4207-94ae-76db854c7578,,,Ushafa New Layout Primary Health Center,,Primary,Primary Health Center,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.058957Z
+hdx_nhfr_facilities,33783,6c2c185c-8337-4434-b65c-894912ba52e8,,,Chorin Bisa Primary Health Center,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.061318Z
+hdx_nhfr_facilities,33784,09848ff3-2e9a-4597-b360-298de120d900,,,Kuchiko Primary Health Center,,Primary,Primary Health Center,,,FCTBWR07,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.063777Z
+hdx_nhfr_facilities,33785,d7c7d6cc-1063-4f77-9199-49b35a893cc4,,,Phase 3 Primary Health Center,,Primary,Primary Health Center,,,FCTGWA08,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:01.066359Z
+hdx_nhfr_facilities,33786,c046bb3d-951f-438c-a4f4-9a94f617b15b,,,Zhidu Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.068700Z
+hdx_nhfr_facilities,33787,5116ce5b-0d77-49b9-947a-fd6f76175be9,,,Kekeshi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ07,Abaji,Fct,,,,,False,False,2026-11-17T22:28:01.072414Z
+hdx_nhfr_facilities,33788,21f3c520-41c9-430f-8682-639ce4ae3db9,,,Adagba Primary Health Center,,Primary,Primary Health Center,,,FCTABJ10,Abaji,Fct,,,,,False,False,2026-11-17T22:28:01.074842Z
+hdx_nhfr_facilities,33789,898f2995-7595-401e-8a1b-b6548a33403c,,,Kuwizhi Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:28:01.077109Z
+hdx_nhfr_facilities,33790,714c06cc-2758-49dd-a21e-7ffbc9675cca,,,Tukpechi Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:28:01.079336Z
+hdx_nhfr_facilities,33791,9e64e4f4-9341-4d93-8178-d463af6de79c,,,Chikakore Health Clinic,,Primary,Primary Health Center,,,FCTBWR02,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.081795Z
+hdx_nhfr_facilities,33792,fc125cda-f979-4059-b982-b15b53851e26,,,Katampe Primary Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.084556Z
+hdx_nhfr_facilities,33793,3efdf3af-a33a-4825-bc8f-b98f08eb89fd,,,Jikoko Health Clinic,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:28:01.087720Z
+hdx_nhfr_facilities,33794,fab66550-e2a9-4f71-b8b7-efd46fa42697,,,Gishiri Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.090233Z
+hdx_nhfr_facilities,33844,a93f9524-b2a6-4d0e-ad24-885a132ba21b,,,Holy Trinity Hospital,,Primary,Primary Health Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:01.224560Z
+hdx_nhfr_facilities,34162,62aef970-cdc3-48a9-8b2f-a91534827102,,,Salama Clinic,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:02.072516Z
+hdx_nhfr_facilities,34470,00a1e4a6-58eb-4272-a8c5-f9d72babe64c,,,State House Clinic Mambilla B,,Primary,Private Non Profit,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:02.793500Z
+hdx_nhfr_facilities,34471,0e66319a-89c5-4e1b-bbb2-89cf16b03e46,,,Ajiji Clinic,,Primary,Private Non Profit,,,FCTBWR08,Bwari,Fct,,,,,False,False,2026-11-17T22:28:02.795784Z
+hdx_nhfr_facilities,34472,bd143ec5-edff-4db0-a8bc-ec2d0fe2ab8c,,,Eereprod Medical Center,,Primary,Medical Center,,,FCTABC01,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:02.798028Z
+hdx_nhfr_facilities,34473,c5f0741b-438f-487c-a60b-ce373acd1133,,,Living Rock Hospital,,Primary,Private Non Profit,,,FCTGWA10,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:02.800287Z
+hdx_nhfr_facilities,34474,eac0fc4f-2a51-4f55-bbde-8cef9f0a9ba1,,,Spring Field Hospital,,Primary,Private Non Profit,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:02.802520Z
+hdx_nhfr_facilities,34844,e6a587fe-5f9a-42ac-ab62-51509f217a89,,,Minat Clinic,,Primary,Primary Health Center,,,FCTGWA09,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:03.815985Z
+hdx_nhfr_facilities,35313,f8378d07-cb6e-40be-a577-a688e13b9655,,,Yenche Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ10,Kuje,Fct,,,,,False,False,2026-11-17T22:28:05.108627Z
+hdx_nhfr_facilities,35900,96c5c198-7ec6-4090-b163-98fe3d44f109,,,Gugugu Primary Health Care,,Primary,Primary Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:05.881595Z
+hdx_nhfr_facilities,35901,723bd3a1-8495-4167-933a-e148138e56f1,,,Sherreti Primary Health Center,,Primary,Primary Health Center,,,FCTABC07,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.166222Z
+hdx_nhfr_facilities,35838,c39306dd-d9b0-4137-84cb-c389a8283d1c,,,Kamadi Primary Health Clinic,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.474735Z
+hdx_nhfr_facilities,35852,5ee36677-e82a-472e-8c86-99bd488bea86,,,Dawaki Primary Health Center,,Primary,Primary Health Center,,,FCTBWR03,Bwari,Fct,,,,,False,False,2026-11-17T22:28:06.508705Z
+hdx_nhfr_facilities,35853,208c1cc0-3d5d-4bd8-970a-a9e14994222c,,,Gudupe Health Clinic,,Primary,Primary Health Center,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:28:06.511271Z
+hdx_nhfr_facilities,35854,6fd2f213-5a6c-4957-981d-d53aefca52a9,,,Tsauni Clinic,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.513989Z
+hdx_nhfr_facilities,35855,272ad91d-3765-4193-851d-342712ba4b6d,,,Gwako Health Clinic,,Primary,Primary Health Center,,,FCTGWA03,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.516529Z
+hdx_nhfr_facilities,35856,4c67aaf2-f2f6-470c-bf43-4ed751dabed4,,,Nanda Primary Health Center,,Primary,Primary Health Center,,,FCTABJ08,Abaji,Fct,,,,,False,False,2026-11-17T22:28:06.519735Z
+hdx_nhfr_facilities,35857,eb1bcbc0-fa6d-4c7a-a171-a093de16e5e8,,,Kpache Primary Health Center,,Primary,Primary Health Center,,,FCTABJ10,Abaji,Fct,,,,,False,False,2026-11-17T22:28:06.522411Z
+hdx_nhfr_facilities,35858,2f8a0c6d-d224-49ac-a179-da3283d0e8b3,,,Mamagi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ01,Abaji,Fct,,,,,False,False,2026-11-17T22:28:06.524911Z
+hdx_nhfr_facilities,35859,1408734b-892f-4b7c-a555-6f0e3f266d61,,,Mawogi Primary Health Center,,Primary,Primary Health Center,,,FCTABJ01,Abaji,Fct,,,,,False,False,2026-11-17T22:28:06.527525Z
+hdx_nhfr_facilities,35860,c4ff67a9-3bf7-43e4-a5e5-7bae479ed7db,,,Ushafa Health Center,,Primary,Primary Health Center,,,FCTBWR09,Bwari,Fct,,,,,False,False,2026-11-17T22:28:06.530733Z
+hdx_nhfr_facilities,35861,e4b73c61-7674-4548-b911-d49443d2d625,,,Pabeyi Primary Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.533534Z
+hdx_nhfr_facilities,35862,57eccb0a-af85-4010-9422-9ed715078ac4,,,Gasapa Primary Health Center,,Primary,Primary Health Center,,,FCTABJ04,Abaji,Fct,,,,,False,False,2026-11-17T22:28:06.536282Z
+hdx_nhfr_facilities,35863,047cfce8-1beb-4026-9045-983e359278ae,,,Dobi Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.539298Z
+hdx_nhfr_facilities,35864,fe4b455a-e13a-4bda-8abf-31317824c2e2,,,Chitumu Primary Health Clinic,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.541757Z
+hdx_nhfr_facilities,35865,90bd7e47-b791-48f6-9dc0-0c5078c7fec6,,,Ibwa Pada Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.544300Z
+hdx_nhfr_facilities,35866,9802f05c-a143-4fd1-8fab-59d83755b5b2,,,Tunga Gaya Primary Health Center,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.547359Z
+hdx_nhfr_facilities,35867,6d8eb6c1-e855-4a76-a5a9-baaad372dc27,,,Chibiri Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ01,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.550887Z
+hdx_nhfr_facilities,35868,fa0f7e65-733b-4111-8d27-b8c319dac963,,,Fogbe Primary Health Center,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.553470Z
+hdx_nhfr_facilities,35869,8b330242-183c-4dce-bd6a-74346949c367,,,Sabo Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.556747Z
+hdx_nhfr_facilities,35870,34b8d46c-c723-4b27-8d70-1377aa7f1468,,,Kwaku Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.560358Z
+hdx_nhfr_facilities,35871,172a2bfb-2163-4951-8701-e375289661ce,,,Gbaupe Health Clinic,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.562749Z
+hdx_nhfr_facilities,35872,a5b3548e-a3e6-43e3-ad35-aa185b954f1b,,,Kohodahanu Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ08,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.565289Z
+hdx_nhfr_facilities,35873,45ce5229-0321-4027-8773-47c6c131c44f,,,Ashara Basic Health Center,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.567759Z
+hdx_nhfr_facilities,35874,6754ab95-9bcf-49d7-8b53-5892cddf27dc,,,Pagi Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ02,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.570973Z
+hdx_nhfr_facilities,35875,5d365ecc-dc21-4576-bdf6-9d46516dd371,,,Maikwari Primary Health Center,,Primary,Primary Health Center,,,FCTKWL01,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.574665Z
+hdx_nhfr_facilities,35876,a62ad444-0c0a-4e2b-9a6f-187bcb0b5729,,,Sheda Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.577007Z
+hdx_nhfr_facilities,35877,066f56cd-2b6c-4b6e-a18d-3f5f96b5cc12,,,Kilankwa 1 Primary Health Center,,Primary,Primary Health Center,,,FCTKWL04,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.579268Z
+hdx_nhfr_facilities,35878,e95dde03-0e20-4031-9add-637af9260c53,,,Dafa Primary Health Care,,Primary,Primary Health Center,,,FCTKWL02,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.581582Z
+hdx_nhfr_facilities,35880,33526110-4c7e-4007-93ba-f514a5ab6431,,,Fuka Primary Health Center,,Primary,Primary Health Center,,,FCTKWL02,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.586393Z
+hdx_nhfr_facilities,35881,578068a0-ec0f-4549-80a7-9f3543ed3c6a,,,Ija Sarki Primary Health Center,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.588700Z
+hdx_nhfr_facilities,35882,65124d50-0c79-4214-a3fa-7c380854f2e6,,,Farakuti Primary Health Center,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.591029Z
+hdx_nhfr_facilities,35883,6693a2d9-aafb-4ed8-822c-2d2ce201924e,,,Ubosharu Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.594012Z
+hdx_nhfr_facilities,35884,00301c38-9047-4c66-9e52-2ba6924d9fc7,,,Dabi Bako Comprehensice Health Clinic,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.596415Z
+hdx_nhfr_facilities,35885,eaa951f3-9ea1-4971-ab96-420a6a17a954,,,Kwali Primary Health Center,,Primary,Primary Health Center,,,FCTKWL06,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.598735Z
+hdx_nhfr_facilities,35886,3c940b21-c3ae-43af-b122-ea79aa43f12b,,,Dangara Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.601572Z
+hdx_nhfr_facilities,35887,c466322f-0d07-4d5c-ad41-f68535d4e55a,,,Chida Primary Health Center,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.603988Z
+hdx_nhfr_facilities,35888,08565908-a463-41ce-8919-a6bb4cbea75e,,,Yebu Primary Health Center,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.606924Z
+hdx_nhfr_facilities,35889,3a65e9f6-ca62-48fe-879d-9fff6ff90c3c,,,Pai Primary Health Center,,Primary,Primary Health Center,,,FCTKWL07,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.610398Z
+hdx_nhfr_facilities,35890,93f9d42f-acab-414a-a464-35e3abb44d44,,,Yewuti Primary Health Care Clinic,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.613026Z
+hdx_nhfr_facilities,35891,a9bd4ea0-3093-449b-9b73-a446917991db,,,Yambabu Primary Health Clinic,,Primary,Primary Health Center,,,FCTKWL10,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.615920Z
+hdx_nhfr_facilities,35892,93e65dd2-a993-40da-a7f8-e1b4f6b4162c,,,Bukpe Health Clinic,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.619144Z
+hdx_nhfr_facilities,35893,d8ce9f5e-d5d6-41d9-b929-796d71a3e095,,,Dapa Primary Health Care,,Primary,Primary Health Center,,,FCTKWL08,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.621861Z
+hdx_nhfr_facilities,35894,8317e786-2431-471b-bbdb-d2ba90873308,,,Yangoji Primary Health Center,,Primary,Primary Health Center,,,FCTKWL09,Kwali,Fct,,,,,False,False,2026-11-17T22:28:06.624284Z
+hdx_nhfr_facilities,35895,0ff8a247-3830-4149-b642-f49c0a58add6,,,Apo Primary Health Center,,Primary,Primary Health Center,,,FCTABC02,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.626577Z
+hdx_nhfr_facilities,35896,e953ee12-4cfd-4d00-b23a-ed16dc39b36c,,,Iddo Primary Health Care,,Primary,Primary Health Center,,,FCTABC03,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.629114Z
+hdx_nhfr_facilities,35897,a2538ca0-c8fb-49aa-8b1d-655f711afadf,,,Jahi 1 Public Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.631998Z
+hdx_nhfr_facilities,35898,d850f937-7e08-4265-8a69-4230b0a77f3e,,,Bassan Jiwa Primary Health Center,,Primary,Primary Health Center,,,FCTABC06,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.634922Z
+hdx_nhfr_facilities,35899,f0209dd3-918d-450d-bbdc-7098ce264be3,,,Dakwa Primary Health Center,,Primary,Primary Health Center,,,FCTABC06,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.637281Z
+hdx_nhfr_facilities,35902,f8c48dd7-78e6-40c4-9bfc-a08bbb62cba3,,,Gidan Mangoro Comprehensive Health Center,,Primary,Comprehensive Health Center,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.639582Z
+hdx_nhfr_facilities,35903,248aa5cc-9d2d-4b27-9475-2ee7a9b760b5,,,Sako Health Center,,Primary,Primary Health Center,,,FCTKUJ06,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.641786Z
+hdx_nhfr_facilities,35904,fb30770b-c022-474d-85ed-289cf81566bd,,,Baga Sabo Primary Health Center,,Primary,Primary Health Center,,,FCTKUJ03,Kuje,Fct,,,,,False,False,2026-11-17T22:28:06.644147Z
+hdx_nhfr_facilities,35905,4799c4f5-0aa1-4be1-ba20-1ea00d654304,,,Izom Basic Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.646582Z
+hdx_nhfr_facilities,35969,5183339b-13f4-4707-8d1e-a2d942608b01,,,Lamingo Primary Health Center,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.823901Z
+hdx_nhfr_facilities,35970,08781157-ce03-478c-8579-ad41f0a08dcf,,,Gongolong Health Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.826332Z
+hdx_nhfr_facilities,35971,cd610152-995d-496f-a04b-2f5beec62837,,,Kaida Sabo Primary Health Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:06.828865Z
+hdx_nhfr_facilities,35972,e4734503-2757-4354-a092-07fddea98339,,,Munape Health Post,,Primary,Dispensary,,,FCTABC11,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.831165Z
+hdx_nhfr_facilities,35977,fe9f1c46-94cf-4bc7-ac6e-7371500e7224,,,Nyanya Genaral Hospital,,Secondary,General Hospital,,,FCTABC10,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:06.843740Z
+hdx_nhfr_facilities,35978,69610891-d987-4266-b35a-3c33e2c5bb3f,,,Sagari Quarters Comprehensive Primary Health Center,,Primary,Primary Health Center,,,FCTBWR06,Bwari,Fct,,,,,False,False,2026-11-17T22:28:06.846077Z
+hdx_nhfr_facilities,43691,391e5209-404c-40ad-b802-f54f96c72b3e,,,Us Medical Center,,Primary,Primary Health Center,,,FCTGWA02,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:26.520964Z
+hdx_nhfr_facilities,43708,23bee8aa-2a21-4d6d-a47d-eb8238a22101,,,Numa Abaji Health Clinic,,Primary,Primary Health Center,,,FCTABJ09,Abaji,Fct,,,,,False,False,2026-11-17T22:28:26.562680Z
+hdx_nhfr_facilities,43709,2432bf16-953f-4187-a87d-d5a1ba6e2f48,,,Unguwan Nupawa Maternity and Clinic,,Primary,Maternity Home,,,FCTABJ06,Abaji,Fct,,,,,False,False,2026-11-17T22:28:26.565418Z
+hdx_nhfr_facilities,43743,4e8b60de-453c-4be6-a60d-e2d3acf58532,,,Yimi Health Clinic,,Primary,Primary Health Center,,,FCTGWA05,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:26.652035Z
+hdx_nhfr_facilities,43772,4f906924-48c6-4821-86de-bb2e29e0bcb2,,,Naharati Health Center,,Primary,Primary Health Center,,,FCTABJ09,Abaji,Fct,,,,,False,False,2026-11-17T22:28:26.712170Z
+hdx_nhfr_facilities,43783,306fa2f4-ba07-4223-bc9c-2b1b96ba0c70,,,Gumbo Primary Health Center,,Primary,Primary Health Center,,,FCTKWL03,Kwali,Fct,,,,,False,False,2026-11-17T22:28:26.737421Z
+hdx_nhfr_facilities,43785,400c957b-2080-47f6-9358-60d30bd6075d,,,Ibwa 1 Primary Health Center,,Primary,Primary Health Center,,,FCTGWA04,Gwagwalada,Fct,,,,,False,False,2026-11-17T22:28:26.742128Z
+hdx_nhfr_facilities,45050,05db945c-c123-44ce-aa43-28cac0383cf9,,,Get Well Hospital and Maternity,,Primary,Maternity Home,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:30.009244Z
+hdx_nhfr_facilities,45084,c829da92-7a14-4e43-be4d-44ac0f2bec0d,,,Una Clinic,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:30.091533Z
+hdx_nhfr_facilities,45085,f3ee9856-3c1a-46c1-99a0-a89d469d58c7,,,Idu Karmo Health Post,,Primary,Dispensary,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:30.093783Z
+hdx_nhfr_facilities,45352,75216a8b-d54b-4102-86a9-e364eaf3b9e5,,,Aso Hospital,,Primary,Primary Health Center,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:30.762154Z
+hdx_nhfr_facilities,45353,dd6ed0c5-40ba-4a9d-a2e3-529584780e37,,,Life Clinic and Maternity,,Primary,Maternity Home,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:30.764944Z
+hdx_nhfr_facilities,45596,cc44f94f-d01c-497e-aa38-892aaf8fa7fd,,,Jiwa Primary Health Care,,Primary,Primary Health Center,,,FCTABC04,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:31.427300Z
+hdx_nhfr_facilities,45761,4adac95b-4b15-41d8-85f1-dd1781eb5185,,,Elan Clinic,,Primary,Private Non Profit,,,FCTABC05,Municipal Area Council,Fct,,,,,False,False,2026-11-17T22:28:31.870694Z

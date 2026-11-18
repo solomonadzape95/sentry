@@ -172,11 +172,11 @@ export default async function TransfersPage({
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-wide text-muted">Expiry</p>
-                  <p className="mt-0.5 font-medium text-ink">{draft.batch ? formatDate(draft.batch.expiryDate) : "—"}</p>
+                  <p className="mt-0.5 font-medium text-ink">{draft.batch ? formatDate(draft.batch.expiryDate) : "N/A"}</p>
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-wide text-muted">Shelf life</p>
-                  <p className="mt-0.5 font-medium text-ink">{draft.batch ? `${draft.batch.daysToExpiry} days` : "—"}</p>
+                  <p className="mt-0.5 font-medium text-ink">{draft.batch ? `${draft.batch.daysToExpiry} days` : "N/A"}</p>
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-wide text-muted">Cover after</p>
@@ -291,11 +291,11 @@ export default async function TransfersPage({
                     <div className="mt-4 grid grid-cols-1 gap-3 rounded-lg bg-canvas/50 px-3 py-2.5 text-[10px] text-muted sm:grid-cols-3">
                       <p>
                         <span className="text-muted">Batch:</span>{" "}
-                        <span className="font-mono text-ink">{transfer.batch?.batchNumber ?? "—"}</span>
+                        <span className="font-mono text-ink">{transfer.batch?.batchNumber ?? "N/A"}</span>
                       </p>
                       <p>
                         <span className="text-muted">Expiry:</span>{" "}
-                        <span className="text-ink">{transfer.batch ? formatDate(transfer.batch.expiryDate) : "—"}</span>
+                        <span className="text-ink">{transfer.batch ? formatDate(transfer.batch.expiryDate) : "N/A"}</span>
                       </p>
                       <p>
                         <span className="text-muted">Requested by:</span>{" "}

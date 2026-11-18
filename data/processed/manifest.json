@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "updated": "2026-11-17T23:50:55.138358Z",
+  "runs": [
+    {
+      "source_id": "nmis_2021",
+      "status": "success",
+      "started_at": "2026-11-17T22:19:44.298759Z",
+      "finished_at": "2026-11-17T22:19:45.444313Z",
+      "rows_read": 38,
+      "rows_accepted": 38,
+      "rows_rejected": 0,
+      "date_min": "2021-01-01",
+      "date_max": "2021-12-31",
+      "outputs": [
+        {
+          "path": "data/processed/malaria_prevalence_state.csv",
+          "format": "csv",
+          "rows": 38,
+          "sha256": "cb5490002a26c372181315462fcd89ae090f05d46416f6883c8a7e6f0492d91f"
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source_id": "grid3_facilities",
+      "status": "success",
+      "started_at": "2026-11-17T22:26:22.034895Z",
+      "finished_at": "2026-11-17T22:26:38.050680Z",
+      "rows_read": 70235,
+      "rows_accepted": 70235,
+      "rows_rejected": 0,
+      "date_min": null,
+      "date_max": null,
+      "outputs": [
+        {
+          "path": "data/processed/facilities_grid3.csv",
+          "format": "csv",
+          "rows": 70235,
+          "sha256": "f0b98f2baf8f9c3492065a93f049f588d326c80ffbc252d7e5e184a460ed57ef"
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source_id": "hdx_nhfr_facilities",
+      "status": "success",
+      "started_at": "2026-11-17T22:26:38.113587Z",
+      "finished_at": "2026-11-17T22:28:37.203214Z",
+      "rows_read": 46146,
+      "rows_accepted": 46146,
+      "rows_rejected": 0,
+      "date_min": null,
+      "date_max": null,
+      "outputs": [
+        {
+          "path": "data/processed/facilities_nhfr.csv",
+          "format": "csv",
+          "rows": 46146,
+          "sha256": "d26a856fcb790845fd4524d9498c8d861abf28b7cff95b885cc3f95fc352e3de"
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source_id": "neml_2024",
+      "status": "success",
+      "started_at": "2026-11-17T23:43:12.311745Z",
+      "finished_at": "2026-11-17T23:43:12.548609Z",
+      "rows_read": 768,
+      "rows_accepted": 768,
+      "rows_rejected": 0,
+      "date_min": null,
+      "date_max": null,
+      "outputs": [
+        {
+          "path": "data/processed/neml_medicines.csv",
+          "format": "csv",
+          "rows": 768,
+          "sha256": "499dc2cdd10898d982fa806f572e15c46d11233c87fc4da73b52dcd8cfcf1e34"
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source_id": "ncdc_wer",
+      "status": "success",
+      "started_at": "2026-11-17T23:50:44.296155Z",
+      "finished_at": "2026-11-17T23:50:55.131523Z",
+      "rows_read": 1338,
+      "rows_accepted": 1338,
+      "rows_rejected": 0,
+      "date_min": "2023-07-03",
+      "date_max": "2026-08-17",
+      "outputs": [
+        {
+          "path": "data/processed/ncdc_disease_weekly.csv",
+          "format": "csv",
+          "rows": 1338,
+          "sha256": "00ec4d9896d6bc7869e09a0d801336d9290933d6450b40c6d4d0afbb07f28b2f"
+        },
+        {
+          "path": "data/processed/ncdc_reports.csv",
+          "format": "csv",
+          "rows": 149,
+          "sha256": "08d53890525b1421ce13f433cf50428bd69c0a6287b045ba9bb34027cc87b757"
+        }
+      ],
+      "warnings": [
+        "2023 W27: COVID19: section not found",
+        "2024 W10: MPOX: section not found",
+        "2025 W5: AFP: section not found"
+      ],
+      "errors": []
+    }
+  ]
+}

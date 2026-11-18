@@ -13,13 +13,13 @@ export default async function MobileLayout({ children }: { children: React.React
   return (
     <div className="min-h-dvh bg-brand-deep sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-3 sm:py-8">
       <div className="hidden items-center gap-2 sm:flex">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#e4f44d]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#f4e6ac]" />
         <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
-          Aisec mobile · installable PWA
+          Sentry mobile · installable PWA
         </p>
       </div>
 
-      <div className="relative mx-auto flex h-dvh w-full flex-col overflow-hidden bg-canvas sm:h-[860px] sm:max-h-[calc(100dvh-6rem)] sm:max-w-[418px] sm:rounded-[2.2rem] sm:border-[7px] sm:border-[#081c17] sm:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.65)]">
+      <div className="relative mx-auto flex h-dvh w-full flex-col overflow-hidden bg-canvas sm:h-[860px] sm:max-h-[calc(100dvh-6rem)] sm:max-w-[418px] sm:rounded-[2.2rem] sm:border-[7px] sm:border-[#1c1c18] sm:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.65)]">
         <header className="z-20 flex shrink-0 items-center gap-3 border-b border-line bg-surface px-4 py-3">
           <Logo theme="light" compact href="/m" />
           <div className="min-w-0 flex-1">

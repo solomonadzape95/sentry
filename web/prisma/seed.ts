@@ -2,12 +2,21 @@
 import { PrismaClient } from "@prisma/client";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { hashPassword } from "../src/lib/password";
 
 const prisma = new PrismaClient();
 const SEED = join(process.cwd(), "..", "data", "seed");
 
 function load<T>(name: string): T {
   return JSON.parse(readFileSync(join(SEED, name), "utf8")) as T;
+}
+
+function loadOptional<T>(name: string, fallback: T): T {
+  try {
+    return load<T>(name);
+  } catch {
+    return fallback;
+  }
 }
 
 async function chunked<T>(rows: T[], size: number, fn: (batch: T[]) => Promise<unknown>) {
@@ -25,6 +34,8 @@ const performedBy: Record<string, string> = {
 
 async function main() {
   console.log("Clearing existing data...");
+  await prisma.ingestRun.deleteMany();
+  await prisma.dataSource.deleteMany();
   await prisma.forecastPoint.deleteMany();
   await prisma.forecast.deleteMany();
   await prisma.stockAlert.deleteMany();
@@ -55,12 +66,21 @@ async function main() {
   const consumption = load<any[][]>("consumption.json");
   const forecasts = load<any[]>("forecasts.json");
   const modelRuns = load<any[]>("model_runs.json");
+  const dataSources = loadOptional<any[]>("data_sources.json", []);
+  const ingestRuns = loadOptional<any[]>("ingest_runs.json", []);
+  const dataQuality = loadOptional<any>("data_quality.json", null);
 
   // Keep the bundled demo metadata in sync with the latest pipeline run.
   writeFileSync(
     join(process.cwd(), "src", "data", "demo-meta.json"),
     readFileSync(join(SEED, "meta.json"), "utf8"),
   );
+  if (dataQuality) {
+    writeFileSync(
+      join(process.cwd(), "src", "data", "data-quality.json"),
+      readFileSync(join(SEED, "data_quality.json"), "utf8"),
+    );
+  }
 
   console.log("Facilities, medicines, suppliers, users...");
   await prisma.facility.createMany({
@@ -78,6 +98,12 @@ async function main() {
       phone: f.phone,
       contactName: f.contactName,
       bedCount: f.bedCount,
+      sourceId: f.sourceId ?? null,
+      nhfrId: f.nhfrId ?? null,
+      grid3Id: f.grid3Id ?? null,
+      level: f.level ?? null,
+      catchmentPopulation: f.catchmentPopulation ?? null,
+      isIllustrative: f.isIllustrative ?? true,
     })),
   });
 
@@ -111,6 +137,43 @@ async function main() {
     })),
   });
 
+  console.log("Data sources and ingest runs...");
+  for (const s of dataSources) {
+    await prisma.dataSource.create({
+      data: {
+        id: s.id,
+        name: s.name,
+        kind: s.kind,
+        coverage: s.coverage ?? null,
+        url: s.url ?? null,
+        licence: s.licence ?? null,
+        status: s.status ?? "ACTIVE",
+        lastRunAt: s.lastRunAt ? new Date(s.lastRunAt) : null,
+      },
+    });
+  }
+  for (const r of ingestRuns) {
+    const source = await prisma.dataSource.findUnique({ where: { id: r.sourceId } });
+    if (!source) continue;
+    await prisma.ingestRun.create({
+      data: {
+        sourceId: r.sourceId,
+        status: r.status ?? "success",
+        rowsRead: r.rowsRead ?? 0,
+        rowsAccepted: r.rowsAccepted ?? 0,
+        rowsRejected: r.rowsRejected ?? 0,
+        dateMin: r.dateMin ? new Date(r.dateMin) : null,
+        dateMax: r.dateMax ? new Date(r.dateMax) : null,
+        startedAt: r.startedAt ? new Date(r.startedAt) : new Date(),
+        finishedAt: r.finishedAt ? new Date(r.finishedAt) : null,
+        warnings: r.warnings ?? null,
+        errors: r.errors ?? null,
+      },
+    });
+  }
+
+  const demoPassword = process.env.DEMO_PASSWORD ?? "sentry-demo-2026";
+  const demoPasswordHash = await hashPassword(demoPassword);
   for (const u of users) {
     await prisma.user.create({
       data: {
@@ -120,10 +183,14 @@ async function main() {
         role: u.role,
         title: u.title,
         phone: u.phone,
+        passwordHash: demoPasswordHash,
+        status: "ACTIVE",
+        emailVerified: new Date(),
         memberships: { create: u.memberships ?? [] },
       },
     });
   }
+  console.log(`Demo users seeded. Password: ${demoPassword}`);
 
   console.log("Inventory batches...");
   await prisma.inventoryBatch.createMany({
@@ -173,6 +240,7 @@ async function main() {
         quantity: r[3] as number,
         wasStockout: Boolean(r[4]),
         source: "SYSTEM",
+        isIllustrative: true,
       })),
     }),
   );
@@ -217,7 +285,10 @@ async function main() {
         periodEnd: new Date(d.periodEnd),
         cases: d.cases,
         source: d.source,
+        sourceUrl: d.sourceUrl ?? null,
         isIllustrative: d.isIllustrative,
+        isDerived: Boolean(d.isDerived),
+        isImputed: Boolean(d.isImputed),
       })),
     }),
   );

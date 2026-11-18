@@ -1,3 +1,4 @@
+import { appNow } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { jsonError, requireApprover } from "@/lib/api";
 
@@ -18,7 +19,7 @@ export async function POST(
     return jsonError(`Transfer is ${transfer.status.toLowerCase()} and cannot be approved`, 409);
   }
 
-  const now = new Date();
+  const now = appNow();
   try {
     const result = await prisma.$transaction(async (tx) => {
       const batches = await tx.inventoryBatch.findMany({

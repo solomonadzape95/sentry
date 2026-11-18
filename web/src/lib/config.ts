@@ -1,16 +1,48 @@
 import demoMeta from "@/data/demo-meta.json";
 
-export const APP_NAME = "Aisec";
-export const APP_TAGLINE = "Predictive medicine supply intelligence";
+export const APP_NAME = "Sentry";
+export const APP_TAGLINE = "See the shortage before it happens";
 export const APP_DESCRIPTION =
-  "Forecast medicine demand, prevent stockouts and coordinate redistribution across Nigerian health facilities.";
+  "Sentry forecasts medicine demand, prevents stockouts and coordinates redistribution across Nigerian health facilities.";
 
 /**
  * The demo dataset is anchored to 17 Nov 2026. Keeping a fixed clock means the
- * pitch is stable regardless of the day it is presented. Replace with `new Date()`
- * for a live deployment.
+ * pitch is stable regardless of the day it is presented.
+ *
+ * `APP_PROFILE=live` switches reads to the real clock. `APP_TODAY` can pin a
+ * different demo date without editing code. Mutations should use `appNow()` so
+ * the write timestamp matches the read clock.
  */
-export const DEMO_TODAY = new Date("2026-11-17T00:00:00.000Z");
+export const APP_PROFILE = process.env.APP_PROFILE ?? "demo";
+
+/**
+ * Authentication is enforced by default outside the demo profile. Set
+ * AUTH_REQUIRED=true to keep the demo dataset and clock but require sign-in.
+ */
+export const AUTH_REQUIRED = process.env.AUTH_REQUIRED
+  ? process.env.AUTH_REQUIRED === "true"
+  : APP_PROFILE !== "demo";
+
+const PINNED_TODAY = process.env.APP_TODAY
+  ? new Date(process.env.APP_TODAY)
+  : new Date("2026-11-17T00:00:00.000Z");
+export const DEMO_TODAY = APP_PROFILE === "live" ? new Date() : PINNED_TODAY;
+
+export function appNow(): Date {
+  if (APP_PROFILE === "live") return new Date();
+  const now = new Date();
+  return new Date(
+    Date.UTC(
+      PINNED_TODAY.getUTCFullYear(),
+      PINNED_TODAY.getUTCMonth(),
+      PINNED_TODAY.getUTCDate(),
+      now.getUTCHours(),
+      now.getUTCMinutes(),
+      now.getUTCSeconds(),
+    ),
+  );
+}
+
 export const DEMO_HORIZON_DAYS = 30;
 export const DEMO_META = demoMeta;
 
@@ -67,6 +99,7 @@ export const NAV_SECTIONS = [
   {
     label: "Command",
     items: [
+      { href: "/today", label: "Today", icon: "today" },
       { href: "/dashboard", label: "Network overview", icon: "network" },
       { href: "/facilities", label: "Facilities", icon: "building" },
     ],
@@ -83,7 +116,12 @@ export const NAV_SECTIONS = [
     label: "Intelligence",
     items: [
       { href: "/model", label: "Model performance", icon: "activity" },
+      { href: "/data", label: "Data provenance", icon: "database" },
       { href: "/admin", label: "Administration", icon: "settings" },
     ],
+  },
+  {
+    label: "Account",
+    items: [{ href: "/account", label: "Account & security", icon: "user" }],
   },
 ] as const;

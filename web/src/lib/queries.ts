@@ -126,3 +126,30 @@ export async function getAdminData() {
 export async function getMedicines() {
   return prisma.medicine.findMany({ orderBy: { name: "asc" } });
 }
+
+export async function getDataProvenance() {
+  const [sources, runs] = await Promise.all([
+    prisma.dataSource.findMany({ orderBy: { name: "asc" } }),
+    prisma.ingestRun.findMany({
+      orderBy: { startedAt: "desc" },
+      take: 24,
+      include: { source: true },
+    }),
+  ]);
+  return { sources, runs };
+}
+
+export async function getDiseaseProvenance() {
+  return prisma.diseaseObservation.findMany({
+    select: {
+      disease: true,
+      source: true,
+      sourceUrl: true,
+      isDerived: true,
+      isImputed: true,
+      periodStart: true,
+    },
+    distinct: ["disease", "source"],
+    orderBy: { disease: "asc" },
+  });
+}

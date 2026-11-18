@@ -101,7 +101,8 @@ export function PersonaSwitcher({
             </button>
           ))}
           <p className="border-t border-line px-2.5 pb-0.5 pt-2 text-[10px] leading-relaxed text-muted">
-            Role-based demo sessions. Replace with Supabase Auth for a real pilot.
+            Demo-only persona switching. Production uses Auth.js sign-in and
+            invite-only accounts.
           </p>
         </div>
       ) : null}

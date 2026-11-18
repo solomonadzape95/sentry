@@ -21,6 +21,39 @@ from .config import (
 ROOT = Path(__file__).resolve().parent.parent.parent
 SEED_DIR = ROOT / "data" / "seed"
 
+DISEASE_SOURCES = {
+    "CHOLERA": {
+        "source": "NCDC Weekly Epidemiological Report (suspected cases)",
+        "url": "https://ncdc.gov.ng/reports/weekly",
+        "isIllustrative": False,
+        "isDerived": False,
+    },
+    "MENINGITIS": {
+        "source": "NCDC Weekly Epidemiological Report (suspected cases)",
+        "url": "https://ncdc.gov.ng/reports/weekly",
+        "isIllustrative": False,
+        "isDerived": False,
+    },
+    "LASSA_FEVER": {
+        "source": "NCDC Weekly Epidemiological Report (suspected cases)",
+        "url": "https://ncdc.gov.ng/reports/weekly",
+        "isIllustrative": False,
+        "isDerived": False,
+    },
+    "MALARIA": {
+        "source": "DERIVED: NMIS 2021 FCT prevalence + Open-Meteo rainfall",
+        "url": "https://dhsprogram.com/pubs/pdf/MIS41/MIS41.pdf",
+        "isIllustrative": False,
+        "isDerived": True,
+    },
+    "RESPIRATORY": {
+        "source": "DERIVED: Open-Meteo temperature/humidity seasonality",
+        "url": "https://open-meteo.com",
+        "isIllustrative": False,
+        "isDerived": True,
+    },
+}
+
 
 def _date(v) -> str:
     if isinstance(v, (pd.Timestamp, date)):
@@ -135,12 +168,24 @@ def export_all(
     disease_rows = []
     for _, row in disease.iterrows():
         for name in ["MALARIA", "CHOLERA", "RESPIRATORY", "MENINGITIS", "LASSA_FEVER"]:
+            provenance = DISEASE_SOURCES.get(
+                name,
+                {"source": "Unknown", "isIllustrative": True, "isDerived": False},
+            )
+            is_ncdc = name in ("CHOLERA", "MENINGITIS", "LASSA_FEVER")
+            stale = is_ncdc and bool(row.get("NCDC_STALE", False))
+            source = provenance["source"]
+            if stale:
+                source = f"{source} — last observation carried forward"
             disease_rows.append({
                 "disease": name, "state": "FCT", "lga": None,
                 "periodStart": _date(row["date"]), "periodEnd": _date(row["periodEnd"]),
                 "cases": int(row[name]),
-                "source": "Illustrative FCT signal (not official NCDC data)",
-                "isIllustrative": True,
+                "source": source,
+                "sourceUrl": provenance.get("url"),
+                "isIllustrative": provenance["isIllustrative"],
+                "isDerived": provenance["isDerived"] or stale,
+                "isImputed": stale,
             })
     _write("disease.json", disease_rows)
 
@@ -158,12 +203,80 @@ def export_all(
     if "source" in weather.columns and len(weather):
         weather_source = str(weather["source"].iloc[0])
 
+    ncdc_latest = None
+    if "NCDC_STALE" in disease.columns:
+        observed = disease[~disease["NCDC_STALE"]]
+        if not observed.empty:
+            ncdc_latest = _date(observed["date"].max())
+
+    real_backtest = None
+    real_backtest_path = ROOT / "data" / "processed" / "real_target_backtest.json"
+    if real_backtest_path.exists():
+        real_backtest = json.loads(real_backtest_path.read_text())
+
     _write("meta.json", {
         "today": TODAY,
         "historyDays": HISTORY_DAYS,
         "horizonDays": FORECAST_HORIZON,
         "weatherSource": weather_source,
-        "dataDisclaimer": "Facility inventory and consumption are simulated for demonstration. Disease indicators are illustrative. Weather is real Open-Meteo history for Abuja.",
+        "ncdcLatestObservation": ncdc_latest,
+        "dataDisclaimer": (
+            "Facility inventory and consumption are simulated for demonstration. "
+            "Cholera, meningitis and Lassa fever signals come from real NCDC Weekly "
+            "Epidemiological Reports. Malaria is derived from the NMIS 2021 FCT "
+            "prevalence and Open-Meteo rainfall. Respiratory demand is derived from "
+            "Open-Meteo seasonality. Weather is real Open-Meteo history for Abuja. "
+            "Disease-to-medicine relationships are hypotheses, not clinical advice."
+        ),
+        "dataSources": [
+            {
+                "id": "ncdc_wer",
+                "name": "NCDC Weekly Epidemiological Reports",
+                "kind": "OBSERVED",
+                "coverage": "2023-07 to latest available report",
+                "url": "https://ncdc.gov.ng/reports/weekly",
+            },
+            {
+                "id": "nmis_2021",
+                "name": "Nigeria Malaria Indicator Survey 2021",
+                "kind": "OBSERVED_PRIOR",
+                "coverage": "2021 state-level prevalence",
+                "url": "https://dhsprogram.com/pubs/pdf/MIS41/MIS41.pdf",
+            },
+            {
+                "id": "open_meteo",
+                "name": "Open-Meteo ERA5",
+                "kind": "OBSERVED",
+                "coverage": "daily history for Abuja",
+                "url": "https://open-meteo.com",
+            },
+            {
+                "id": "grid3_facilities",
+                "name": "GRID3 NGA Health Facilities v4.0",
+                "kind": "REFERENCE",
+                "coverage": "national facility master list",
+                "url": "https://data.humdata.org/dataset/grid3-nga-health-facilities-v4-0",
+            },
+            {
+                "id": "hdx_nhfr_facilities",
+                "name": "Nigeria Health Facilities (NHFR snapshot)",
+                "kind": "REFERENCE",
+                "coverage": "2020 facility snapshot",
+                "url": "https://data.humdata.org/dataset/nigeria-health-facilities",
+            },
+            {
+                "id": "neml_2024",
+                "name": "Nigeria Essential Medicines List 2024",
+                "kind": "REFERENCE",
+                "coverage": "NEML Adult 8th Edition 2024",
+                "url": "https://www.who.int/publications/m/item/nigeria--essential-medicines-list-2024-(english)",
+            },
+        ],
+        "diseaseSignals": [
+            {"signal": name, **provenance}
+            for name, provenance in DISEASE_SOURCES.items()
+        ],
+        "realTargetBacktest": real_backtest,
         "scenario": scenario_summary,
         "demoTransferUnits": SCENARIO["transferUnits"],
     })

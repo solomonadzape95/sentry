@@ -26,7 +26,7 @@ export function Stat({
   return (
     <div
       className={cn(
-        "rounded-[22px] border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(16,36,30,0.04)] sm:p-5",
+        "rounded-[14px] border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(16,36,30,0.04)] sm:p-5",
         className,
       )}
     >
@@ -36,7 +36,7 @@ export function Stat({
         </p>
         {icon ? <div className={cn("text-brand/70", tones[tone])}>{icon}</div> : null}
       </div>
-      <p className={cn("tabular mt-2 text-[26px] font-semibold leading-none sm:text-[30px]", tones[tone])}>
+      <p className={cn("font-display mt-2 text-[30px] leading-none tracking-[-0.02em] sm:text-[34px]", tones[tone])}>
         {value}
       </p>
       {sub ? <div className="mt-2 text-xs leading-relaxed text-muted">{sub}</div> : null}

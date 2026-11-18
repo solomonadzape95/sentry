@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { appNow } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { jsonError, requireFacilityAccess } from "@/lib/api";
 
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
   const expiry = new Date(data.expiryDate);
   if (Number.isNaN(expiry.getTime())) return jsonError("Invalid expiry date", 400);
 
-  const now = new Date();
+  const now = appNow();
   const idempotencyKey = data.clientId ? `MOB-${data.clientId}` : null;
   if (idempotencyKey) {
     const existing = await prisma.stockMovement.findFirst({ where: { reference: idempotencyKey } });

@@ -1,0 +1,16 @@
+Table 4.8.2 Prevalence of malaria in children: States
+
+Percentage of children age 6–59 months classified in two tests as having
+malaria, by state, Nigeria MIS 2021
+
+                       Malaria prevalence          Malaria prevalence
+                       according to RDT          according to microscopy
+                      RDT         Number of     Microscopy    Number of
+      State         positive      children      positive      children
+      North Central
+       FCT-Abuja       34.6           171           18.8          171
+       Benue           34.0           293           17.6          290
+       Kogi            27.7           153           15.9          151
+      Total            39.6        11,103           22.3       11,037
+
+Table 4.9.1 Malaria species: National

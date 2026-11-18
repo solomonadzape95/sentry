@@ -1,4 +1,4 @@
-# Aisec — Predictive Medicine Supply Intelligence
+# Sentry — Predictive Medicine Supply Intelligence
 
 Working name; rebrand via `APP_NAME` in `web/src/lib/config.ts`.
 
@@ -106,8 +106,10 @@ Intervals: empirical residual quantiles from backtest (80% and 95%).
 
 ## Demo credentials
 
-Persona switcher in the header (no passwords for the hackathon build). Replace
-with Supabase Auth before any real pilot.
+Auth.js accounts now back the demo. Every seeded persona uses the password in
+`DEMO_PASSWORD` (default `sentry-demo-2026`). The persona switcher remains in the
+header only while `APP_PROFILE=demo`; outside that profile it is replaced by a
+real session and account menu. See [docs/AUTH_AND_ROLES.md](docs/AUTH_AND_ROLES.md).
 
 ---
 
@@ -143,7 +145,7 @@ with Supabase Auth before any real pilot.
 
 ### Explicitly deferred
 
-- [ ] Real Supabase Auth, MFA for approvers and Postgres RLS
+- [ ] MFA for approvers and Postgres RLS (Auth.js accounts and invite flow are built)
 - [ ] Live NHLMIS / DHIS2 / NHFR integrations
 - [ ] Supplier portal and purchase-order workflow
 - [ ] Clinical validation of disease-to-medicine relationships
@@ -158,5 +160,39 @@ with Supabase Auth before any real pilot.
 - Persona switching is not authentication; it is a demonstration device.
 - The PWA caches the server-rendered mobile shell; production should cache a
   user-neutral shell and fetch personalised data at runtime.
-- Disease indicators are illustrative; no clinical claims are made.
+- Disease signals mix real NCDC reports with derived malaria/weather indices;
+  no clinical claims are made.
 - Inventory and consumption are simulated; impact claims must wait for a pilot.
+
+---
+
+## Backend & data update (18 Nov 2026)
+
+The full plan lives in [docs/BACKEND_DATA_PLAN.md](docs/BACKEND_DATA_PLAN.md);
+source notes are in [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
+
+### Shipped
+
+- Public ingestion pipeline: NCDC Weekly Epidemiological Reports, GRID3 v4.0
+  facilities, HDX NHFR snapshot, NMIS 2021 malaria prevalence and Open-Meteo.
+- 1,338 NCDC disease-week rows; 70,235 GRID3 facilities; 46,146 NHFR facilities;
+  1,047 FCT facilities; 37 states + national malaria prevalence.
+- Real NCDC/NMIS signals now feed the forecasting pipeline; malaria and
+  respiratory signals are explicitly `DERIVED`; stale NCDC weeks are `IMPUTED`.
+- Provenance in the database (`DataSource`, `IngestRun`), `/data` page and
+  `/api/v1/*` read endpoints.
+- Postgres docker-compose profile and schema-generation scripts, with SQLite as
+  the zero-setup demo fallback.
+- Real-target backtest on NCDC disease counts: 4-week rolling holdout,
+  per-disease selection WAPE **46.1%** vs seasonal **103.7%**. This is
+  disease-burden accuracy, not medicine-demand accuracy.
+- Scraper fixtures and 4 passing pytest tests; lint, typecheck and production
+  build pass.
+
+### Still open
+
+- NEML 2024 catalogue parser and a versioned regimen table for medicine units.
+- Forecast versioning and a model registry.
+- Live Postgres seed verification (Docker was not running during the build).
+- NHLMIS/DHIS2 access and real medicine-consumption ingestion.
+- Full clean-state reset and final demo verification.

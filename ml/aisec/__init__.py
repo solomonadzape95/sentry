@@ -1,1 +1,1 @@
-"""Aisec forecasting pipeline."""
+"""Cheta forecasting pipeline."""

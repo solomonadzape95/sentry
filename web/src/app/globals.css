@@ -1,32 +1,74 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #eef1ea;
-  --color-surface: #fbfcf8;
-  --color-ink: #10241e;
-  --color-muted: #68756a;
-  --color-line: #dde4d9;
-  --color-brand: #0f3b2c;
-  --color-brand-dark: #0a2b22;
-  --color-brand-deep: #071b15;
-  --color-brand-soft: #e9f1e4;
-  --color-ok: #067647;
-  --color-ok-soft: #dcfae6;
-  --color-warn: #b54708;
-  --color-warn-soft: #fef0c7;
-  --color-danger: #b42318;
-  --color-danger-soft: #fee4e2;
-  --color-info: #175cd3;
-  --color-info-soft: #eff8ff;
-  --color-paper: #f7f8f3;
-  --color-mist: #e7eae2;
-  --color-forest: #0a2b22;
-  --color-forest-2: #103a2c;
-  --color-lime: #e4f44d;
-  --color-lime-deep: #cbe23a;
-  --color-stone: #68756a;
-  --font-sans: var(--font-geist-sans);
+  /* Sentry palette — six tones from bone to near-black. */
+  --color-bone: #d2cac7;
+  --color-sand: #ccb7a3;
+  --color-clay: #8e775c;
+  --color-bark: #492415;
+  --color-cocoa: #34170d;
+  --color-ash: #a59f98;
+  --color-ink: #190f0a;
+
+  --color-canvas: #d2cac7;
+  --color-surface: #ded8d4;
+  --color-paper: #d2cac7;
+  --color-cream: #ccb7a3;
+  --color-mist: #c4bbb7;
+
+  --color-body: #492415;
+  --color-muted: #6c4833;
+  --color-stone: #8e775c;
+  --color-line: #bcb1aa;
+  --color-line-strong: #a4988e;
+
+  /* Legacy section tokens, folded into the same warm family. */
+  --color-sage: #ccb7a3;
+  --color-sage-soft: #d8cec8;
+  --color-sage-deep: #b29b83;
+  --color-sky: #ccb7a3;
+  --color-sky-soft: #d8cec8;
+  --color-sky-deep: #b29b83;
+  --color-sky-ink: #492415;
+  --color-butter: #ccb7a3;
+  --color-butter-soft: #ded4cc;
+  --color-butter-deep: #b29b83;
+  --color-mint: #d8cec8;
+  --color-mint-deep: #b29b83;
+  --color-charcoal: #190f0a;
+
+  /* Semantic colours — kept so the app shell and dashboard inherit the rebrand. */
+  --color-brand: #492415;
+  --color-brand-dark: #34170d;
+  --color-brand-deep: #190f0a;
+  --color-brand-soft: #ccb7a3;
+  --color-ok: #3d5a3f;
+  --color-ok-soft: #dfe4d7;
+  --color-warn: #7a4a17;
+  --color-warn-soft: #e6d5bd;
+  --color-danger: #8b2f1f;
+  --color-danger-soft: #e4c9bf;
+  --color-info: #41505f;
+  --color-info-soft: #d3d6d7;
+  --color-forest: #190f0a;
+  --color-forest-2: #2a1710;
+  --color-lime: #ccb7a3;
+  --color-lime-deep: #8e775c;
+
+  --font-sans: var(--font-satoshi);
+  --font-display: var(--font-satoshi);
   --font-mono: var(--font-geist-mono);
+
+  --animate-marquee: marquee 46s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
 }
 
 @layer base {
@@ -38,22 +80,37 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
-    background: var(--color-canvas);
+    background: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01";
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: #c7ece4;
-    color: var(--color-brand-deep);
+    background: var(--color-bark);
+    color: var(--color-bone);
   }
 
   h1,
   h2,
   h3 {
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bark);
+    outline-offset: 3px;
   }
 }
 
@@ -64,18 +121,70 @@
 
 @utility scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: #c5d4ce transparent;
+  scrollbar-color: #c9c4b6 transparent;
+}
+
+@utility display {
+  font-family: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+@utility label {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Interim grade for the legacy artwork plates while sections are rebuilt. */
+@utility art-tone {
+  filter: sepia(0.72) saturate(0.58) hue-rotate(-18deg) contrast(0.96) brightness(0.94);
+}
+
+@utility photo-warm {
+  filter: sepia(0.24) saturate(0.82) contrast(1.03) brightness(0.96);
+}
+
+/* Fine, uneven print grain. Apply to any relatively positioned block. */
+@utility print-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Coarse risograph speckle. */
+@utility riso-speckle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0 0.06 0 0 0 5 -2.6'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23s)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* Halftone dot field, inherits currentColor. */
+@utility dotfield {
+  background-image: radial-gradient(currentColor 1px, transparent 1.1px);
+  background-size: 5px 5px;
 }
 
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(13, 118, 102, 0.25);
+    box-shadow: 0 0 0 0 rgba(47, 74, 53, 0.25);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(13, 118, 102, 0);
+    box-shadow: 0 0 0 10px rgba(47, 74, 53, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(13, 118, 102, 0);
+    box-shadow: 0 0 0 0 rgba(47, 74, 53, 0);
   }
 }
 
@@ -133,9 +242,21 @@
   }
 }
 
-@keyframes draw-line {
+@keyframes art-settle {
+  from {
+    transform: scale(1.045);
+  }
   to {
-    stroke-dashoffset: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 
@@ -163,6 +284,64 @@
   animation-delay: 460ms;
 }
 
+/* Hero: lines uncover from below, the photograph settles, the base fades up. */
+@keyframes hero-line-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 42px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-image-settle {
+  from {
+    transform: scale(1.065);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero-line > span {
+  display: block;
+  animation: hero-line-rise 1150ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.hero-line-2 > span {
+  animation-delay: 120ms;
+}
+
+.hero-media {
+  animation: hero-image-settle 2200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-fade-up {
+  animation: hero-fade-up 1000ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+}
+
+.hero-fade-up-late {
+  animation-delay: 780ms;
+}
+
 .float-soft {
   animation: float-soft 7s ease-in-out infinite;
 }
@@ -171,10 +350,27 @@
   animation: float-soft 9s ease-in-out infinite;
 }
 
-.draw-line {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
-  animation: draw-line 2.4s ease-out forwards;
+.art-settle {
+  animation: art-settle 1600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rule-draw {
+  transform-origin: left center;
+  animation: rule-draw 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -182,7 +378,17 @@
   .landing-fade,
   .float-soft,
   .float-soft-slow,
-  .draw-line {
+  .art-settle,
+  .rule-draw,
+  .hero-line > span,
+  .hero-media,
+  .hero-fade-up {
     animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

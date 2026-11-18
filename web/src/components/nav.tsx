@@ -6,39 +6,36 @@ import {
   Activity,
   ArrowLeftRight,
   Building2,
+  ClipboardCheck,
+  Database,
   Package,
   Radar,
   Settings,
   TrendingUp,
+  UserRound,
 } from "lucide-react";
 import { NAV_SECTIONS } from "@/lib/config";
+import { canSeeNav } from "@/lib/authz";
 import { cn } from "@/lib/utils";
 
 const icons = {
+  today: ClipboardCheck,
   network: Radar,
   building: Building2,
   package: Package,
   trend: TrendingUp,
   shuffle: ArrowLeftRight,
   activity: Activity,
+  database: Database,
   settings: Settings,
+  user: UserRound,
 } as const;
-
-const visibility: Record<string, string[]> = {
-  "/dashboard": ["NETWORK_AUTHORITY"],
-  "/facilities": ["NETWORK_AUTHORITY", "FACILITY_MANAGER"],
-  "/inventory": ["NETWORK_AUTHORITY", "FACILITY_MANAGER", "INVENTORY_OFFICER"],
-  "/forecasts": ["NETWORK_AUTHORITY", "FACILITY_MANAGER", "INVENTORY_OFFICER"],
-  "/transfers": ["NETWORK_AUTHORITY", "FACILITY_MANAGER", "INVENTORY_OFFICER"],
-  "/model": ["NETWORK_AUTHORITY"],
-  "/admin": ["NETWORK_AUTHORITY"],
-};
 
 export function SidebarNav({ role }: { role: string }) {
   const pathname = usePathname();
   const sections = NAV_SECTIONS.map((section) => ({
     ...section,
-    items: section.items.filter((item) => visibility[item.href]?.includes(role) ?? false),
+    items: section.items.filter((item) => canSeeNav(role, item.href)),
   })).filter((section) => section.items.length > 0);
 
   return (
@@ -65,7 +62,7 @@ export function SidebarNav({ role }: { role: string }) {
                   )}
                 >
                   <Icon
-                    className={cn("h-4 w-4", active ? "text-[#e4f44d]" : "text-white/45")}
+                    className={cn("h-4 w-4", active ? "text-[#f4e6ac]" : "text-white/45")}
                     strokeWidth={2}
                   />
                   {item.label}
@@ -82,12 +79,14 @@ export function SidebarNav({ role }: { role: string }) {
 export function MobileNav({ role }: { role: string }) {
   const pathname = usePathname();
   const items = [
-    { href: "/dashboard", label: "Network overview" },
+    { href: "/today", label: "Today" },
+    { href: "/dashboard", label: "Network" },
     { href: "/facilities", label: "Facilities" },
     { href: "/inventory", label: "Inventory" },
     { href: "/forecasts", label: "Forecasts" },
     { href: "/transfers", label: "Transfers" },
-  ].filter((item) => visibility[item.href]?.includes(role));
+    { href: "/account", label: "Account" },
+  ].filter((item) => canSeeNav(role, item.href));
   return (
     <div className="scrollbar-thin flex gap-1.5 overflow-x-auto border-b border-line bg-canvas px-4 py-2 lg:hidden">
       {items.map((item) => {

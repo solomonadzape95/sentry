@@ -1,9 +1,14 @@
+import { cache } from "react";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import type { Prisma } from "@prisma/client";
+import { auth } from "@/auth";
+import { APP_PROFILE, AUTH_REQUIRED } from "@/lib/config";
 import { prisma } from "@/lib/db";
+import { can, homeFor } from "@/lib/authz";
 
-export const PERSONA_COOKIE = "aisec_persona";
-export const FACILITY_COOKIE = "aisec_facility";
+export const PERSONA_COOKIE = "cheta_persona";
+export const FACILITY_COOKIE = "cheta_facility";
 
 const personaInclude = {
   memberships: { include: { facility: true } },
@@ -11,13 +16,49 @@ const personaInclude = {
 
 export type Persona = Prisma.UserGetPayload<{ include: typeof personaInclude }>;
 
-export async function getPersona(): Promise<Persona> {
+export type Scope = {
+  persona: Persona;
+  facilities: Persona["memberships"][number]["facility"][];
+  activeFacility: Persona["memberships"][number]["facility"] | null;
+  canManageInventory: boolean;
+  canApproveTransfers: boolean;
+  canRequestTransfers: boolean;
+  canReceiveTransfers: boolean;
+  isNetworkAuthority: boolean;
+  home: string;
+};
+
+function personaById(id: string): Promise<Persona | null> {
+  return prisma.user.findUnique({ where: { id }, include: personaInclude });
+}
+
+/**
+ * Only a valid Auth.js session is accepted here. The database is re-read on
+ * every request so suspension, a role change or a password change revokes the
+ * JWT immediately via the session epoch.
+ */
+export const getSessionPersona = cache(async (): Promise<Persona | null> => {
+  const session = await auth();
+  if (!session?.user?.id) return null;
+
+  const user = await personaById(session.user.id);
+  if (!user || user.status !== "ACTIVE") return null;
+  if (user.sessionEpoch !== session.user.sessionEpoch) return null;
+  return user;
+});
+
+/**
+ * Demo-only fallback. The persona cookie is never consulted outside
+ * APP_PROFILE=demo.
+ */
+async function getDemoPersona(): Promise<Persona> {
   const store = await cookies();
   const id = store.get(PERSONA_COOKIE)?.value;
   if (id) {
-    const user = await prisma.user.findUnique({ where: { id }, include: personaInclude });
+    const user = await personaById(id);
     if (user) return user;
   }
+
   const fallback = await prisma.user.findFirst({
     where: { role: "NETWORK_AUTHORITY" },
     include: personaInclude,
@@ -26,17 +67,24 @@ export async function getPersona(): Promise<Persona> {
   return fallback;
 }
 
-export type Scope = {
-  persona: Persona;
-  facilities: Persona["memberships"][number]["facility"][];
-  activeFacility: Persona["memberships"][number]["facility"] | null;
-  canManageInventory: boolean;
-  canApproveTransfers: boolean;
-  isNetworkAuthority: boolean;
-};
+export async function getPersona(): Promise<Persona> {
+  const sessionPersona = await getSessionPersona();
+  if (sessionPersona) return sessionPersona;
+  if (APP_PROFILE === "demo" && !AUTH_REQUIRED) return getDemoPersona();
+  redirect("/sign-in");
+}
 
-export async function getScope(): Promise<Scope> {
-  const persona = await getPersona();
+/**
+ * API variant: never redirects. Returns null when the caller must send 401.
+ */
+export async function getApiPersona(): Promise<Persona | null> {
+  const sessionPersona = await getSessionPersona();
+  if (sessionPersona) return sessionPersona;
+  if (APP_PROFILE === "demo" && !AUTH_REQUIRED) return getDemoPersona();
+  return null;
+}
+
+async function buildScope(persona: Persona): Promise<Scope> {
   const all = await prisma.facility.findMany({ orderBy: { name: "asc" } });
   const isNetworkAuthority = persona.role === "NETWORK_AUTHORITY";
 
@@ -59,14 +107,25 @@ export async function getScope(): Promise<Scope> {
     persona,
     facilities,
     activeFacility,
-    canManageInventory:
-      isNetworkAuthority ||
-      persona.role === "INVENTORY_OFFICER" ||
-      persona.role === "FACILITY_MANAGER",
-    canApproveTransfers:
-      isNetworkAuthority || persona.role === "FACILITY_MANAGER",
+    canManageInventory: can(persona.role, "inventory:write"),
+    canApproveTransfers: can(persona.role, "transfer:approve"),
+    canRequestTransfers: can(persona.role, "transfer:request"),
+    canReceiveTransfers: can(persona.role, "transfer:receive"),
     isNetworkAuthority,
+    home: homeFor({ role: persona.role, facilityId: activeFacility?.id }),
   };
+}
+
+export async function getScope(): Promise<Scope> {
+  return buildScope(await getPersona());
+}
+
+/**
+ * API variant: returns null instead of redirecting when there is no session.
+ */
+export async function getApiScope(): Promise<Scope | null> {
+  const persona = await getApiPersona();
+  return persona ? buildScope(persona) : null;
 }
 
 export function canAccessFacility(

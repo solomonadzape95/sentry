@@ -27,6 +27,7 @@ import {
   getFacilityConsumption,
   getNetworkData,
   getRecentMovements,
+  getTransfers,
 } from "@/lib/queries";
 import { getScope } from "@/lib/session";
 import { PageHeader } from "@/components/ui/page-header";
@@ -77,10 +78,23 @@ export default async function FacilityPage({
     scope.persona.memberships.some((m) => m.facilityId === facility.id);
   if (!canSee) notFound();
 
-  const [consumption, movements] = await Promise.all([
+  const [consumption, movements, transfers] = await Promise.all([
     getFacilityConsumption(facility.id, 365),
     getRecentMovements(facility.id, 12),
+    getTransfers(),
   ]);
+
+  const dispatchQueue = transfers.filter(
+    (t) =>
+      t.fromFacilityId === facility.id &&
+      (t.status === "PENDING_APPROVAL" || t.status === "RECOMMENDED"),
+  );
+  const receivingQueue = transfers.filter(
+    (t) =>
+      t.toFacilityId === facility.id &&
+      (t.status === "IN_TRANSIT" || t.status === "APPROVED"),
+  );
+  const attentionCount = dispatchQueue.length + receivingQueue.length;
 
   const series = data.series
     .filter((s) => s.facilityId === facility.id)
@@ -177,6 +191,47 @@ export default async function FacilityPage({
           </>
         }
       />
+
+      {attentionCount > 0 ? (
+        <Card className="mb-5 border-warn/30">
+          <CardHeader
+            title="Needs your signature"
+            subtitle="Two-party transfer control: the source dispatches, the destination confirms receipt."
+            action={<Badge tone="warning">{attentionCount} waiting</Badge>}
+            icon={<Truck className="h-4 w-4" />}
+          />
+          <div className="divide-y divide-line">
+            {[
+              ...dispatchQueue.map((transfer) => ({ transfer, kind: "dispatch" as const })),
+              ...receivingQueue.map((transfer) => ({ transfer, kind: "receipt" as const })),
+            ].map(({ transfer, kind }) => (
+              <div key={transfer.id} className="flex flex-wrap items-center gap-3 px-5 py-3">
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[12px] font-medium text-ink">
+                    {transfer.medicine.genericName} · {formatNumber(transfer.quantity)}{" "}
+                    {transfer.medicine.unit}s
+                  </p>
+                  <p className="mt-0.5 text-[10px] text-muted">
+                    {kind === "dispatch"
+                      ? `Release to ${transfer.toFacility.shortName}`
+                      : `Receive from ${transfer.fromFacility.shortName}`}{" "}
+                    · {transfer.reference}
+                  </p>
+                </div>
+                <Badge tone={kind === "dispatch" ? "warning" : "info"}>
+                  {kind === "dispatch" ? "Approve dispatch" : "Confirm receipt"}
+                </Badge>
+                <Link
+                  href={`/transfers#transfer-${transfer.id}`}
+                  className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
+                >
+                  Open <ArrowUpRight className="h-3 w-3" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Card>
+      ) : null}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         <Stat
@@ -286,7 +341,7 @@ export default async function FacilityPage({
                         {s.reorderQty > 0 ? (
                           <span className="font-medium text-ink">{formatNumber(s.reorderQty)}</span>
                         ) : (
-                          <span className="text-muted">—</span>
+                          <span className="text-muted">N/A</span>
                         )}
                       </td>
                       <td className="px-3 py-3"><RiskBadge risk={s.risk} compact /></td>

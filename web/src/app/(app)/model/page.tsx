@@ -34,8 +34,7 @@ const modelName: Record<string, string> = {
 
 export default async function ModelPage() {
   const scope = await getScope();
-  if (!scope.isNetworkAuthority)
-    redirect(scope.activeFacility ? `/facilities/${scope.activeFacility.id}` : "/inventory");
+  if (!scope.isNetworkAuthority) redirect(scope.home);
   const [runs, data] = await Promise.all([getModelRuns(), getNetworkData()]);
   const best = runs[0];
   const baseline = runs.find((r) => r.model === "SEASONAL_NAIVE");
@@ -83,7 +82,7 @@ export default async function ModelPage() {
           </>
         }
         title="Forecast performance"
-        description="A sophisticated model only earns its place if it beats a simple seasonal baseline. This page shows the evidence — and the limits."
+        description="A sophisticated model only earns its place if it beats a simple seasonal baseline. This page shows the evidence, and the limits."
         actions={
           <>
             <Link href="/forecasts" className={buttonClass({ variant: "secondary", size: "sm" })}>
@@ -308,8 +307,9 @@ export default async function ModelPage() {
                 pipeline works, not that the product reduces stockouts in the field.
               </p>
               <p>
-                <span className="font-medium text-ink">Illustrative disease signals.</span> Real relationships
-                must be validated by pharmacists and clinicians before use.
+                <span className="font-medium text-ink">Mixed-provenance disease signals.</span> NCDC outbreak
+                reports are observed; malaria and respiratory signals are derived from survey prevalence and
+                weather. Disease-to-medicine relationships still need clinical validation.
               </p>
               <p>
                 <span className="font-medium text-ink">No live NHLMIS / DHIS2 feed.</span> Integration access is

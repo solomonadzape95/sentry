@@ -22,12 +22,16 @@ export function AppShell({
   personas,
   alertCount,
   facilityCount,
+  demo,
+  showPersonaSwitcher,
 }: {
   children: React.ReactNode;
   persona: Persona;
   personas: Persona[];
   alertCount: number;
   facilityCount: number;
+  demo: boolean;
+  showPersonaSwitcher: boolean;
 }) {
   return (
     <div className="min-h-dvh">
@@ -38,26 +42,45 @@ export function AppShell({
 
         <div className="mx-3 mb-4 rounded-xl border border-white/8 bg-white/[0.04] px-3 py-2.5">
           <div className="flex items-center gap-2">
-            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#e4f44d]" />
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#f4e6ac]" />
             <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-white/50">
-              Demo network
+              {demo ? "Demo network" : "Network"}
             </p>
           </div>
           <p className="mt-1 text-xs font-medium text-white/85">
             FCT · {facilityCount} {facilityCount === 1 ? "facility" : "facilities"}
           </p>
-          <p className="text-[10px] text-white/40">17 Nov 2026 · simulated records</p>
+          <p className="text-[10px] text-white/40">
+            {demo ? "17 Nov 2026 · simulated records" : "Live session · scoped data"}
+          </p>
         </div>
 
         <SidebarNav role={persona.role} />
 
         <div className="mt-auto border-t border-white/10 p-3">
-          <PersonaSwitcher personas={personas} currentId={persona.id} />
+          {showPersonaSwitcher ? (
+            <PersonaSwitcher personas={personas} currentId={persona.id} />
+          ) : (
+            <Link
+              href="/account"
+              className="flex items-center gap-2.5 rounded-xl px-2 py-2 text-white/75 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              <Avatar name={persona.name} tone="dark" />
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-xs font-semibold text-white">
+                  {persona.name}
+                </span>
+                <span className="block truncate text-[10px] text-white/45">
+                  {ROLE_LABEL[persona.role] ?? persona.role}
+                </span>
+              </span>
+            </Link>
+          )}
           <div className="mt-2 flex items-start gap-2 rounded-lg bg-white/[0.04] px-2.5 py-2">
             <FlaskConical className="mt-0.5 h-3 w-3 shrink-0 text-amber-300/80" />
             <p className="text-[10px] leading-relaxed text-white/40">
-              Hackathon build. Facility and consumption data are simulated; disease
-              signals are illustrative.
+              Hackathon build. Facility and consumption data are simulated; disease signals
+              mix real NCDC reports with derived malaria and weather indices.
             </p>
           </div>
         </div>
@@ -70,12 +93,16 @@ export function AppShell({
               <Logo theme="light" compact />
             </div>
             <div className="hidden items-center gap-2 md:flex">
-              <span className="text-xs font-semibold text-ink">FCT demonstration network</span>
+              <span className="text-xs font-semibold text-ink">
+                {demo ? "FCT demonstration network" : "FCT network"}
+              </span>
               <span className="text-line">/</span>
               <span className="text-xs text-muted">{formatDayMonth(DEMO_TODAY)}</span>
-              <Badge tone="warning" className="ml-1">
-                Demo clock
-              </Badge>
+              {demo ? (
+                <Badge tone="warning" className="ml-1">
+                  Demo clock
+                </Badge>
+              ) : null}
             </div>
 
             <div className="ml-auto flex items-center gap-2">
@@ -102,7 +129,10 @@ export function AppShell({
               <div className="lg:hidden">
                 <PersonaSwitcher personas={personas} currentId={persona.id} variant="light" />
               </div>
-              <div className="hidden items-center gap-2 lg:flex">
+              <Link
+                href="/account"
+                className="hidden items-center gap-2 rounded-lg px-1 py-1 transition-colors hover:bg-canvas lg:flex"
+              >
                 <Avatar name={persona.name} className="h-8 w-8" />
                 <div className="leading-tight">
                   <p className="max-w-[130px] truncate text-xs font-semibold text-ink">
@@ -110,7 +140,7 @@ export function AppShell({
                   </p>
                   <p className="text-[10px] text-muted">{ROLE_LABEL[persona.role]}</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </header>

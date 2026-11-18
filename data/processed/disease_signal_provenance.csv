@@ -1,0 +1,9 @@
+signal,source,is_derived,is_illustrative,fct_malaria_rdt_pct,latest_observation,generated_at
+CHOLERA,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387084+00:00
+MENINGITIS,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387110+00:00
+LASSA_FEVER,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387115+00:00
+MEASLES,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387119+00:00
+DIPHTHERIA,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387122+00:00
+AFP,NCDC Weekly Epidemiological Report,False,False,,2026-08-17,2026-11-17T23:55:43.387126+00:00
+MALARIA,DERIVED: NMIS 2021 FCT prevalence + Open-Meteo rainfall,True,False,34.6,2026-08-17,2026-11-17T23:55:43.387129+00:00
+RESPIRATORY,DERIVED: Open-Meteo temperature/humidity seasonality,True,False,,2026-08-17,2026-11-17T23:55:43.387133+00:00

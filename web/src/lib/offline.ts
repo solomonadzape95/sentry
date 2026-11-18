@@ -1,6 +1,6 @@
 import { get, set } from "idb-keyval";
 
-const KEY = "aisec:offline-queue:v1";
+const KEY = "cheta:offline-queue:v1";
 
 export type QueuedOperation = {
   id: string;

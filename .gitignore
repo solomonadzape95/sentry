@@ -18,8 +18,18 @@ web/dev.db
 # python
 __pycache__/
 *.pyc
+.pytest_cache/
 ml/data/weather_abuja.csv
 ml/data/weather_abuja.meta.json
+
+# ingestion cache and raw downloads (large, reproducible from the registry)
+data/raw/
+!data/raw/.gitkeep
+
+# full national facility extracts and crosswalk (large; FCT subsets are kept)
+data/processed/facilities_grid3.csv
+data/processed/facilities_nhfr.csv
+data/processed/facility_crosswalk.csv
 
 # misc
 .DS_Store

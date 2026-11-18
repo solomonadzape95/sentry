@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisec.health/contracts/disease_observation.schema.json",
+  "title": "DiseaseObservation",
+  "type": "object",
+  "required": [
+    "source_id",
+    "disease",
+    "period_start",
+    "period_end",
+    "suspected",
+    "confirmed",
+    "deaths",
+    "source_url"
+  ],
+  "properties": {
+    "source_id": { "type": "string" },
+    "disease": {
+      "enum": [
+        "LASSA_FEVER",
+        "MENINGITIS",
+        "CSM",
+        "YELLOW_FEVER",
+        "CHOLERA",
+        "MEASLES",
+        "MPOX",
+        "AFP",
+        "COVID19",
+        "DIPHTHERIA",
+        "INFLUENZA"
+      ]
+    },
+    "disease_label": { "type": "string" },
+    "state": { "type": "string", "default": "NG" },
+    "lga": { "type": ["string", "null"] },
+    "epi_year": { "type": ["integer", "null"] },
+    "epi_week": { "type": ["integer", "null"], "minimum": 0, "maximum": 53 },
+    "period_start": { "type": "string", "format": "date" },
+    "period_end": { "type": "string", "format": "date" },
+    "suspected": { "type": "integer", "minimum": 0 },
+    "confirmed": { "type": "integer", "minimum": 0 },
+    "deaths": { "type": "integer", "minimum": 0 },
+    "states_affected": { "type": ["integer", "null"], "minimum": 0 },
+    "lgas_affected": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_current_suspected": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_current_confirmed": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_current_deaths": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_previous_suspected": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_previous_confirmed": { "type": ["integer", "null"], "minimum": 0 },
+    "ytd_previous_deaths": { "type": ["integer", "null"], "minimum": 0 },
+    "source_url": { "type": "string" },
+    "source_page": { "type": ["integer", "null"] },
+    "raw_text_path": { "type": ["string", "null"] },
+    "is_illustrative": { "type": "boolean", "default": false },
+    "retrieved_at": { "type": "string", "format": "date-time" }
+  }
+}

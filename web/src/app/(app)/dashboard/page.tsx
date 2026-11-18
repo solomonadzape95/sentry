@@ -59,7 +59,7 @@ export default async function NetworkOverviewPage() {
   ]);
 
   if (scope.persona.role !== "NETWORK_AUTHORITY") {
-    redirect(scope.activeFacility ? `/facilities/${scope.activeFacility.id}` : "/inventory");
+    redirect(scope.home);
   }
 
   const hero = DEMO_META.scenario;
@@ -152,10 +152,10 @@ export default async function NetworkOverviewPage() {
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-inset ring-white/15">
-                <Sparkles className="h-4 w-4 text-[#e4f44d]" />
+                <Sparkles className="h-4 w-4 text-[#f4e6ac]" />
               </div>
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#e4f44d]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#f4e6ac]">
                   Next best action
                 </p>
                 <p className="mt-1 max-w-2xl text-sm leading-relaxed text-white/90">
@@ -178,7 +178,7 @@ export default async function NetworkOverviewPage() {
             </div>
             <Link
               href={`/transfers?${heroQuery}`}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#e4f44d] px-4 text-xs font-semibold text-brand-deep hover:bg-[#effa7b] sm:self-auto"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#f4e6ac] px-4 text-xs font-semibold text-brand-deep hover:bg-[#f8edc4] sm:self-auto"
             >
               Review transfer
               <ArrowRight className="h-3.5 w-3.5" />
@@ -425,14 +425,14 @@ export default async function NetworkOverviewPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-[11px] font-medium text-ink">Malaria cases · FCT</p>
+                    <p className="text-[11px] font-medium text-ink">Malaria index · FCT (derived)</p>
                     <Badge tone={malariaChange > 0 ? "danger" : "success"}>
                       {malariaChange > 0 ? "+" : ""}
                       {formatPct(malariaChange)}
                     </Badge>
                   </div>
                   <p className="mt-0.5 text-[10px] text-muted">
-                    {formatNumber(latestMalaria)} cases last week · illustrative signal
+                    {formatNumber(latestMalaria)} index last week · NMIS 2021 + rainfall
                   </p>
                   <Sparkline values={malariaSpark} stroke="#b42318" width={200} height={26} className="mt-1 w-full" />
                 </div>

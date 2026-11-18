@@ -13,7 +13,7 @@ export function Card({
     <div
       id={id}
       className={cn(
-        "rounded-[22px] border border-line bg-surface shadow-[0_1px_2px_rgba(16,36,30,0.04)]",
+        "rounded-[14px] border border-line bg-surface shadow-[0_1px_2px_rgba(16,36,30,0.04)]",
         className,
       )}
     >

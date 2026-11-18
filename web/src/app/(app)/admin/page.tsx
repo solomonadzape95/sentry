@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Building2,
   ClipboardList,
@@ -19,13 +20,13 @@ import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Stat } from "@/components/ui/stat";
 import { Avatar } from "@/components/ui/avatar";
+import { buttonClass } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const scope = await getScope();
-  if (!scope.isNetworkAuthority)
-    redirect(scope.activeFacility ? `/facilities/${scope.activeFacility.id}` : "/inventory");
+  if (!scope.isNetworkAuthority) redirect(scope.home);
   const [data, movementCount] = await Promise.all([
     getAdminData(),
     prisma.stockMovement.count(),
@@ -41,6 +42,12 @@ export default async function AdminPage() {
         }
         title="Governance & administration"
         description="Facilities, staff roles, catalogue and the access rules that keep facility inventory isolated."
+        actions={
+          <Link href="/admin/users" className={buttonClass({ variant: "primary", size: "sm" })}>
+            <Users className="h-3.5 w-3.5" />
+            Users & access
+          </Link>
+        }
       />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">

@@ -1,6 +1,8 @@
 # Pitch outline
 
-**Aisec — know what you have. Know what you will need. Know where stock can move.**
+**Sentry — know what you have. Know what you will need. Know where stock can move.**
+
+*A watch kept on every shelf in the network.*
 
 A 7-slide, 3-minute structure. Pair with [DEMO.md](DEMO.md).
 

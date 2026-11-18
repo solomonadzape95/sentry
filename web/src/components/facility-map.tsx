@@ -39,7 +39,7 @@ export function FacilityMap({
   const to = opportunity ? positions[opportunity.toFacilityId] : null;
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-[#f7faf8] ring-1 ring-inset ring-line">
+    <div className="relative overflow-hidden rounded-xl bg-[#fbfaf6] ring-1 ring-inset ring-line">
       <svg viewBox="0 0 600 320" className="h-auto w-full" role="img" aria-label="FCT demonstration facility network">
         <defs>
           <pattern id="map-grid" width="30" height="30" patternUnits="userSpaceOnUse">

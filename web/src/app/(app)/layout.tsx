@@ -1,4 +1,6 @@
+import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { APP_PROFILE, AUTH_REQUIRED } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { getNetworkData } from "@/lib/queries";
 import { getScope } from "@/lib/session";
@@ -15,6 +17,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     }),
     getNetworkData(),
   ]);
+
+  if (scope.persona.role === "SUPPLIER") redirect("/supplier");
 
   return (
     <AppShell
@@ -33,6 +37,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         ).length
       }
       facilityCount={scope.facilities.length}
+      demo={APP_PROFILE === "demo"}
+      showPersonaSwitcher={!AUTH_REQUIRED}
     >
       {children}
     </AppShell>

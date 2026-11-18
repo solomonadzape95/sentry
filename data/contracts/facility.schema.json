@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisec.health/contracts/facility.schema.json",
+  "title": "Facility",
+  "type": "object",
+  "required": [
+    "source_id",
+    "source_facility_id",
+    "name",
+    "state",
+    "facility_type",
+    "ownership"
+  ],
+  "properties": {
+    "source_id": { "type": "string" },
+    "source_facility_id": { "type": "string" },
+    "nhfr_id": { "type": ["string", "null"] },
+    "grid3_id": { "type": ["string", "null"] },
+    "dhis2_org_unit_id": { "type": ["string", "null"] },
+    "name": { "type": "string", "minLength": 1 },
+    "short_name": { "type": ["string", "null"] },
+    "facility_type": { "type": "string" },
+    "ownership": { "type": "string" },
+    "level": { "type": ["string", "null"] },
+    "address": { "type": ["string", "null"] },
+    "ward": { "type": ["string", "null"] },
+    "lga": { "type": ["string", "null"] },
+    "state": { "type": "string" },
+    "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+    "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 },
+    "catchment_population": { "type": ["integer", "null"], "minimum": 0 },
+    "services": { "type": ["array", "null"], "items": { "type": "string" } },
+    "is_verified": { "type": "boolean", "default": false },
+    "is_illustrative": { "type": "boolean", "default": false },
+    "retrieved_at": { "type": "string", "format": "date-time" }
+  }
+}

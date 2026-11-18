@@ -3,15 +3,15 @@ import { APP_DESCRIPTION, APP_NAME } from "@/lib/config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${APP_NAME} — Predictive medicine supply intelligence`,
+    name: `${APP_NAME}: See the shortage before it happens`,
     short_name: APP_NAME,
     description: APP_DESCRIPTION,
     start_url: "/m",
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#f3f6f4",
-    theme_color: "#0a332c",
+    background_color: "#d2cac7",
+    theme_color: "#190f0a",
     categories: ["medical", "business", "productivity"],
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },

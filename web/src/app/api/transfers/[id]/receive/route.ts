@@ -1,5 +1,6 @@
+import { appNow } from "@/lib/config";
 import { prisma } from "@/lib/db";
-import { jsonError, requireApprover } from "@/lib/api";
+import { jsonError, requireReceiver } from "@/lib/api";
 
 export async function POST(
   _request: Request,
@@ -18,13 +19,13 @@ export async function POST(
   });
   if (!transfer) return jsonError("Transfer not found", 404);
 
-  const access = await requireApprover(transfer.toFacilityId);
+  const access = await requireReceiver(transfer.toFacilityId);
   if (!access.ok) return access.response;
   if (transfer.status !== "IN_TRANSIT") {
     return jsonError("Transfer must be approved and in transit before receipt", 409);
   }
 
-  const now = new Date();
+  const now = appNow();
   try {
     const result = await prisma.$transaction(async (tx) => {
       const existing = await tx.inventoryBatch.aggregate({

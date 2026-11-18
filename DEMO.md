@@ -25,7 +25,7 @@ Check:
 
 - Persona is **Dr. Ngozi Adeyemi** (network authority) in the sidebar.
 - Gwagwalada PHC ACT shows **109 units**, **11 days** cover.
-- General Hospital Abuja ACT shows **~761 units** transferable surplus.
+- General Hospital Abuja ACT shows **~1,010 units** transferable surplus.
 - No transfers exist in the pipeline.
 
 If anything is stale, `npm run db:reset`.
@@ -63,8 +63,9 @@ Point at:
   Abuja holds surplus above safe cover.
 - **Stockout radar:** ACT is critical because its projected cover is shorter than
   its 14-day supplier lead time.
-- **Demand signals:** forecast demand is above the recent 28-day average; malaria
-  and rainfall are shown as explanatory signals (illustrative disease data).
+- **Demand signals:** forecast demand is above the recent 28-day average; NCDC
+  outbreak data, a derived malaria index and real rainfall are shown as
+  explanatory signals, each labelled observed or derived.
 
 ---
 
@@ -149,13 +150,43 @@ Open `/model` for the full evaluation:
 - XGBoost **WAPE ~16.7%** vs seasonal baseline **~28.6%** across 48 series.
 - Stockout-censored days are excluded from accuracy scoring.
 - The weakest lines are reported, not hidden.
-- Limitations: simulated facility data, illustrative disease signals, no live
-  NHLMIS/DHIS2 feed, approximate intervals.
+- Limitations: simulated facility data and medicine consumption, mixed-provenance
+  disease signals, no live NHLMIS/DHIS2 feed, approximate intervals.
+- Real-target validation: 4-week rolling holdout on six NCDC disease series.
+  Per-disease selection WAPE **46.1%** vs seasonal **103.7%**. This is
+  disease-burden accuracy, not medicine-demand accuracy.
 
 Say:
 
 > These metrics prove the pipeline works. They do not prove we reduce stockouts in
 > the field. That requires an 8–12 week pilot with real facility data.
+
+---
+
+## 4b. Optional proof: where the data comes from (20s)
+
+Open `/data`.
+
+Point at:
+
+- **Source register:** NCDC WER, GRID3/NHFR facilities, NMIS 2021, NEML 2024
+  and Open-Meteo are active; DHIS2, NHLMIS and NHFR API are access-gated and
+  clearly labelled — not bypassed.
+- **Observed vs derived:** cholera, meningitis and Lassa fever are observed NCDC
+  reports; malaria and respiratory are derived and labelled; facility inventory
+  is simulated.
+- **Ingestion runs:** rows read, accepted, rejected and date coverage for every
+  source.
+- **Real-target validation:** selected WAPE **46.1%** vs seasonal **103.7%** on
+  real NCDC disease counts.
+- **Imputation honesty:** NCDC weeks after the latest report are marked
+  `IMPUTED`, not presented as fresh.
+
+Say:
+
+> We did not just generate a dataset. We sourced real public data, recorded its
+> provenance, labelled every derivation, and validated the model on a real target
+> before touching a medicine forecast.
 
 ---
 
@@ -223,7 +254,7 @@ persona's facility.
 | Projector too small | Use the dashboard, not the phone frame. `/m` also works at desktop width. |
 | Demo state dirty | `npm run db:reset` takes a few seconds. |
 | Numbers differ slightly | Narrate the live numbers. The story is the direction: ~11 days → ~49 days, alert clears. |
-| Judge asks “is this real data?” | “Facility inventory and consumption are simulated and labelled. Weather is real Open-Meteo history. Disease signals are illustrative. We will not claim impact until a pilot.” |
+| Judge asks “is this real data?” | “Facility inventory and medicine consumption are simulated and labelled. Weather, NCDC outbreak reports, GRID3/NHFR facilities and NMIS prevalence are real. Malaria and respiratory signals are derived and labelled. We will not claim impact until a pilot.” |
 
 ---
 

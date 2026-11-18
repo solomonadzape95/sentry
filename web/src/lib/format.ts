@@ -19,9 +19,9 @@ export function daysFromDemo(date: Date): number {
 }
 
 export function formatDate(date: Date | string | null | undefined): string {
-  if (!date) return "—";
+  if (!date) return "N/A";
   const d = typeof date === "string" ? new Date(date) : date;
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "N/A";
   return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
     month: "short",
@@ -31,7 +31,7 @@ export function formatDate(date: Date | string | null | undefined): string {
 }
 
 export function formatShortDate(date: Date | string | null | undefined): string {
-  if (!date) return "—";
+  if (!date) return "N/A";
   const d = typeof date === "string" ? new Date(date) : date;
   return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
@@ -41,7 +41,7 @@ export function formatShortDate(date: Date | string | null | undefined): string 
 }
 
 export function formatDayMonth(date: Date | string | null | undefined): string {
-  if (!date) return "—";
+  if (!date) return "N/A";
   const d = typeof date === "string" ? new Date(date) : date;
   return new Intl.DateTimeFormat("en-GB", {
     weekday: "short",
@@ -52,7 +52,7 @@ export function formatDayMonth(date: Date | string | null | undefined): string {
 }
 
 export function formatDateTime(date: Date | string | null | undefined): string {
-  if (!date) return "—";
+  if (!date) return "N/A";
   const d = typeof date === "string" ? new Date(date) : date;
   return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
@@ -64,7 +64,7 @@ export function formatDateTime(date: Date | string | null | undefined): string {
 }
 
 export function formatNumber(value: number | null | undefined, decimals = 0): string {
-  if (value === null || value === undefined || Number.isNaN(value)) return "—";
+  if (value === null || value === undefined || Number.isNaN(value)) return "N/A";
   return new Intl.NumberFormat("en-NG", {
     maximumFractionDigits: decimals,
     minimumFractionDigits: decimals,
@@ -72,14 +72,14 @@ export function formatNumber(value: number | null | undefined, decimals = 0): st
 }
 
 export function formatNaira(value: number | null | undefined): string {
-  if (value === null || value === undefined || Number.isNaN(value)) return "—";
+  if (value === null || value === undefined || Number.isNaN(value)) return "N/A";
   if (Math.abs(value) >= 1_000_000) return `₦${formatNumber(value / 1_000_000, 1)}m`;
   if (Math.abs(value) >= 1_000) return `₦${formatNumber(value / 1_000, 0)}k`;
   return `₦${formatNumber(value, 0)}`;
 }
 
 export function formatPct(value: number | null | undefined, decimals = 0): string {
-  if (value === null || value === undefined || Number.isNaN(value)) return "—";
+  if (value === null || value === undefined || Number.isNaN(value)) return "N/A";
   return `${(value * 100).toFixed(decimals)}%`;
 }
 
@@ -92,7 +92,7 @@ export function formatDays(days: number | null | undefined): string {
 }
 
 export function relativeToDemo(date: Date | string | null | undefined): string {
-  if (!date) return "—";
+  if (!date) return "N/A";
   const d = typeof date === "string" ? new Date(date) : date;
   const n = daysFromDemo(d);
   if (n === 0) return "today";

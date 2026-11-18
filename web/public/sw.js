@@ -1,4 +1,4 @@
-const CACHE = "aisec-shell-v1";
+const CACHE = "cheta-shell-v1";
 const PRECACHE = [
   "/m",
   "/manifest.webmanifest",

@@ -1,0 +1,54 @@
+[
+  {
+    "source_id": "ncdc_wer",
+    "started_at": "2026-11-17T23:50:44.296155Z",
+    "source_name": "NCDC Weekly Epidemiological Reports",
+    "source_url": "https://ncdc.gov.ng/reports/weekly",
+    "status": "success",
+    "rows_read": 1338,
+    "rows_accepted": 1338,
+    "rows_rejected": 0,
+    "date_min": "2023-07-03",
+    "date_max": "2026-08-17",
+    "licence": "Nigerian government public report; attribute NCDC",
+    "checksum": "00ec4d9896d6bc7869e09a0d801336d9290933d6450b40c6d4d0afbb07f28b2f",
+    "errors": [],
+    "warnings": [
+      "2023 W27: COVID19: section not found",
+      "2024 W10: MPOX: section not found",
+      "2025 W5: AFP: section not found"
+    ],
+    "metadata": {
+      "weeks_requested": 149,
+      "from_year": 2023,
+      "to_year": 2026,
+      "reports_parsed": 149,
+      "diseases": [
+        "AFP",
+        "CHOLERA",
+        "COVID19",
+        "DIPHTHERIA",
+        "LASSA_FEVER",
+        "MEASLES",
+        "MENINGITIS",
+        "MPOX",
+        "YELLOW_FEVER"
+      ]
+    },
+    "outputs": [
+      {
+        "path": "data/processed/ncdc_disease_weekly.csv",
+        "format": "csv",
+        "rows": 1338,
+        "sha256": "00ec4d9896d6bc7869e09a0d801336d9290933d6450b40c6d4d0afbb07f28b2f"
+      },
+      {
+        "path": "data/processed/ncdc_reports.csv",
+        "format": "csv",
+        "rows": 149,
+        "sha256": "08d53890525b1421ce13f433cf50428bd69c0a6287b045ba9bb34027cc87b757"
+      }
+    ],
+    "finished_at": "2026-11-17T23:50:55.131523Z"
+  }
+]

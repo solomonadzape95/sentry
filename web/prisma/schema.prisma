@@ -1,4 +1,4 @@
-// Aisec — predictive medicine supply intelligence
+// Cheta — predictive medicine supply intelligence
 // SQLite for the hackathon build. Schema is Postgres-compatible apart from the
 // provider line; JSON payloads are stored as strings for portability.
 
@@ -12,48 +12,72 @@ datasource db {
 }
 
 model Facility {
-  id           String   @id @default(cuid())
-  name         String
-  shortName    String
-  type         String // PHC | GENERAL | PRIVATE | PHARMACY
-  ownership    String // PUBLIC | PRIVATE | FAITH_BASED
-  address      String
-  lga          String
-  state        String
-  latitude     Float
-  longitude    Float
-  phone        String?
-  contactName  String?
-  status       String   @default("ACTIVE")
-  bedCount     Int?
-  createdAt    DateTime @default(now())
+  id                  String   @id @default(cuid())
+  name                String
+  shortName           String
+  type                String // PHC | GENERAL | PRIVATE | PHARMACY
+  ownership           String // PUBLIC | PRIVATE | FAITH_BASED
+  address             String
+  lga                 String
+  state               String
+  latitude            Float
+  longitude           Float
+  phone               String?
+  contactName         String?
+  status              String   @default("ACTIVE")
+  bedCount            Int?
+  // Provenance and reference identifiers. The hackathon demo facilities are
+  // illustrative; the fields are ready for GRID3/NHFR/DHIS2 matches.
+  sourceId            String?
+  nhfrId              String?
+  grid3Id             String?
+  level               String?
+  catchmentPopulation Int?
+  isIllustrative      Boolean  @default(true)
+  createdAt           DateTime @default(now())
 
-  members         FacilityMember[]
-  batches         InventoryBatch[]
-  movements       StockMovement[]
-  consumption     ConsumptionRecord[]
-  purchaseOrders  PurchaseOrder[]
-  forecasts       Forecast[]
-  alerts          StockAlert[]
-  transfersOut    TransferRequest[] @relation("TransferFrom")
-  transfersIn     TransferRequest[] @relation("TransferTo")
-  auditLogs       AuditLog[]
+  members        FacilityMember[]
+  batches        InventoryBatch[]
+  movements      StockMovement[]
+  consumption    ConsumptionRecord[]
+  purchaseOrders PurchaseOrder[]
+  forecasts      Forecast[]
+  alerts         StockAlert[]
+  transfersOut   TransferRequest[]   @relation("TransferFrom")
+  transfersIn    TransferRequest[]   @relation("TransferTo")
+  auditLogs      AuditLog[]
+  invitations    Invitation[]
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  role      String // INVENTORY_OFFICER | FACILITY_MANAGER | NETWORK_AUTHORITY | SUPPLIER
-  title     String
-  phone     String?
-  createdAt DateTime @default(now())
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  role          String // INVENTORY_OFFICER | FACILITY_MANAGER | NETWORK_AUTHORITY | SUPPLIER
+  title         String
+  phone         String?
+  passwordHash  String?
+  status        String    @default("ACTIVE") // INVITED | ACTIVE | SUSPENDED
+  emailVerified DateTime?
+  image         String?
+  mfaEnabled    Boolean   @default(false)
+  mfaSecret     String?
+  // Bumped on password change, role change and "sign out everywhere". A JWT
+  // carrying an older epoch is rejected by the session guard.
+  sessionEpoch  Int       @default(0)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
 
-  memberships     FacilityMember[]
-  movements       StockMovement[]
-  requestedTransfers TransferRequest[] @relation("TransferRequestedBy")
-  approvedTransfers  TransferRequest[] @relation("TransferApprovedBy")
-  auditLogs       AuditLog[]
+  memberships        FacilityMember[]
+  movements          StockMovement[]
+  requestedTransfers TransferRequest[]    @relation("TransferRequestedBy")
+  approvedTransfers  TransferRequest[]    @relation("TransferApprovedBy")
+  auditLogs          AuditLog[]
+  accounts           Account[]
+  sessions           Session[]
+  invitationsSent    Invitation[]         @relation("InvitationInvitedBy")
+  passwordResets     PasswordResetToken[]
 }
 
 model FacilityMember {
@@ -71,29 +95,29 @@ model FacilityMember {
 }
 
 model Medicine {
-  id           String   @id @default(cuid())
-  name         String
-  genericName  String
-  strength     String
-  form         String
-  category     String // ANTIMALARIAL | ANTIBIOTIC | ANALGESIC | ORS | CHRONIC | RESPIRATORY | OTHER
-  unit         String
-  packSize     Int
-  barcode      String?  @unique
-  atcCode      String?
-  essential    Boolean  @default(true)
-  storage      String   @default("AMBIENT") // AMBIENT | COLD_CHAIN
-  leadTimeDays Int      @default(14)
-  shelfLifeDays Int     @default(730)
-  createdAt    DateTime @default(now())
+  id            String   @id @default(cuid())
+  name          String
+  genericName   String
+  strength      String
+  form          String
+  category      String // ANTIMALARIAL | ANTIBIOTIC | ANALGESIC | ORS | CHRONIC | RESPIRATORY | OTHER
+  unit          String
+  packSize      Int
+  barcode       String?  @unique
+  atcCode       String?
+  essential     Boolean  @default(true)
+  storage       String   @default("AMBIENT") // AMBIENT | COLD_CHAIN
+  leadTimeDays  Int      @default(14)
+  shelfLifeDays Int      @default(730)
+  createdAt     DateTime @default(now())
 
-  batches      InventoryBatch[]
-  movements    StockMovement[]
-  consumption  ConsumptionRecord[]
+  batches        InventoryBatch[]
+  movements      StockMovement[]
+  consumption    ConsumptionRecord[]
   purchaseOrders PurchaseOrder[]
-  forecasts    Forecast[]
-  alerts       StockAlert[]
-  transfers    TransferRequest[]
+  forecasts      Forecast[]
+  alerts         StockAlert[]
+  transfers      TransferRequest[]
 }
 
 model Supplier {
@@ -105,26 +129,26 @@ model Supplier {
   email        String?
   createdAt    DateTime @default(now())
 
-  batches       InventoryBatch[]
+  batches        InventoryBatch[]
   purchaseOrders PurchaseOrder[]
 }
 
 model InventoryBatch {
-  id               String   @id @default(cuid())
-  facilityId       String
-  medicineId       String
-  supplierId       String?
-  batchNumber      String
-  quantityReceived Int
+  id                String   @id @default(cuid())
+  facilityId        String
+  medicineId        String
+  supplierId        String?
+  batchNumber       String
+  quantityReceived  Int
   quantityRemaining Int
-  expiryDate       DateTime
-  receivedAt       DateTime
-  unitCostNgn      Float    @default(0)
-  status           String   @default("ACTIVE") // ACTIVE | DEPLETED | EXPIRED | QUARANTINED
-  createdAt        DateTime @default(now())
+  expiryDate        DateTime
+  receivedAt        DateTime
+  unitCostNgn       Float    @default(0)
+  status            String   @default("ACTIVE") // ACTIVE | DEPLETED | EXPIRED | QUARANTINED
+  createdAt         DateTime @default(now())
 
-  facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
-  medicine Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  facility Facility  @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  medicine Medicine  @relation(fields: [medicineId], references: [id], onDelete: Cascade)
   supplier Supplier? @relation(fields: [supplierId], references: [id])
 
   movements StockMovement[]
@@ -148,24 +172,25 @@ model StockMovement {
   occurredAt    DateTime
   createdAt     DateTime @default(now())
 
-  facility    Facility         @relation(fields: [facilityId], references: [id], onDelete: Cascade)
-  medicine    Medicine         @relation(fields: [medicineId], references: [id], onDelete: Cascade)
-  batch       InventoryBatch?  @relation(fields: [batchId], references: [id])
-  performedBy User?            @relation(fields: [performedById], references: [id])
+  facility    Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  medicine    Medicine        @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  batch       InventoryBatch? @relation(fields: [batchId], references: [id])
+  performedBy User?           @relation(fields: [performedById], references: [id])
 
   @@index([facilityId, occurredAt])
   @@index([medicineId, occurredAt])
 }
 
 model ConsumptionRecord {
-  id          String   @id @default(cuid())
-  facilityId  String
-  medicineId  String
-  date        DateTime
-  quantity    Int
-  wasStockout Boolean  @default(false)
-  source      String   @default("SYSTEM") // SYSTEM | DERIVED | IMPORT
-  createdAt   DateTime @default(now())
+  id             String   @id @default(cuid())
+  facilityId     String
+  medicineId     String
+  date           DateTime
+  quantity       Int
+  wasStockout    Boolean  @default(false)
+  source         String   @default("SYSTEM") // SYSTEM | DERIVED | IMPORT
+  isIllustrative Boolean  @default(true)
+  createdAt      DateTime @default(now())
 
   facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
   medicine Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
@@ -175,17 +200,17 @@ model ConsumptionRecord {
 }
 
 model PurchaseOrder {
-  id          String   @id @default(cuid())
-  reference   String   @unique
+  id          String    @id @default(cuid())
+  reference   String    @unique
   facilityId  String
   supplierId  String
   medicineId  String
   quantity    Int
-  status      String   @default("CONFIRMED") // DRAFT | SUBMITTED | CONFIRMED | DELIVERED | CANCELLED
+  status      String    @default("CONFIRMED") // DRAFT | SUBMITTED | CONFIRMED | DELIVERED | CANCELLED
   orderedAt   DateTime
   expectedAt  DateTime
   deliveredAt DateTime?
-  createdAt   DateTime @default(now())
+  createdAt   DateTime  @default(now())
 
   facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
   supplier Supplier @relation(fields: [supplierId], references: [id])
@@ -195,16 +220,19 @@ model PurchaseOrder {
 }
 
 model DiseaseObservation {
-  id          String   @id @default(cuid())
-  disease     String // MALARIA | CHOLERA | MENINGITIS | LASSA_FEVER | RESPIRATORY
-  state       String
-  lga         String?
-  periodStart DateTime
-  periodEnd   DateTime
-  cases       Int
-  source      String
-  isIllustrative Boolean @default(true)
-  createdAt   DateTime @default(now())
+  id             String   @id @default(cuid())
+  disease        String // MALARIA | CHOLERA | MENINGITIS | LASSA_FEVER | RESPIRATORY
+  state          String
+  lga            String?
+  periodStart    DateTime
+  periodEnd      DateTime
+  cases          Int
+  source         String
+  sourceUrl      String?
+  isIllustrative Boolean  @default(true)
+  isDerived      Boolean  @default(false)
+  isImputed      Boolean  @default(false)
+  createdAt      DateTime @default(now())
 
   @@unique([disease, state, lga, periodStart])
   @@index([disease, periodStart])
@@ -242,8 +270,8 @@ model Forecast {
   trainedAt   DateTime
   createdAt   DateTime @default(now())
 
-  facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
-  medicine Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  facility Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  medicine Medicine        @relation(fields: [medicineId], references: [id], onDelete: Cascade)
   points   ForecastPoint[]
 
   @@unique([facilityId, medicineId])
@@ -267,16 +295,16 @@ model ForecastPoint {
 }
 
 model StockAlert {
-  id                  String   @id @default(cuid())
+  id                  String    @id @default(cuid())
   facilityId          String
   medicineId          String
   type                String // STOCKOUT_RISK | LOW_STOCK | EXPIRY | OVERSTOCK
   severity            String // CRITICAL | HIGH | MEDIUM | LOW
-  status              String   @default("OPEN") // OPEN | ACKNOWLEDGED | RESOLVED
+  status              String    @default("OPEN") // OPEN | ACKNOWLEDGED | RESOLVED
   predictedStockoutAt DateTime?
   quantityAtRisk      Int?
   message             String
-  createdAt           DateTime @default(now())
+  createdAt           DateTime  @default(now())
   acknowledgedAt      DateTime?
   resolvedAt          DateTime?
 
@@ -287,29 +315,29 @@ model StockAlert {
 }
 
 model TransferRequest {
-  id          String   @id @default(cuid())
-  reference   String   @unique
+  id             String    @id @default(cuid())
+  reference      String    @unique
   fromFacilityId String
   toFacilityId   String
   medicineId     String
   batchId        String?
   quantity       Int
-  status         String @default("RECOMMENDED") // RECOMMENDED | PENDING_APPROVAL | APPROVED | IN_TRANSIT | COMPLETED | REJECTED | CANCELLED
+  status         String    @default("RECOMMENDED") // RECOMMENDED | PENDING_APPROVAL | APPROVED | IN_TRANSIT | COMPLETED | REJECTED | CANCELLED
   reason         String?
   note           String?
   requestedById  String?
   approvedById   String?
-  recommendedAt  DateTime @default(now())
+  recommendedAt  DateTime  @default(now())
   approvedAt     DateTime?
   completedAt    DateTime?
-  createdAt      DateTime @default(now())
+  createdAt      DateTime  @default(now())
 
-  fromFacility Facility @relation("TransferFrom", fields: [fromFacilityId], references: [id], onDelete: Cascade)
-  toFacility   Facility @relation("TransferTo", fields: [toFacilityId], references: [id], onDelete: Cascade)
-  medicine     Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  fromFacility Facility        @relation("TransferFrom", fields: [fromFacilityId], references: [id], onDelete: Cascade)
+  toFacility   Facility        @relation("TransferTo", fields: [toFacilityId], references: [id], onDelete: Cascade)
+  medicine     Medicine        @relation(fields: [medicineId], references: [id], onDelete: Cascade)
   batch        InventoryBatch? @relation(fields: [batchId], references: [id])
-  requestedBy  User?    @relation("TransferRequestedBy", fields: [requestedById], references: [id])
-  approvedBy   User?    @relation("TransferApprovedBy", fields: [approvedById], references: [id])
+  requestedBy  User?           @relation("TransferRequestedBy", fields: [requestedById], references: [id])
+  approvedBy   User?           @relation("TransferApprovedBy", fields: [approvedById], references: [id])
 
   @@index([status])
 }
@@ -330,15 +358,127 @@ model AuditLog {
   @@index([facilityId, createdAt])
 }
 
+model DataSource {
+  id        String    @id
+  name      String
+  kind      String // OBSERVED | DERIVED | REFERENCE | OBSERVED_PRIOR | GATED
+  coverage  String?
+  url       String?
+  licence   String?
+  status    String    @default("ACTIVE") // ACTIVE | PLANNED | GATED
+  lastRunAt DateTime?
+  createdAt DateTime  @default(now())
+
+  runs IngestRun[]
+}
+
+model IngestRun {
+  id           String    @id @default(cuid())
+  sourceId     String
+  status       String // success | partial | failed
+  rowsRead     Int       @default(0)
+  rowsAccepted Int       @default(0)
+  rowsRejected Int       @default(0)
+  dateMin      DateTime?
+  dateMax      DateTime?
+  startedAt    DateTime
+  finishedAt   DateTime?
+  warnings     String?
+  errors       String?
+  createdAt    DateTime  @default(now())
+
+  source DataSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+
+  @@index([sourceId, startedAt])
+}
+
 model ModelRun {
-  id          String   @id @default(cuid())
-  runAt       DateTime @default(now())
-  model       String
-  horizonDays Int
-  seriesCount Int
-  overallMae  Float
-  overallWape Float
-  overallBias Float
+  id           String   @id @default(cuid())
+  runAt        DateTime @default(now())
+  model        String
+  horizonDays  Int
+  seriesCount  Int
+  overallMae   Float
+  overallWape  Float
+  overallBias  Float
   baselineWape Float
-  notes       String?
+  notes        String?
+}
+
+// ---------------------------------------------------------------------------
+// Authentication (Auth.js v5 + Prisma adapter)
+//
+// Sessions use the JWT strategy, so the Session table is unused today. It is
+// included so OAuth or database sessions can be enabled without a migration.
+// Tokens are stored hashed; the raw value only ever goes in the invitation or
+// reset link.
+// ---------------------------------------------------------------------------
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Invitation {
+  id          String    @id @default(cuid())
+  email       String
+  name        String
+  role        String // INVENTORY_OFFICER | FACILITY_MANAGER | NETWORK_AUTHORITY | SUPPLIER
+  title       String?
+  facilityId  String?
+  invitedById String?
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  acceptedAt  DateTime?
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  invitedBy User?     @relation("InvitationInvitedBy", fields: [invitedById], references: [id])
+  facility  Facility? @relation(fields: [facilityId], references: [id])
+
+  @@index([email])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

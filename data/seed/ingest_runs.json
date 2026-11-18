@@ -1,0 +1,67 @@
+[
+  {
+    "sourceId": "nmis_2021",
+    "status": "success",
+    "rowsRead": 38,
+    "rowsAccepted": 38,
+    "rowsRejected": 0,
+    "dateMin": "2021-01-01",
+    "dateMax": "2021-12-31",
+    "startedAt": "2026-11-17T22:19:44.298759Z",
+    "finishedAt": "2026-11-17T22:19:45.444313Z",
+    "warnings": "[]",
+    "errors": "[]"
+  },
+  {
+    "sourceId": "grid3_facilities",
+    "status": "success",
+    "rowsRead": 70235,
+    "rowsAccepted": 70235,
+    "rowsRejected": 0,
+    "dateMin": null,
+    "dateMax": null,
+    "startedAt": "2026-11-17T22:26:22.034895Z",
+    "finishedAt": "2026-11-17T22:26:38.050680Z",
+    "warnings": "[]",
+    "errors": "[]"
+  },
+  {
+    "sourceId": "hdx_nhfr_facilities",
+    "status": "success",
+    "rowsRead": 46146,
+    "rowsAccepted": 46146,
+    "rowsRejected": 0,
+    "dateMin": null,
+    "dateMax": null,
+    "startedAt": "2026-11-17T22:26:38.113587Z",
+    "finishedAt": "2026-11-17T22:28:37.203214Z",
+    "warnings": "[]",
+    "errors": "[]"
+  },
+  {
+    "sourceId": "neml_2024",
+    "status": "success",
+    "rowsRead": 768,
+    "rowsAccepted": 768,
+    "rowsRejected": 0,
+    "dateMin": null,
+    "dateMax": null,
+    "startedAt": "2026-11-17T23:43:12.311745Z",
+    "finishedAt": "2026-11-17T23:43:12.548609Z",
+    "warnings": "[]",
+    "errors": "[]"
+  },
+  {
+    "sourceId": "ncdc_wer",
+    "status": "success",
+    "rowsRead": 1338,
+    "rowsAccepted": 1338,
+    "rowsRejected": 0,
+    "dateMin": "2023-07-03",
+    "dateMax": "2026-08-17",
+    "startedAt": "2026-11-17T23:50:44.296155Z",
+    "finishedAt": "2026-11-17T23:50:55.131523Z",
+    "warnings": "[\"2023 W27: COVID19: section not found\", \"2024 W10: MPOX: section not found\", \"2025 W5: AFP: section not found\"]",
+    "errors": "[]"
+  }
+]

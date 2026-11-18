@@ -225,7 +225,7 @@ export default async function InventoryPage({
                     <td className="px-3 py-3">
                       <span className="tabular inline-flex items-center gap-1 rounded bg-canvas px-1.5 py-0.5 font-mono text-[10px] text-muted">
                         <ScanBarcode className="h-3 w-3" />
-                        {s.medicineId ? medicines.find((m) => m.id === s.medicineId)?.barcode ?? "—" : "—"}
+                        {s.medicineId ? medicines.find((m) => m.id === s.medicineId)?.barcode ?? "N/A" : "N/A"}
                       </span>
                     </td>
                     <td className="tabular px-3 py-3 font-medium">{formatNumber(s.usable)}</td>
@@ -242,7 +242,7 @@ export default async function InventoryPage({
                           </p>
                         </div>
                       ) : (
-                        <span className="text-muted">—</span>
+                        <span className="text-muted">N/A</span>
                       )}
                     </td>
                     <td className="tabular px-3 py-3 text-muted">{s.avgDailyDemand.toFixed(1)}/day</td>
@@ -258,7 +258,7 @@ export default async function InventoryPage({
                           {s.expedite ? <p className="text-[9px] font-medium text-danger">Expedite</p> : null}
                         </div>
                       ) : (
-                        <span className="text-muted">—</span>
+                        <span className="text-muted">N/A</span>
                       )}
                     </td>
                     <td className="px-5 py-3 text-right">

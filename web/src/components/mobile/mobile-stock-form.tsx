@@ -137,7 +137,7 @@ export function MobileStockForm({
           unit: selected.unit,
           facilityName,
         });
-        setSuccess("Connection lost — entry saved offline. Sync from the Queue tab.");
+        setSuccess("Connection lost. Entry saved offline. Sync from the Queue tab.");
         setQuantity("1");
       } else {
         setError(message);

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { appNow } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { jsonError, requireFacilityAccess } from "@/lib/api";
 
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
   const medicine = await prisma.medicine.findUnique({ where: { id: medicineId } });
   if (!medicine) return jsonError("Medicine not found", 404);
 
-  const now = new Date();
+  const now = appNow();
   try {
     const result = await prisma.$transaction(async (tx) => {
       const batches = await tx.inventoryBatch.findMany({

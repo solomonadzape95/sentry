@@ -1,0 +1,193 @@
+# Machine-readable data source registry.
+# Keep this in sync with docs/DATA_SOURCES.md.
+# access: public | gated | partner | not_public
+# status: active | planned | blocked
+
+version: 1
+updated: "2026-11-17"
+
+sources:
+  - id: ncdc_wer
+    name: NCDC Weekly Epidemiological Reports
+    owner: Nigeria Centre for Disease Control and Prevention
+    access: public
+    status: active
+    cadence: weekly
+    format: pdf
+    index_url: https://ncdc.gov.ng/reports/weekly
+    licence: Government public report; attribute NCDC
+    coverage: "2016-present (parser starts 2021)"
+    granularity: weekly national; affected states/LGAs
+    use:
+      - disease outbreak covariates
+      - cholera / Lassa / meningitis / respiratory demand drivers
+    notes: >
+      Does not include malaria. PDFs are text-extractable with
+      `pdftotext -layout`. Formats drift between years; keep fixtures.
+
+  - id: grid3_facilities
+    name: GRID3 NGA Health Facilities v4.0
+    owner: GRID3 / CIESIN
+    access: public
+    status: active
+    cadence: as_needed
+    format: geopackage
+    hdx_dataset: grid3-nga-health-facilities-v4-0
+    api: https://data.humdata.org/api/3/action/package_show?id=grid3-nga-health-facilities-v4-0
+    licence: CC BY 4.0
+    coverage: "2018-2025"
+    granularity: facility point
+    use:
+      - facility master list
+      - catchment denominators
+      - network topology
+
+  - id: hdx_nhfr_facilities
+    name: Nigeria Health Facilities (NHFR snapshot)
+    owner: Nigeria Federal Ministry of Health / HDX
+    access: public
+    status: active
+    cadence: snapshot
+    format: csv
+    hdx_dataset: nigeria-health-facilities
+    api: https://data.humdata.org/api/3/action/package_show?id=nigeria-health-facilities
+    licence: CC BY 4.0
+    coverage: "2020 snapshot"
+    granularity: facility
+    use:
+      - second facility source
+      - crosswalk against GRID3
+
+  - id: hdx_dhs
+    name: DHS / MIS Nigeria indicators
+    owner: DHS Program / NBS
+    access: public
+    status: planned
+    cadence: survey
+    format: csv
+    hdx_dataset: dhs-data-for-nigeria
+    licence: DHS Program terms; cite NMEP/NPC/ICF
+    use:
+      - care-seeking
+      - treatment rates
+      - malaria prevalence
+
+  - id: nmis_2021
+    name: Nigeria Malaria Indicator Survey 2021
+    owner: NMEP, NPC, ICF / DHS Program
+    access: public
+    status: active
+    cadence: survey
+    format: pdf
+    report_url: https://dhsprogram.com/pubs/pdf/MIS41/MIS41.pdf
+    microdata_url: https://microdata.worldbank.org/index.php/catalog/5763
+    licence: DHS Program terms; cite NMEP/NPC/ICF
+    granularity: state
+    use:
+      - malaria prevalence prior
+      - ACT demand calibration
+
+  - id: neml_2024
+    name: Nigeria Essential Medicines List 2024
+    owner: Federal Ministry of Health and Social Welfare
+    access: public
+    status: active
+    cadence: edition
+    format: pdf
+    url: https://www.who.int/publications/m/item/nigeria--essential-medicines-list-2024-(english)
+    pdf_url: https://cdn.who.int/media/docs/default-source/essential-medicines/national-essential-medicines-lists-(neml)/afro_neml/nigeria-2024-final-neml-adult-8th-edition.pdf?sfvrsn=7c9021db_1&download=true
+    licence: Government publication; cite FMoH
+    coverage: NEML Adult 8th Edition 2024
+    granularity: medicine / dosage form
+    use:
+      - medicine catalogue
+      - essential medicine flags
+    notes: >
+      The 2024 edition does not print ATC codes. The parser extracts 768
+      medicine/dosage rows and keeps the existing curated ATC mapping for the
+      12 demo medicines.
+
+  - id: open_meteo
+    name: Open-Meteo ERA5
+    owner: Open-Meteo
+    access: public
+    status: active
+    cadence: daily
+    format: json
+    archive_url: https://archive-api.open-meteo.com/v1/archive
+    forecast_url: https://api.open-meteo.com/v1/forecast
+    licence: CC BY 4.0; free tier non-commercial
+    granularity: daily point/bbox
+    use:
+      - weather features
+      - future weather
+
+  - id: nhfr_api
+    name: Nigeria Health Facility Registry API
+    owner: Federal Ministry of Health
+    access: gated
+    status: blocked
+    cadence: realtime
+    format: json
+    api: https://backend.hfr.fmohconnect.gov.ng/api/v1
+    auth: X-API-Key
+    licence: Official registry terms
+    use:
+      - official facility master
+    notes: Request an API key. Do not bypass the key.
+
+  - id: dhis2_nigeria
+    name: DHIS2 Nigeria (NHMIS)
+    owner: Federal Ministry of Health
+    access: gated
+    status: blocked
+    cadence: monthly
+    format: json
+    url: https://dhis2nigeria.org.ng/dhis/
+    auth: login / token
+    use:
+      - OPD visits
+      - malaria cases
+      - service volumes
+    notes: Login required. Request FMoH/NHMIS access. Do not bypass.
+
+  - id: nbs_nhfs_2023
+    name: National Health Facility Survey 2023
+    owner: National Bureau of Statistics
+    access: gated
+    status: planned
+    cadence: survey
+    format: microdata
+    url: https://microdata.nigerianstat.gov.ng/index.php/catalog/149
+    licence: NBS microdata terms
+    use:
+      - facility readiness
+      - medicine availability / stockout priors
+    notes: Registration required.
+
+  - id: nhlmis
+    name: National Health Logistics Management Information System
+    owner: Federal Ministry of Health / NPSCMP
+    access: partner
+    status: blocked
+    cadence: monthly
+    format: api/csv
+    use:
+      - real consumption
+      - stock on hand
+      - stockouts
+    notes: >
+      Not public. Requires a data-sharing agreement. This is the only real
+      national consumption source and the key pilot dependency.
+
+  - id: facility_hms
+    name: Facility HMS / pharmacy system
+    owner: Pilot facilities
+    access: partner
+    status: planned
+    cadence: daily
+    format: csv/api
+    use:
+      - real dispensing / consumption
+      - calibration target
+    notes: Requires a facility agreement.

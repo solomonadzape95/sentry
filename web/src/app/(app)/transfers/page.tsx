@@ -26,6 +26,7 @@ import { TransferActions } from "@/components/transfer-actions";
 import { EmptyState } from "@/components/ui/page-header";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Transfers" };
 
 const statusTone: Record<string, "warning" | "info" | "success" | "danger" | "neutral"> = {
   RECOMMENDED: "warning",
@@ -119,8 +120,17 @@ export default async function TransfersPage({
         title="Stock transfers"
         description="Move verified surplus to facilities that need it, with batch traceability, approvals and a complete audit trail."
         actions={
-          <Link href="/dashboard#alerts" className={buttonClass({ variant: "secondary", size: "sm" })}>
-            Network alerts
+          <Link
+            href={
+              scope.isNetworkAuthority
+                ? "/dashboard#risk"
+                : scope.activeFacility
+                  ? `/facilities/${scope.activeFacility.id}#risk`
+                  : "/today#risk"
+            }
+            className={buttonClass({ variant: "secondary", size: "sm" })}
+          >
+            Risk view
           </Link>
         }
       />

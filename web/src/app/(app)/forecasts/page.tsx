@@ -27,12 +27,13 @@ import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import { Badge, ConfidenceBadge, RiskBadge } from "@/components/ui/badge";
 import { buttonClass } from "@/components/ui/button";
 import { Stat, Sparkline } from "@/components/ui/stat";
-import { ForecastChart, type ForecastChartPoint } from "@/components/charts/forecast-chart";
+import { ForecastCurve, type CurvePoint } from "@/components/charts/forecast-curve";
 import { HistoryChart } from "@/components/charts/history-chart";
 import { ForecastControls } from "@/components/forecast-controls";
 import { EmptyState } from "@/components/ui/page-header";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Forecasts" };
 
 function average(values: number[]): number {
   return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
@@ -89,9 +90,9 @@ export default async function ForecastsPage({
   const { consumption } = await getSeriesDetail(facility.id, selected.medicineId, 120);
   const recent = consumption.filter((r) => r.date >= addDays(DEMO_TODAY, -90));
 
-  const chartData: ForecastChartPoint[] = recent.map((r) => {
+  const chartData: CurvePoint[] = recent.map((r) => {
     const date = r.date.toISOString().slice(0, 10);
-    return { date, label: date, actual: r.quantity };
+    return { date, actual: r.quantity };
   });
   if (chartData.length && selected.forecast) {
     chartData[chartData.length - 1] = {
@@ -103,7 +104,6 @@ export default async function ForecastsPage({
     const date = p.date.slice(0, 10);
     chartData.push({
       date,
-      label: date,
       predicted: p.predicted,
       lower80: p.lower80,
       upper80: p.upper80,
@@ -149,8 +149,8 @@ export default async function ForecastsPage({
             <BrainCircuit className="h-3.5 w-3.5" /> Predictive intelligence · {facility.shortName}
           </>
         }
-        title={`${selected.genericName} demand forecast`}
-        description={`${selected.strength} · ${selected.category.replaceAll("_", " ").toLowerCase()} · ${selected.forecast?.modelLabel ?? "No model"}`}
+        title="Demand forecast"
+        description={`${selected.genericName} ${selected.strength} · ${selected.category.replaceAll("_", " ").toLowerCase()} · ${facility.shortName}`}
         actions={
           <>
             <ForecastControls
@@ -231,12 +231,23 @@ export default async function ForecastsPage({
               }
             />
             <CardBody className="pt-4">
-              <ForecastChart
+              <ForecastCurve
                 data={chartData}
                 height={330}
                 unit={selected.unit}
                 stockoutDate={selected.stockoutDate?.slice(0, 10) ?? null}
               />
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 px-1 pt-1 text-[9px] text-muted">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-[2px] w-4 bg-ink" /> Recorded issue
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-4 border-t border-dashed border-clay" /> Forecast
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-4 bg-sand/50" /> 80% interval
+                </span>
+              </div>
               {selected.forecast?.lowData ? (
                 <div className="mt-3 flex items-start gap-2 rounded-lg bg-warn-soft px-3 py-2 text-[11px] text-warn">
                   <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -265,7 +276,7 @@ export default async function ForecastsPage({
                 <p className="mt-0.5 text-[10px] text-muted">
                   {formatNumber(latestMalaria)} cases last week
                 </p>
-                <HistoryChart data={malariaChart} height={130} color="#b42318" unit="cases" />
+                <HistoryChart data={malariaChart} height={130} color="#8b2f1f" unit="cases" />
               </div>
               <div>
                 <div className="flex items-center justify-between gap-2">
@@ -273,7 +284,7 @@ export default async function ForecastsPage({
                   <Badge tone="info">{rain21.toFixed(1)} mm</Badge>
                 </div>
                 <p className="mt-0.5 text-[10px] text-muted">21-day cumulative · Open-Meteo</p>
-                <HistoryChart data={rainChart} height={130} color="#175cd3" unit="mm" />
+                <HistoryChart data={rainChart} height={130} color="#8e775c" unit="mm" />
               </div>
               <div>
                 <div className="flex items-center justify-between gap-2">
@@ -289,7 +300,7 @@ export default async function ForecastsPage({
                   values={recent.slice(-42).map((r) => r.quantity)}
                   width={240}
                   height={100}
-                  stroke="#0f3b2c"
+                  stroke="#492415"
                   fill
                   className="mt-2 w-full"
                 />
@@ -403,7 +414,7 @@ export default async function ForecastsPage({
             />
             <CardBody className="space-y-3">
               <div className="rounded-xl bg-brand-dark p-4 text-white">
-                <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-[#f4e6ac]">
+                <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-[#ccb7a3]">
                   Suggested order quantity
                 </p>
                 <p className="tabular mt-1 text-3xl font-semibold">
@@ -424,7 +435,7 @@ export default async function ForecastsPage({
                 <p className="flex justify-between gap-2"><span>Pack size</span><span className="font-medium text-ink">{selected.packSize} {selected.unit}s</span></p>
               </div>
               {selected.expedite ? (
-                <Link href={`/transfers?${transferParams}`} className={buttonClass({ variant: "danger", size: "md", className: "w-full" })}>
+                <Link href={`/transfers?${transferParams}`} className={buttonClass({ variant: "primary", size: "md", className: "w-full" })}>
                   Create transfer request
                 </Link>
               ) : (

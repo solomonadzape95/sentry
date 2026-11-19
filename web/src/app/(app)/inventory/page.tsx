@@ -34,6 +34,7 @@ import { EmptyState } from "@/components/ui/page-header";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Inventory" };
 
 export default async function InventoryPage({
   searchParams,

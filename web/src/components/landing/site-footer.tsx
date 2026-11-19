@@ -15,7 +15,7 @@ export function SiteFooter() {
               every shelf holds, what it will need and where stock can move.
             </p>
             <Link
-              href="/dashboard"
+              href="/home"
               className="group mt-7 inline-flex h-[54px] items-center gap-8 rounded-full bg-bone pl-6 pr-2 text-[13px] font-medium text-ink transition-colors hover:bg-sand"
             >
               <span className="inline-flex items-center gap-2">

@@ -1,7 +1,6 @@
 "use server";
 
 import { AuthError, CredentialsSignin } from "next-auth";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { signIn, signOut } from "@/auth";
@@ -9,7 +8,7 @@ import { APP_NAME, APP_PROFILE } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { emailDeliveryConfigured, sendMail } from "@/lib/email";
 import { hashPassword, passwordProblem, verifyPassword } from "@/lib/password";
-import { getSessionPersona, PERSONA_COOKIE } from "@/lib/session";
+import { getSessionPersona } from "@/lib/session";
 import {
   createOpaqueToken,
   hashToken,
@@ -39,11 +38,6 @@ function demoLink(path: string): string | undefined {
   return APP_PROFILE === "demo" ? path : undefined;
 }
 
-async function clearDemoPersona() {
-  const store = await cookies();
-  store.delete(PERSONA_COOKIE);
-}
-
 export async function signInAction(
   _state: FormState,
   formData: FormData,
@@ -53,8 +47,6 @@ export async function signInAction(
   if (!email.success || !password.success) {
     return { error: "Enter your email address and password." };
   }
-
-  await clearDemoPersona();
 
   try {
     await signIn("credentials", {
@@ -247,8 +239,6 @@ export async function acceptInviteAction(
     });
     return created;
   });
-
-  await clearDemoPersona();
 
   try {
     await signIn("credentials", {

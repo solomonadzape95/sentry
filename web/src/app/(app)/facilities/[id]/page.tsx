@@ -1,65 +1,35 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  Boxes,
+  ArrowLeftRight,
   CalendarClock,
   MapPin,
-  Package,
   Phone,
   ShieldAlert,
-  TrendingUp,
   Truck,
   Wallet,
 } from "lucide-react";
-import { DEMO_TODAY, FACILITY_TYPE_LABEL } from "@/lib/config";
-import {
-  addDays,
-  formatDate,
-  formatDateTime,
-  formatDays,
-  formatNaira,
-  formatNumber,
-  formatShortDate,
-} from "@/lib/format";
+import { FACILITY_TYPE_LABEL } from "@/lib/config";
+import { formatNaira, formatNumber, formatShortDate } from "@/lib/format";
 import {
   getFacilityConsumption,
   getNetworkData,
-  getRecentMovements,
   getTransfers,
 } from "@/lib/queries";
 import { getScope } from "@/lib/session";
 import { PageHeader } from "@/components/ui/page-header";
-import { Card, CardBody, CardHeader } from "@/components/ui/card";
-import { Badge, RiskBadge } from "@/components/ui/badge";
-import { buttonClass } from "@/components/ui/button";
-import { MiniBar, Stat } from "@/components/ui/stat";
-import { HistoryChart } from "@/components/charts/history-chart";
-import { EmptyState } from "@/components/ui/page-header";
+import { ActionLink, buttonClass } from "@/components/ui/button";
+import { MetricStrip } from "@/components/ui/stat";
+import { FacilityWorkspace } from "@/components/dashboard/facility-workspace";
+import type {
+  FacilityApproval,
+  FacilityExpiry,
+  FacilityIncoming,
+} from "@/components/dashboard/facility-workspace";
+import type { DashboardLine } from "@/components/dashboard/types";
 
 export const dynamic = "force-dynamic";
-
-function weeklySeries(
-  rows: { date: Date; quantity: number }[],
-  weeks = 12,
-): { date: string; label: string; value: number }[] {
-  const buckets = new Map<string, number>();
-  for (let i = weeks - 1; i >= 0; i--) {
-    const d = addDays(DEMO_TODAY, -i * 7);
-    const monday = addDays(d, -((d.getUTCDay() + 6) % 7));
-    buckets.set(monday.toISOString().slice(0, 10), 0);
-  }
-  for (const row of rows) {
-    const d = row.date;
-    const monday = addDays(d, -((d.getUTCDay() + 6) % 7));
-    const key = monday.toISOString().slice(0, 10);
-    if (buckets.has(key)) buckets.set(key, (buckets.get(key) ?? 0) + row.quantity);
-  }
-  return [...buckets.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([date, value]) => ({ date, label: date, value }));
-}
+export const metadata = { title: "Facility" };
 
 export default async function FacilityPage({
   params,
@@ -71,418 +41,232 @@ export default async function FacilityPage({
   const { id } = await params;
   const { medicine: requestedMedicine } = await searchParams;
   const [scope, data] = await Promise.all([getScope(), getNetworkData()]);
-  const facility = data.facilities.find((f) => f.id === id);
+  const facility = data.facilities.find((item) => item.id === id);
   if (!facility) notFound();
+
   const canSee =
     scope.persona.role === "NETWORK_AUTHORITY" ||
-    scope.persona.memberships.some((m) => m.facilityId === facility.id);
+    scope.persona.memberships.some((membership) => membership.facilityId === facility.id);
   if (!canSee) notFound();
 
-  const [consumption, movements, transfers] = await Promise.all([
+  const [consumption, transfers] = await Promise.all([
     getFacilityConsumption(facility.id, 365),
-    getRecentMovements(facility.id, 12),
     getTransfers(),
   ]);
 
-  const dispatchQueue = transfers.filter(
-    (t) =>
-      t.fromFacilityId === facility.id &&
-      (t.status === "PENDING_APPROVAL" || t.status === "RECOMMENDED"),
-  );
-  const receivingQueue = transfers.filter(
-    (t) =>
-      t.toFacilityId === facility.id &&
-      (t.status === "IN_TRANSIT" || t.status === "APPROVED"),
-  );
-  const attentionCount = dispatchQueue.length + receivingQueue.length;
+  const actualsByMedicine = new Map<string, { date: string; value: number }[]>();
+  for (const row of consumption) {
+    const entries = actualsByMedicine.get(row.medicineId) ?? [];
+    entries.push({ date: row.date.toISOString().slice(0, 10), value: row.quantity });
+    actualsByMedicine.set(row.medicineId, entries);
+  }
 
   const series = data.series
-    .filter((s) => s.facilityId === facility.id)
+    .filter((line) => line.facilityId === facility.id)
     .sort((a, b) => a.genericName.localeCompare(b.genericName));
+
+  const lines: DashboardLine[] = series.map((line) => ({
+    key: `${line.facilityId}:${line.medicineId}`,
+    facilityId: line.facilityId,
+    facilityName: line.facilityName,
+    facilityShortName: line.facilityShortName,
+    medicineId: line.medicineId,
+    medicineName: line.medicineName,
+    genericName: line.genericName,
+    strength: line.strength,
+    category: line.category,
+    unit: line.unit,
+    risk: line.risk,
+    usable: line.usable,
+    avgDailyDemand: line.avgDailyDemand,
+    daysToStockout: line.daysToStockout,
+    stockoutDate: line.stockoutDate,
+    stockValue: line.usableValue,
+    inAtRisk: line.risk !== "LOW" && line.avgDailyDemand > 0,
+    forecast: line.forecast
+      ? {
+          modelLabel: line.forecast.modelLabel,
+          confidence: line.forecast.confidence,
+          wape: line.forecast.wape,
+          points: line.forecast.points.map((point) => ({
+            date: point.date.slice(0, 10),
+            predicted: point.predicted,
+            lower80: point.lower80,
+            upper80: point.upper80,
+          })),
+        }
+      : null,
+    actuals: actualsByMedicine.get(line.medicineId) ?? [],
+  }));
+
   const atRisk = series
-    .filter((s) => s.risk !== "LOW" && s.avgDailyDemand > 0)
+    .filter((line) => line.risk !== "LOW" && line.avgDailyDemand > 0)
     .sort((a, b) => (a.daysToStockout ?? 999) - (b.daysToStockout ?? 999));
-  const critical = atRisk.filter((s) => s.risk === "CRITICAL").length;
-  const high = atRisk.filter((s) => s.risk === "HIGH").length;
-  const medium = atRisk.filter((s) => s.risk === "MEDIUM").length;
+  const critical = atRisk.filter((line) => line.risk === "CRITICAL").length;
+  const high = atRisk.filter((line) => line.risk === "HIGH").length;
+  const medium = atRisk.filter((line) => line.risk === "MEDIUM").length;
 
-  const selected =
-    series.find((s) => s.medicineId === requestedMedicine) ??
-    atRisk[0] ??
-    [...series].sort(
-      (a, b) =>
-        consumption
-          .filter((r) => r.medicineId === b.medicineId)
-          .reduce((x, r) => x + r.quantity, 0) -
-        consumption
-          .filter((r) => r.medicineId === a.medicineId)
-          .reduce((x, r) => x + r.quantity, 0),
-    )[0];
+  const requested = lines.find((line) => line.medicineId === requestedMedicine);
+  const initialLine =
+    requested ??
+    lines.find((line) => line.key === `${atRisk[0]?.facilityId}:${atRisk[0]?.medicineId}`) ??
+    lines[0] ??
+    null;
 
-  const selectedConsumption = consumption.filter((r) => r.medicineId === selected?.medicineId);
-  const weekly = weeklySeries(selectedConsumption, 12);
+  const dispatchQueue = transfers.filter(
+    (transfer) =>
+      transfer.fromFacilityId === facility.id &&
+      (transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED"),
+  );
+  const receivingQueue = transfers.filter(
+    (transfer) =>
+      transfer.toFacilityId === facility.id &&
+      (transfer.status === "IN_TRANSIT" || transfer.status === "APPROVED"),
+  );
 
-  const stockValue = series.reduce((s, x) => s + x.usableValue, 0);
-  const expiringValue = series.reduce((s, x) => s + x.nearExpiryValue, 0);
-  const batchCount = series.reduce((s, x) => s + x.batches.filter((b) => b.status === "ACTIVE").length, 0);
+  const approvals: FacilityApproval[] = [
+    ...dispatchQueue.map((transfer) => ({
+      id: transfer.id,
+      medicineName: transfer.medicine.genericName,
+      quantity: transfer.quantity,
+      unit: transfer.medicine.unit,
+      counterparty: transfer.toFacility.shortName,
+      reference: transfer.reference,
+      kind: "dispatch" as const,
+    })),
+    ...receivingQueue.map((transfer) => ({
+      id: transfer.id,
+      medicineName: transfer.medicine.genericName,
+      quantity: transfer.quantity,
+      unit: transfer.medicine.unit,
+      counterparty: transfer.fromFacility.shortName,
+      reference: transfer.reference,
+      kind: "receipt" as const,
+    })),
+  ];
 
-  const expiryWatch = series
-    .flatMap((s) =>
-      s.batches
-        .filter((b) => b.quantityRemaining > 0 && b.daysToExpiry > 0 && b.daysToExpiry <= 90)
-        .map((b) => ({ ...b, medicineName: s.genericName, unit: s.unit })),
+  const allExpiry = series
+    .flatMap((line) =>
+      line.batches
+        .filter(
+          (batch) =>
+            batch.quantityRemaining > 0 &&
+            batch.daysToExpiry > 0 &&
+            batch.daysToExpiry <= 90,
+        )
+        .map((batch) => ({
+          id: batch.id,
+          medicineName: line.genericName,
+          batchNumber: batch.batchNumber,
+          quantityRemaining: batch.quantityRemaining,
+          unit: line.unit,
+          daysToExpiry: batch.daysToExpiry,
+          expiryDate: batch.expiryDate,
+        })),
     )
-    .sort((a, b) => a.daysToExpiry - b.daysToExpiry)
+    .sort((a, b) => a.daysToExpiry - b.daysToExpiry);
+
+  const expiry: FacilityExpiry[] = allExpiry.slice(0, 6);
+
+  const incoming: FacilityIncoming[] = series
+    .flatMap((line) =>
+      line.incoming.map((order) => ({
+        id: order.id,
+        medicineName: line.genericName,
+        quantity: order.quantity,
+        unit: line.unit,
+        expectedAt: order.expectedAt,
+        supplierName: order.supplierName,
+        reference: order.reference,
+      })),
+    )
+    .sort((a, b) => a.expectedAt.localeCompare(b.expectedAt))
     .slice(0, 6);
 
-  const incoming = series
-    .flatMap((s) => s.incoming.map((po) => ({ ...po, medicineName: s.genericName, unit: s.unit })))
-    .sort((a, b) => a.expectedAt.localeCompare(b.expectedAt));
-
-  const topMedicines = [...series]
-    .sort(
-      (a, b) =>
-        consumption
-          .filter((r) => r.medicineId === b.medicineId)
-          .reduce((x, r) => x + r.quantity, 0) -
-        consumption
-          .filter((r) => r.medicineId === a.medicineId)
-          .reduce((x, r) => x + r.quantity, 0),
-    )
-    .slice(0, 5);
+  const stockValue = series.reduce((sum, line) => sum + line.usableValue, 0);
+  const expiringValue = series.reduce((sum, line) => sum + line.nearExpiryValue, 0);
+  const incomingUnits = incoming.reduce((sum, order) => sum + order.quantity, 0);
 
   return (
     <div>
       <PageHeader
         eyebrow={
           <>
-            <MapPin className="h-3.5 w-3.5" />
+            <MapPin className="h-3.5 w-3.5" strokeWidth={1.5} />
             {FACILITY_TYPE_LABEL[facility.type] ?? facility.type} · {facility.lga}, {facility.state}
           </>
         }
         title={facility.name}
         description={
           <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-3 w-3" /> {facility.address}
-            </span>
+            <span>{facility.address}</span>
             <span className="flex items-center gap-1.5">
               <Phone className="h-3 w-3" /> {facility.phone}
             </span>
-            {facility.bedCount ? <span>{facility.bedCount} beds</span> : null}
           </span>
         }
         actions={
           <>
             <Link
-              href={`/forecasts?facility=${facility.id}&medicine=${selected?.medicineId ?? ""}`}
+              href={`/transfers?to=${facility.id}`}
               className={buttonClass({ variant: "secondary", size: "sm" })}
             >
-              <TrendingUp className="h-3.5 w-3.5" />
-              Forecasts
+              <ArrowLeftRight className="h-3.5 w-3.5" />
+              Request transfer
             </Link>
-            <Link
-              href={`/inventory?facility=${facility.id}`}
-              className={buttonClass({ variant: "primary", size: "sm" })}
-            >
-              <Boxes className="h-3.5 w-3.5" />
+            <ActionLink href={`/inventory?facility=${facility.id}`}>
               Open inventory
-            </Link>
+            </ActionLink>
           </>
         }
       />
 
-      {attentionCount > 0 ? (
-        <Card className="mb-5 border-warn/30">
-          <CardHeader
-            title="Needs your signature"
-            subtitle="Two-party transfer control: the source dispatches, the destination confirms receipt."
-            action={<Badge tone="warning">{attentionCount} waiting</Badge>}
-            icon={<Truck className="h-4 w-4" />}
-          />
-          <div className="divide-y divide-line">
-            {[
-              ...dispatchQueue.map((transfer) => ({ transfer, kind: "dispatch" as const })),
-              ...receivingQueue.map((transfer) => ({ transfer, kind: "receipt" as const })),
-            ].map(({ transfer, kind }) => (
-              <div key={transfer.id} className="flex flex-wrap items-center gap-3 px-5 py-3">
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[12px] font-medium text-ink">
-                    {transfer.medicine.genericName} · {formatNumber(transfer.quantity)}{" "}
-                    {transfer.medicine.unit}s
-                  </p>
-                  <p className="mt-0.5 text-[10px] text-muted">
-                    {kind === "dispatch"
-                      ? `Release to ${transfer.toFacility.shortName}`
-                      : `Receive from ${transfer.fromFacility.shortName}`}{" "}
-                    · {transfer.reference}
-                  </p>
-                </div>
-                <Badge tone={kind === "dispatch" ? "warning" : "info"}>
-                  {kind === "dispatch" ? "Approve dispatch" : "Confirm receipt"}
-                </Badge>
-                <Link
-                  href={`/transfers#transfer-${transfer.id}`}
-                  className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
-                >
-                  Open <ArrowUpRight className="h-3 w-3" />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </Card>
-      ) : null}
+      <MetricStrip
+        className="mb-5"
+        items={[
+          {
+            label: "Usable stock",
+            value: formatNaira(stockValue),
+            sub: `${series.reduce(
+              (sum, line) => sum + line.batches.filter((batch) => batch.status === "ACTIVE").length,
+              0,
+            )} active batches`,
+            icon: <Wallet className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "Lines at risk",
+            value: atRisk.length,
+            sub: `${critical} critical · ${high} high · ${medium} watch`,
+            tone: critical > 0 ? "danger" : atRisk.length > 0 ? "warning" : "success",
+            icon: <ShieldAlert className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "Expiring in 90 days",
+            value: formatNaira(expiringValue),
+            sub: `${allExpiry.length} ${allExpiry.length === 1 ? "batch needs" : "batches need"} a decision`,
+            tone: expiringValue > 0 ? "warning" : "default",
+            icon: <CalendarClock className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "Confirmed incoming",
+            value: `${formatNumber(incomingUnits)} units`,
+            sub: incoming[0]
+              ? `${incoming.length} confirmed · next ${formatShortDate(incoming[0].expectedAt)}`
+              : "No confirmed deliveries",
+            icon: <Truck className="h-3.5 w-3.5" />,
+          },
+        ]}
+      />
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-        <Stat
-          label="Usable stock value"
-          value={formatNaira(stockValue)}
-          sub={`${batchCount} active batches`}
-          icon={<Wallet className="h-4 w-4" />}
-        />
-        <Stat
-          label="Medicine lines"
-          value={series.length}
-          sub={`${atRisk.length} under 30-day cover`}
-          icon={<Package className="h-4 w-4" />}
-        />
-        <Stat
-          label="Critical lines"
-          value={critical}
-          sub={critical > 0 ? "Stockout before supplier lead time" : "No immediate stockouts"}
-          icon={<ShieldAlert className="h-4 w-4" />}
-          tone={critical > 0 ? "danger" : "success"}
-        />
-        <Stat
-          label="Expiring in 90 days"
-          value={formatNaira(expiringValue)}
-          sub={`${expiryWatch.length} batches to review`}
-          icon={<CalendarClock className="h-4 w-4" />}
-          tone={expiringValue > 0 ? "warning" : "default"}
-        />
-      </div>
-
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(320px,1fr)]">
-        <div className="space-y-5">
-          <Card>
-            <CardHeader
-              title="Consumption trend"
-              subtitle={
-                selected
-                  ? `${selected.genericName} · last 12 weeks · ${selected.unit}s dispensed`
-                  : "No consumption history"
-              }
-              action={
-                selected ? (
-                  <Badge tone="neutral">{formatNumber(weekly.reduce((s, w) => s + w.value, 0))} total</Badge>
-                ) : null
-              }
-            />
-            <CardBody className="pt-3">
-              <div className="mb-3 flex flex-wrap gap-1.5">
-                {topMedicines.map((m) => (
-                  <Link
-                    key={m.medicineId}
-                    href={`/facilities/${facility.id}?medicine=${m.medicineId}`}
-                    className={`rounded-full px-2.5 py-1 text-[10px] font-medium ${
-                      m.medicineId === selected?.medicineId
-                        ? "bg-brand text-white"
-                        : "bg-canvas text-muted ring-1 ring-line hover:text-ink"
-                    }`}
-                  >
-                    {m.genericName}
-                  </Link>
-                ))}
-              </div>
-              <HistoryChart data={weekly} height={240} unit={selected?.unit ?? "units"} />
-            </CardBody>
-          </Card>
-
-          <Card>
-            <CardHeader
-              title="Medicine lines"
-              subtitle="Live stock, forecast cover and replenishment signal"
-              action={
-                <Link href={`/inventory?facility=${facility.id}`} className="text-[11px] font-medium text-brand hover:underline">
-                  Manage inventory
-                </Link>
-              }
-            />
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[760px] text-left text-xs">
-                <thead>
-                  <tr className="border-b border-line text-[10px] uppercase tracking-[0.08em] text-muted">
-                    <th className="px-5 py-2.5 font-medium">Medicine</th>
-                    <th className="px-3 py-2.5 font-medium">On hand</th>
-                    <th className="px-3 py-2.5 font-medium">Batches</th>
-                    <th className="px-3 py-2.5 font-medium">Demand</th>
-                    <th className="px-3 py-2.5 font-medium">Cover</th>
-                    <th className="px-3 py-2.5 font-medium">Reorder</th>
-                    <th className="px-3 py-2.5 font-medium">Risk</th>
-                    <th className="px-5 py-2.5 text-right font-medium">Forecast</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {series.map((s) => (
-                    <tr key={s.medicineId} className="border-b border-line/70 last:border-0 hover:bg-canvas/60">
-                      <td className="px-5 py-3">
-                        <p className="font-medium text-ink">{s.genericName}</p>
-                        <p className="text-[10px] text-muted">{s.category.replace("_", " ").toLowerCase()}</p>
-                      </td>
-                      <td className="tabular px-3 py-3">{formatNumber(s.usable)}</td>
-                      <td className="tabular px-3 py-3 text-muted">{s.batches.filter((b) => b.status === "ACTIVE").length}</td>
-                      <td className="tabular px-3 py-3 text-muted">{s.avgDailyDemand.toFixed(1)}/d</td>
-                      <td className="px-3 py-3">
-                        <span className={`tabular font-medium ${s.risk === "CRITICAL" ? "text-danger" : s.risk === "HIGH" ? "text-warn" : "text-ink"}`}>
-                          {formatDays(s.daysToStockout)}
-                        </span>
-                      </td>
-                      <td className="tabular px-3 py-3">
-                        {s.reorderQty > 0 ? (
-                          <span className="font-medium text-ink">{formatNumber(s.reorderQty)}</span>
-                        ) : (
-                          <span className="text-muted">N/A</span>
-                        )}
-                      </td>
-                      <td className="px-3 py-3"><RiskBadge risk={s.risk} compact /></td>
-                      <td className="px-5 py-3 text-right">
-                        <Link
-                          href={`/forecasts?facility=${facility.id}&medicine=${s.medicineId}`}
-                          className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
-                        >
-                          Open <ArrowUpRight className="h-3 w-3" />
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-
-          <Card>
-            <CardHeader title="Recent stock movement" subtitle="Last recorded inventory activity" />
-            <div className="divide-y divide-line">
-              {movements.slice(0, 8).map((m) => {
-                const positive = m.quantity > 0;
-                return (
-                  <div key={m.id} className="flex items-center gap-3 px-5 py-3">
-                    <div className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg ${positive ? "bg-ok-soft text-ok" : "bg-canvas text-muted"}`}>
-                      {positive ? <ArrowDownLeft className="h-3.5 w-3.5" /> : <ArrowUpRight className="h-3.5 w-3.5" />}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-[11px] font-medium text-ink">{m.medicine.genericName}</p>
-                      <p className="truncate text-[10px] text-muted">
-                        {m.type.replaceAll("_", " ").toLowerCase()} · {m.reason ?? m.reference}
-                      </p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className={`tabular text-[11px] font-semibold ${positive ? "text-ok" : "text-ink"}`}>
-                        {positive ? "+" : ""}
-                        {formatNumber(m.quantity)}
-                      </p>
-                      <p className="text-[9px] text-muted">{formatDateTime(m.occurredAt)}</p>
-                    </div>
-                  </div>
-                );
-              })}
-              {movements.length === 0 ? (
-                <EmptyState title="No stock movement yet" description="Receive or issue stock to start the audit trail." />
-              ) : null}
-            </div>
-          </Card>
-        </div>
-
-        <div className="space-y-5">
-          <Card>
-            <CardHeader title="Stock health" subtitle="Medicine lines by projected cover" />
-            <CardBody className="space-y-4">
-              {[
-                { label: "Critical · under 7 days", value: critical, tone: "danger" as const, total: series.length },
-                { label: "High · 7–14 days", value: high, tone: "warn" as const, total: series.length },
-                { label: "Watch · 15–30 days", value: medium, tone: "brand" as const, total: series.length },
-                { label: "Stable · 30+ days", value: series.length - atRisk.length, tone: "muted" as const, total: series.length },
-              ].map((row) => (
-                <div key={row.label}>
-                  <div className="mb-1.5 flex items-center justify-between text-[11px]">
-                    <span className="text-muted">{row.label}</span>
-                    <span className="tabular font-medium text-ink">{row.value}</span>
-                  </div>
-                  <MiniBar value={row.value} max={series.length} tone={row.tone} />
-                </div>
-              ))}
-              <div className="border-t border-line pt-3">
-                <p className="text-[10px] leading-relaxed text-muted">
-                  Cover is computed from current usable stock, confirmed deliveries and the live forecast demand curve.
-                </p>
-              </div>
-            </CardBody>
-          </Card>
-
-          <Card>
-            <CardHeader
-              title="Expiry watch"
-              subtitle="Batches expiring within 90 days"
-              action={<Badge tone={expiryWatch.length ? "warning" : "success"}>{expiryWatch.length}</Badge>}
-            />
-            <div className="divide-y divide-line">
-              {expiryWatch.map((b) => (
-                <div key={`${b.id}`} className="px-5 py-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <p className="truncate text-[11px] font-medium text-ink">{b.medicineName}</p>
-                      <p className="text-[10px] text-muted">Batch {b.batchNumber}</p>
-                    </div>
-                    <Badge tone={b.daysToExpiry <= 30 ? "danger" : "warning"}>{b.daysToExpiry}d</Badge>
-                  </div>
-                  <p className="mt-1 text-[10px] text-muted">
-                    {formatNumber(b.quantityRemaining)} {b.unit}s · {formatDate(b.expiryDate)}
-                  </p>
-                </div>
-              ))}
-              {expiryWatch.length === 0 ? (
-                <EmptyState title="No near-expiry batches" description="All active batches have more than 90 days of shelf life." />
-              ) : null}
-            </div>
-          </Card>
-
-          <Card>
-            <CardHeader
-              title="Incoming deliveries"
-              subtitle="Confirmed purchase orders"
-              action={<Truck className="h-4 w-4 text-brand" />}
-            />
-            <div className="divide-y divide-line">
-              {incoming.map((po) => (
-                <div key={po.id} className="flex items-start justify-between gap-3 px-5 py-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-[11px] font-medium text-ink">{po.medicineName}</p>
-                    <p className="text-[10px] text-muted">{po.reference} · {po.supplierName}</p>
-                  </div>
-                  <div className="shrink-0 text-right">
-                    <p className="tabular text-[11px] font-medium">{formatNumber(po.quantity)}</p>
-                    <p className="text-[9px] text-muted">{formatShortDate(po.expectedAt)}</p>
-                  </div>
-                </div>
-              ))}
-              {incoming.length === 0 ? (
-                <EmptyState title="No confirmed deliveries" description="Orders will appear here once confirmed by a supplier." />
-              ) : null}
-            </div>
-          </Card>
-
-          <Card>
-            <CardHeader title="Facility profile" />
-            <CardBody className="space-y-2 text-[11px] text-muted">
-              <p className="flex justify-between gap-3"><span>Type</span><span className="font-medium text-ink">{FACILITY_TYPE_LABEL[facility.type] ?? facility.type}</span></p>
-              <p className="flex justify-between gap-3"><span>Ownership</span><span className="font-medium capitalize text-ink">{facility.ownership.replace("_", " ").toLowerCase()}</span></p>
-              <p className="flex justify-between gap-3"><span>LGA</span><span className="font-medium text-ink">{facility.lga}</span></p>
-              <p className="flex justify-between gap-3"><span>Contact</span><span className="font-medium text-ink">{facility.contactName}</span></p>
-              <p className="flex justify-between gap-3"><span>Last data update</span><span className="font-medium text-ink">{formatDate(DEMO_TODAY)}</span></p>
-            </CardBody>
-          </Card>
-        </div>
-      </div>
+      <FacilityWorkspace
+        facilityId={facility.id}
+        facilityName={facility.shortName}
+        lines={lines}
+        initialLineKey={initialLine?.key ?? null}
+        approvals={approvals}
+        expiry={expiry}
+        incoming={incoming}
+      />
     </div>
   );
 }

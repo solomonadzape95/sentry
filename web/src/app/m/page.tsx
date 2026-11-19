@@ -32,7 +32,7 @@ export default async function MobileHomePage() {
         <EmptyState
           title="No facility assigned"
           description="This persona has no facility scope. Switch to a facility manager or network authority."
-          action={<Link href="/dashboard" className="text-xs font-medium text-brand underline">Open desktop dashboard</Link>}
+          action={<Link href="/home" className="text-xs font-medium text-brand underline">Open desktop dashboard</Link>}
         />
       </div>
     );
@@ -82,7 +82,7 @@ export default async function MobileHomePage() {
           className="block overflow-hidden rounded-2xl bg-brand-dark p-4 text-white shadow-sm"
         >
           <div className="flex items-center justify-between gap-2">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#f4e6ac]">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#ccb7a3]">
               Action needed
             </p>
             <RiskBadge risk={top.risk} compact />
@@ -97,7 +97,7 @@ export default async function MobileHomePage() {
             <span className="text-[10px] text-white/45">
               Next delivery {top.nextIncomingDate ? formatShortDate(top.nextIncomingDate) : "none confirmed"}
             </span>
-            <span className="flex items-center gap-1 text-[10px] font-semibold text-[#f4e6ac]">
+            <span className="flex items-center gap-1 text-[10px] font-semibold text-[#ccb7a3]">
               View forecast <ArrowRight className="h-3 w-3" />
             </span>
           </div>

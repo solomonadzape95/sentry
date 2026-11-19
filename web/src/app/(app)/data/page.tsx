@@ -8,6 +8,7 @@ import { Badge, type BadgeTone } from "@/components/ui/badge";
 import { Stat } from "@/components/ui/stat";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Data provenance" };
 
 const kindTone: Record<string, BadgeTone> = {
   OBSERVED: "success",

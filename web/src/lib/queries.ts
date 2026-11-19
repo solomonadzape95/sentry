@@ -35,6 +35,23 @@ export async function getFacilityConsumption(facilityId: string, days = 365) {
   });
 }
 
+/**
+ * One read for the network workspace: enough history to draw the actual line
+ * under a forecast without querying per series.
+ */
+export const getConsumptionWindow = cache(async (days = 120) => {
+  return prisma.consumptionRecord.findMany({
+    where: { date: { gte: addDays(DEMO_TODAY, -days) } },
+    orderBy: { date: "asc" },
+    select: {
+      facilityId: true,
+      medicineId: true,
+      date: true,
+      quantity: true,
+    },
+  });
+});
+
 export async function getSeriesDetail(facilityId: string, medicineId: string, days = 400) {
   const [batches, forecast, consumption, movements, purchaseOrders] = await Promise.all([
     prisma.inventoryBatch.findMany({

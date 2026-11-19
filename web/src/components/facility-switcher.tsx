@@ -32,15 +32,15 @@ export function FacilitySwitcher({
   return (
     <label
       className={cn(
-        "inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-surface pl-2.5 pr-2 text-xs font-medium text-ink shadow-sm",
+        "inline-flex h-9 items-center gap-2 rounded-full border border-line bg-panel pl-3 pr-2.5 text-[10px] font-medium text-ink",
         className,
       )}
     >
-      <Building2 className="h-3.5 w-3.5 text-brand" />
+      <Building2 className="h-3.5 w-3.5 text-body" />
       <select
         value={currentId ?? ""}
         onChange={(e) => choose(e.target.value)}
-        className="max-w-[190px] cursor-pointer appearance-none bg-transparent pr-1 text-xs font-medium outline-none"
+        className="max-w-[190px] cursor-pointer appearance-none bg-transparent pr-1 text-[10px] font-medium outline-none"
         aria-label="Active facility"
       >
         {facilities.map((f) => (

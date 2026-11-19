@@ -23,6 +23,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { buttonClass } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Administration" };
 
 export default async function AdminPage() {
   const scope = await getScope();
@@ -90,7 +91,7 @@ export default async function AdminPage() {
         </Card>
 
         <Card>
-          <CardHeader title="Staff & roles" subtitle="Personas available in the demo switcher" />
+          <CardHeader title="Staff & roles" subtitle="Accounts, roles and facility scope" />
           <div className="divide-y divide-line">
             {data.users.map((u) => (
               <div key={u.id} className="flex items-center gap-3 px-5 py-2.5">
@@ -162,7 +163,7 @@ export default async function AdminPage() {
               <p><span className="font-medium text-ink">RLS-ready schema.</span> The hackathon uses SQLite for portability; production moves to Supabase Postgres with row-level security.</p>
               <p><span className="font-medium text-ink">Secrets.</span> External credentials stay server-side; no API keys are exposed to the client.</p>
               <p className="rounded-lg bg-warn-soft/70 px-3 py-2 text-[10px] text-warn">
-                Demo personas are not authentication. Replace with Supabase Auth, MFA for approvers and per-facility RLS before a pilot.
+                Accounts are invite-only Auth.js sessions. Before a pilot, add MFA for approvers, Postgres row-level security and production email delivery.
               </p>
             </CardBody>
           </Card>

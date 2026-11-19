@@ -857,7 +857,7 @@ export default async function LandingPage() {
 /* -------------------------------------------------------------------------- */
 
 function ArrowPill({
-  href = "/dashboard",
+  href = "/home",
   label = "View dashboard",
   light = false,
   className,

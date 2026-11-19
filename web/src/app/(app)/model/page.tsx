@@ -23,6 +23,7 @@ import { MiniBar, Stat } from "@/components/ui/stat";
 import { buttonClass } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Model performance" };
 
 const modelName: Record<string, string> = {
   XGBOOST: "XGBoost",

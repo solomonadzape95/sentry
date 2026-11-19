@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tones = {
@@ -26,20 +28,101 @@ export function Stat({
   return (
     <div
       className={cn(
-        "rounded-[14px] border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(16,36,30,0.04)] sm:p-5",
+        "rounded-[16px] border border-line bg-surface p-4 sm:p-5",
         className,
       )}
     >
       <div className="flex items-start justify-between gap-3">
-        <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">
+        <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-muted">
           {label}
         </p>
-        {icon ? <div className={cn("text-brand/70", tones[tone])}>{icon}</div> : null}
+        {icon ? <div className={cn("text-body/60", tones[tone])}>{icon}</div> : null}
       </div>
-      <p className={cn("font-display mt-2 text-[30px] leading-none tracking-[-0.02em] sm:text-[34px]", tones[tone])}>
+      <p className={cn("mt-3 font-display text-[30px] leading-none tracking-[-0.035em] sm:text-[34px]", tones[tone])}>
         {value}
       </p>
-      {sub ? <div className="mt-2 text-xs leading-relaxed text-muted">{sub}</div> : null}
+      {sub ? <div className="mt-2 text-[11px] leading-relaxed text-muted">{sub}</div> : null}
+    </div>
+  );
+}
+
+export type MetricItem = {
+  label: string;
+  value: React.ReactNode;
+  sub?: React.ReactNode;
+  tone?: keyof typeof tones;
+  href?: string;
+  icon?: React.ReactNode;
+};
+
+/**
+ * One strip of related numbers, divided by hairlines. Cheaper on the eye than
+ * four separate cards and easier to scan as a row.
+ */
+export function MetricStrip({
+  items,
+  className,
+  columns = 4,
+}: {
+  items: MetricItem[];
+  className?: string;
+  columns?: 2 | 3 | 4;
+}) {
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-2 overflow-hidden rounded-[16px] border border-line bg-surface",
+        columns === 2 ? "xl:grid-cols-2" : columns === 3 ? "xl:grid-cols-3" : "xl:grid-cols-4",
+        className,
+      )}
+    >
+      {items.map((item, index) => {
+        const content = (
+          <>
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-muted">
+                {item.label}
+              </p>
+              {item.href ? (
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
+              ) : item.icon ? (
+                <span className="shrink-0 text-body/50">{item.icon}</span>
+              ) : null}
+            </div>
+            <p
+              className={cn(
+                "mt-3 font-display text-[24px] leading-none tracking-[-0.04em] sm:text-[32px]",
+                tones[item.tone ?? "default"],
+              )}
+            >
+              {item.value}
+            </p>
+            {item.sub ? (
+              <p className="mt-2 text-[10.5px] leading-[1.5] text-muted">{item.sub}</p>
+            ) : null}
+          </>
+        );
+
+        const lastOdd = items.length % 2 === 1 && index === items.length - 1;
+        const shellClass = cn(
+          "min-w-0 p-3.5 sm:p-5",
+          index >= 2 && "border-t border-line",
+          index % 2 === 1 && "border-l border-line",
+          index > 0 ? "xl:border-l xl:border-line" : "xl:border-l-0",
+          "xl:border-t-0",
+          lastOdd && "col-span-2 xl:col-span-1",
+        );
+
+        return item.href ? (
+          <Link key={item.label} href={item.href} className={cn(shellClass, "group transition-colors hover:bg-panel/60")}>
+            {content}
+          </Link>
+        ) : (
+          <div key={item.label} className={shellClass}>
+            {content}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -49,7 +132,7 @@ export function Sparkline({
   width = 108,
   height = 30,
   className,
-  stroke = "#0f3b2c",
+  stroke = "#492415",
   fill = false,
 }: {
   values: number[];
@@ -77,6 +160,7 @@ export function Sparkline({
       viewBox={`0 0 ${width} ${height}`}
       className={className}
       aria-hidden="true"
+      preserveAspectRatio="none"
     >
       {fill ? (
         <path

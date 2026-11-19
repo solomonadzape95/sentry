@@ -12,7 +12,6 @@ import {
   Radar,
   Settings,
   TrendingUp,
-  UserRound,
 } from "lucide-react";
 import { NAV_SECTIONS } from "@/lib/config";
 import { canSeeNav } from "@/lib/authz";
@@ -28,45 +27,86 @@ const icons = {
   activity: Activity,
   database: Database,
   settings: Settings,
-  user: UserRound,
 } as const;
 
-export function SidebarNav({ role }: { role: string }) {
+type NavItem = {
+  href: string;
+  label: string;
+  icon: keyof typeof icons;
+};
+
+export function SidebarNav({
+  role,
+  collapsed = false,
+  activeFacility,
+  onNavigate,
+}: {
+  role: string;
+  collapsed?: boolean;
+  activeFacility?: { id: string; shortName: string } | null;
+  onNavigate?: () => void;
+}) {
   const pathname = usePathname();
   const sections = NAV_SECTIONS.map((section) => ({
     ...section,
     items: section.items.filter((item) => canSeeNav(role, item.href)),
-  })).filter((section) => section.items.length > 0);
+  })).filter((section) => section.items.length > 0) as {
+    label: string;
+    items: NavItem[];
+  }[];
+
+  const facilityItem =
+    role === "FACILITY_MANAGER" && activeFacility
+      ? {
+          href: `/facilities/${activeFacility.id}`,
+          label: "My facility",
+          icon: "building" as const,
+        }
+      : null;
 
   return (
     <nav className="flex-1 space-y-5 overflow-y-auto px-3 py-2">
+      {facilityItem ? (
+        <div>
+          <p
+            className={cn(
+              "mb-2 px-3 text-[8.5px] font-semibold uppercase tracking-[0.18em] text-bone/35",
+              collapsed && "sr-only",
+            )}
+          >
+            Facility
+          </p>
+          <NavLink
+            item={facilityItem}
+            active={pathname === facilityItem.href}
+            collapsed={collapsed}
+            onNavigate={onNavigate}
+          />
+        </div>
+      ) : null}
+
       {sections.map((section) => (
         <div key={section.label}>
-          <p className="mb-1.5 px-2.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/35">
-            {section.label}
-          </p>
+          {collapsed ? (
+            <div className="mx-auto mb-2 h-px w-6 bg-bone/15" aria-hidden="true" />
+          ) : (
+            <p className="mb-2 px-3 text-[8.5px] font-semibold uppercase tracking-[0.18em] text-bone/35">
+              {section.label}
+            </p>
+          )}
           <div className="space-y-0.5">
             {section.items.map((item) => {
-              const Icon = icons[item.icon];
               const active =
-                pathname === item.href || pathname.startsWith(`${item.href}/`);
+                pathname === item.href ||
+                (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`));
               return (
-                <Link
+                <NavLink
                   key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-medium transition-colors",
-                    active
-                      ? "bg-white/10 text-white shadow-sm ring-1 ring-inset ring-white/10"
-                      : "text-white/60 hover:bg-white/5 hover:text-white",
-                  )}
-                >
-                  <Icon
-                    className={cn("h-4 w-4", active ? "text-[#f4e6ac]" : "text-white/45")}
-                    strokeWidth={2}
-                  />
-                  {item.label}
-                </Link>
+                  item={item}
+                  active={active}
+                  collapsed={collapsed}
+                  onNavigate={onNavigate}
+                />
               );
             })}
           </div>
@@ -76,35 +116,44 @@ export function SidebarNav({ role }: { role: string }) {
   );
 }
 
-export function MobileNav({ role }: { role: string }) {
-  const pathname = usePathname();
-  const items = [
-    { href: "/today", label: "Today" },
-    { href: "/dashboard", label: "Network" },
-    { href: "/facilities", label: "Facilities" },
-    { href: "/inventory", label: "Inventory" },
-    { href: "/forecasts", label: "Forecasts" },
-    { href: "/transfers", label: "Transfers" },
-    { href: "/account", label: "Account" },
-  ].filter((item) => canSeeNav(role, item.href));
+function NavLink({
+  item,
+  active,
+  collapsed,
+  onNavigate,
+}: {
+  item: NavItem;
+  active: boolean;
+  collapsed: boolean;
+  onNavigate?: () => void;
+}) {
+  const Icon = icons[item.icon];
+
   return (
-    <div className="scrollbar-thin flex gap-1.5 overflow-x-auto border-b border-line bg-canvas px-4 py-2 lg:hidden">
-      {items.map((item) => {
-        const active =
-          pathname === item.href || pathname.startsWith(`${item.href}/`);
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium",
-              active ? "bg-brand text-white" : "bg-surface text-muted ring-1 ring-line",
-            )}
-          >
-            {item.label}
-          </Link>
-        );
-      })}
-    </div>
+    <Link
+      href={item.href}
+      onClick={onNavigate}
+      aria-current={active ? "page" : undefined}
+      title={collapsed ? item.label : undefined}
+      className={cn(
+        "group relative flex items-center gap-3 rounded-full text-[12.5px] font-medium tracking-[-0.01em] transition-colors",
+        collapsed ? "mx-auto h-10 w-10 justify-center" : "px-3 py-2.5",
+        active
+          ? "bg-bone text-ink"
+          : "text-bone/60 hover:bg-bone/[0.06] hover:text-bone",
+      )}
+    >
+      <Icon
+        className={cn(
+          "h-[18px] w-[18px] shrink-0",
+          active ? "text-ink" : "text-bone/40 group-hover:text-bone/80",
+        )}
+        strokeWidth={1.5}
+      />
+      {collapsed ? null : <span className="truncate">{item.label}</span>}
+      {!collapsed && active ? (
+        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-ink" />
+      ) : null}
+    </Link>
   );
 }

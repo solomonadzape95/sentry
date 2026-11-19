@@ -3,11 +3,9 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { Prisma } from "@prisma/client";
 import { auth } from "@/auth";
-import { APP_PROFILE, AUTH_REQUIRED } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { can, homeFor } from "@/lib/authz";
 
-export const PERSONA_COOKIE = "cheta_persona";
 export const FACILITY_COOKIE = "cheta_facility";
 
 const personaInclude = {
@@ -47,30 +45,9 @@ export const getSessionPersona = cache(async (): Promise<Persona | null> => {
   return user;
 });
 
-/**
- * Demo-only fallback. The persona cookie is never consulted outside
- * APP_PROFILE=demo.
- */
-async function getDemoPersona(): Promise<Persona> {
-  const store = await cookies();
-  const id = store.get(PERSONA_COOKIE)?.value;
-  if (id) {
-    const user = await personaById(id);
-    if (user) return user;
-  }
-
-  const fallback = await prisma.user.findFirst({
-    where: { role: "NETWORK_AUTHORITY" },
-    include: personaInclude,
-  });
-  if (!fallback) throw new Error("No demo personas seeded. Run `npm run db:seed`.");
-  return fallback;
-}
-
 export async function getPersona(): Promise<Persona> {
   const sessionPersona = await getSessionPersona();
   if (sessionPersona) return sessionPersona;
-  if (APP_PROFILE === "demo" && !AUTH_REQUIRED) return getDemoPersona();
   redirect("/sign-in");
 }
 
@@ -78,10 +55,7 @@ export async function getPersona(): Promise<Persona> {
  * API variant: never redirects. Returns null when the caller must send 401.
  */
 export async function getApiPersona(): Promise<Persona | null> {
-  const sessionPersona = await getSessionPersona();
-  if (sessionPersona) return sessionPersona;
-  if (APP_PROFILE === "demo" && !AUTH_REQUIRED) return getDemoPersona();
-  return null;
+  return getSessionPersona();
 }
 
 async function buildScope(persona: Persona): Promise<Scope> {

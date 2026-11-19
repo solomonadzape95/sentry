@@ -316,7 +316,7 @@ export function MobileStockForm({
           type="checkbox"
           checked={forceOffline}
           onChange={(e) => setForceOffline(e.target.checked)}
-          className="h-4 w-4 accent-[#0f3b2c]"
+          className="h-4 w-4 accent-[#492415]"
         />
         <span className="flex items-center gap-1.5 text-[10px] text-muted">
           {forceOffline ? <CloudOff className="h-3 w-3 text-warn" /> : <Wifi className="h-3 w-3 text-ok" />}

@@ -16,15 +16,16 @@ npm run build && npm start
 
 Open:
 
-- Landing page: <http://localhost:3001>
-- Dashboard: <http://localhost:3001/dashboard>
-- Mobile: <http://localhost:3001/m>
-- If port 3001 is in use, use the port printed by Next.
+- Landing page: <http://localhost:3000>
+- Sign in: <http://localhost:3000/sign-in>
+- Dashboard after sign-in: <http://localhost:3000/dashboard>
+- Mobile: <http://localhost:3000/m>
+- If port 3000 is in use, use the port printed by Next.
 
 Check:
 
-- Persona is **Dr. Ngozi Adeyemi** (network authority) in the sidebar.
-- Gwagwalada PHC ACT shows **109 units**, **11 days** cover.
+- You are signed in as **Dr. Ngozi Adeyemi** (network authority); no account switcher exists.
+- Gwagwalada PHC ACT shows **110 units**, **11 days** cover.
 - General Hospital Abuja ACT shows **~1,010 units** transferable surplus.
 - No transfers exist in the pipeline.
 
@@ -36,9 +37,10 @@ If anything is stale, `npm run db:reset`.
 
 Open `/` first. Let the room see the product promise before the dashboard.
 
-- Headline: **Predict demand. Prevent stockouts. Protect care.**
+- Headline: **See the shortage. Before it happens.**
 - The live snapshot card: Gwagwalada PHC, 11 days, 156-unit transfer.
-- Then click **Open the live demo** (or navigate to `/dashboard`).
+- Then choose **Dr. Ngozi Adeyemi** on the sign-in page and sign in. The app opens
+  on `/dashboard`; signed-out visitors are always sent to sign-in first.
 
 Say:
 
@@ -47,7 +49,7 @@ Say:
 
 ## 2. The problem, in one screen (20s)
 
-Now on `/dashboard` — **Supply command centre**.
+Now on `/dashboard` — **Network overview**.
 
 Say:
 
@@ -58,14 +60,13 @@ Say:
 Point at:
 
 - **Facilities at risk:** 3 of 4.
-- **Predicted stockouts:** 3 within 14 days.
-- **Next best action:** Gwagwalada PHC runs out of ACT in 11 days; General Hospital
+- **Stockout risk lines:** 3 within 14 days.
+- **Next best move:** Gwagwalada PHC runs out of ACT in 11 days; General Hospital
   Abuja holds surplus above safe cover.
-- **Stockout radar:** ACT is critical because its projected cover is shorter than
+- **Risk horizon:** ACT is critical because its projected cover is shorter than
   its 14-day supplier lead time.
-- **Demand signals:** forecast demand is above the recent 28-day average; NCDC
-  outbreak data, a derived malaria index and real rainfall are shown as
-  explanatory signals, each labelled observed or derived.
+- **Forecast explorer:** demand is above the recent 28-day average; the full
+  forecast page shows the NCDC, malaria and rainfall signals behind it.
 
 ---
 
@@ -73,7 +74,7 @@ Point at:
 
 ### Predict
 
-Click **Review transfer** in the green strip.
+Click **Review transfer** in the next best move card.
 
 The draft shows:
 
@@ -121,7 +122,7 @@ Click **Network overview**.
 Point out:
 
 - The green next-best-action strip is gone.
-- ACT no longer appears in the stockout radar for Gwagwalada PHC.
+- ACT no longer appears in the risk horizon for Gwagwalada PHC.
 - Open `/facilities/fac_phc`: ACT cover has moved from 11 days to roughly 49 days.
 - The alert cleared automatically because the projection is live, not a stored warning.
 
@@ -228,9 +229,10 @@ Tap **Stock counts** on the mobile home.
 
 ### Facility scoping
 
-Switch to **Amina Yusuf** (inventory operator, Gwagwalada PHC) or **Emeka Nwosu**
-(CarePoint Pharmacy) and show that the mobile home, stock and actions follow the
-persona's facility.
+Sign out and sign in as **Amina Yusuf** (inventory operator, Gwagwalada PHC) or
+**Emeka Nwosu** (CarePoint Pharmacy) to show that the mobile home, stock and
+actions follow the account's facility scope. The sign-in page lists the demo
+accounts; the password is `sentry-demo-2026`.
 
 ---
 

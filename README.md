@@ -23,9 +23,10 @@ surplus stock is — before the shelf is empty.
 ### Landing and shell
 
 - Public landing page at `/` with a live network snapshot, product story and clear demo entry.
-- Dashboard at `/dashboard`, with a shared paper, sage and butter design language across web and mobile.
+- Authenticated network dashboard at `/dashboard` with a collapsible ink sidebar, warm paper surfaces, a live facility map, forecast explorer and risk horizon.
 - Invite-only Auth.js accounts: sign-in, password reset, invitation acceptance,
-  account security and capability-based facility scope. See
+  account security and capability-based facility scope. Every app route is
+  behind sign-in; the demo profile never bypasses it. See
   [`docs/AUTH_AND_ROLES.md`](docs/AUTH_AND_ROLES.md).
 
 ### Inventory foundation
@@ -78,7 +79,7 @@ surplus stock is — before the shelf is empty.
 - Camera barcode scanning with manual fallback and demo barcode labels.
 - Quick issue/receive with batch, expiry and FEFO.
 - Offline queue in IndexedDB; reconnect and sync with duplicate protection.
-- Role-aware demo personas and facility scoping.
+- Role-aware demo accounts and facility scoping.
 
 ---
 
@@ -109,14 +110,15 @@ Open:
 
 - Landing page: <http://localhost:3000>
 - Sign in: <http://localhost:3000/sign-in>
-- Dashboard: <http://localhost:3000/dashboard>
-- Mobile PWA: <http://localhost:3000/m>
+- Role home: <http://localhost:3000/home>
+- Network dashboard after sign-in: <http://localhost:3000/dashboard>
+- Mobile PWA after sign-in: <http://localhost:3000/m>
 
 Every seeded demo account uses `sentry-demo-2026` unless `DEMO_PASSWORD` is set.
 `AUTH_SECRET` is required by Auth.js; copy it from `web/.env.example` and generate
-one with `openssl rand -base64 32`. The default demo profile still allows the
-persona switcher; set `AUTH_REQUIRED=true` to enforce the real login wall while
-keeping the demo data and clock.
+one with `openssl rand -base64 32`. Sign-in is always enforced. The demo profile
+only keeps the fixed clock and simulated dataset; the sign-in page lists demo
+accounts as credential shortcuts, but the credentials still have to be submitted.
 
 If port 3000 is busy, Next prints the actual port. The landing page owns `/`; the dashboard is at `/dashboard`.
 
@@ -181,7 +183,7 @@ verified here.
 web/   Next.js 16 App Router · TypeScript · Tailwind v4 · Recharts
        Prisma + SQLite (Postgres-ready schema)
        Dashboard routes + mobile PWA + API route handlers
-       Demo personas via secure cookies (replace with Supabase Auth for a pilot)
+       Auth.js sessions with capability-scoped facility access
 
 ml/    Python 3.11 forecasting pipeline (uv)
        Open-Meteo weather → illustrative demand/inventory simulation →
@@ -207,7 +209,6 @@ change the answer immediately.
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /api/session` | Switch demo persona |
 | `POST /api/facility` | Set active facility scope |
 | `POST /api/stock/issue` | FEFO issue + consumption + audit |
 | `POST /api/stock/receive` | Create batch + receipt movement |
@@ -222,7 +223,7 @@ Versioned read API:
 | `GET /api/v1/health` | Liveness and database check |
 | `GET /api/v1/data-sources` | Source register and recent ingestion runs |
 | `GET /api/v1/disease-observations` | Observed/derived disease rows (`disease`, `from`, `to`, `limit`) |
-| `GET /api/v1/facilities` | Facilities scoped to the active persona |
+| `GET /api/v1/facilities` | Facilities scoped to the signed-in account |
 | `GET /api/v1/forecasts` | Forecast, intervals and metrics (`facilityId`, `medicineId`, `limit`) |
 
 Stock endpoints accept a `clientId` for idempotent mobile sync. Responses use
@@ -230,20 +231,23 @@ Stock endpoints accept a `clientId` for idempotent mobile sync. Responses use
 
 ---
 
-## Demo personas
+## Demo accounts
 
-Switch personas from the sidebar (or the mobile header on small screens).
+Sign in with any account below. Each role lands on its own home; there is no
+in-app persona switcher. The sign-in page lists the same accounts as shortcuts.
+Every account uses the demo password from `DEMO_PASSWORD` (`sentry-demo-2026` by
+default).
 
-| Persona | Role | Scope |
+| Account | Role | Scope |
 |---|---|---|
 | Dr. Ngozi Adeyemi | Network authority | All four facilities |
 | Amina Yusuf | Inventory operator | Gwagwalada PHC |
 | Dr. Chidi Okonkwo | Facility manager | General Hospital Abuja |
 | Dr. Bola Ajayi | Facility manager | Sunrise Hospital |
 | Emeka Nwosu | Facility manager | CarePoint Pharmacy |
-| Tunde Bakare | Supplier | Not exposed in the demo switcher; supplier portal is a pilot surface |
+| Tunde Bakare | Supplier | Supplier portal is a pilot surface |
 
-Personas are **not authentication**. See [DEMO.md](DEMO.md) for the presentation script.
+These are real Auth.js accounts, not a client-side persona switch. See [DEMO.md](DEMO.md) for the presentation script.
 
 ---
 

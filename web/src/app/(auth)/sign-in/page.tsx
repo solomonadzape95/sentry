@@ -9,6 +9,13 @@ import { SignInForm } from "@/components/auth/sign-in-form";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Sign in" };
 
+const DEMO_ROLE_ORDER: Record<string, number> = {
+  NETWORK_AUTHORITY: 0,
+  FACILITY_MANAGER: 1,
+  INVENTORY_OFFICER: 2,
+  SUPPLIER: 3,
+};
+
 const notices: Record<string, string> = {
   reset: "Your password has been reset. Sign in with your new password.",
   changed: "Your password has been changed. Sign in again on this device.",
@@ -34,11 +41,17 @@ export default async function SignInPage({
   const params = await searchParams;
   const demo = APP_PROFILE === "demo";
   const demoAccounts = demo
-    ? await prisma.user.findMany({
-        where: { status: "ACTIVE" },
-        select: { name: true, email: true, role: true, title: true },
-        orderBy: [{ role: "asc" }, { name: "asc" }],
-      })
+    ? (
+        await prisma.user.findMany({
+          where: { status: "ACTIVE" },
+          select: { name: true, email: true, role: true, title: true },
+          orderBy: { name: "asc" },
+        })
+      ).sort(
+        (a, b) =>
+          (DEMO_ROLE_ORDER[a.role] ?? 9) - (DEMO_ROLE_ORDER[b.role] ?? 9) ||
+          a.name.localeCompare(b.name),
+      )
     : [];
   const demoPassword = demo
     ? (process.env.DEMO_PASSWORD ?? "sentry-demo-2026")

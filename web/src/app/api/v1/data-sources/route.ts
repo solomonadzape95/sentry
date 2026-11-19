@@ -1,9 +1,12 @@
-import { apiOk } from "@/lib/api";
+import { apiOk, requireNetworkAuthority } from "@/lib/api";
 import { getDataProvenance } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const access = await requireNetworkAuthority();
+  if (!access.ok) return access.response;
+
   const { sources, runs } = await getDataProvenance();
   return apiOk(
     { sources, runs },

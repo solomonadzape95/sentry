@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
-import { FACILITY_COOKIE, getPersona } from "@/lib/session";
+import { FACILITY_COOKIE, getApiPersona } from "@/lib/session";
 
 const schema = z.object({ facilityId: z.string().min(1) });
 
@@ -12,7 +12,9 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid facility" }, { status: 400 });
   }
 
-  const persona = await getPersona();
+  const persona = await getApiPersona();
+  if (!persona) return Response.json({ error: "Sign in to continue" }, { status: 401 });
+
   const facility = await prisma.facility.findUnique({ where: { id: parsed.data.facilityId } });
   if (!facility) return Response.json({ error: "Facility not found" }, { status: 404 });
 

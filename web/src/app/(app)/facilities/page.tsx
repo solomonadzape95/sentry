@@ -18,6 +18,7 @@ import { buttonClass } from "@/components/ui/button";
 import { Stat } from "@/components/ui/stat";
 
 export const dynamic = "force-dynamic";
+export const metadata = { title: "Facilities" };
 
 export default async function FacilitiesPage() {
   const [scope, data] = await Promise.all([getScope(), getNetworkData()]);
@@ -105,7 +106,7 @@ export default async function FacilitiesPage() {
               <div className="px-4 py-3">
                 <p className="text-[9px] uppercase tracking-wide text-muted">At risk</p>
                 <p className={`tabular mt-0.5 text-sm font-semibold ${row.critical > 0 ? "text-danger" : row.atRisk.length > 0 ? "text-warn" : "text-ok"}`}>
-                  {row.atRisk.length} lines
+                  {row.atRisk.length} {row.atRisk.length === 1 ? "line" : "lines"}
                 </p>
               </div>
               <div className="px-4 py-3">

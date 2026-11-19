@@ -4,7 +4,7 @@ import { jsonError, requireApprover } from "@/lib/api";
 
 export async function POST(
   _request: Request,
-  ctx: RouteContext<"/api/transfers/[id]/approve">,
+  ctx: { params: Promise<{ id: string }> },
 ) {
   const { id } = await ctx.params;
   const transfer = await prisma.transferRequest.findUnique({

@@ -1,10 +1,13 @@
 import type { NextRequest } from "next/server";
 import { prisma } from "@/lib/db";
-import { apiOk, parseDate, parseLimit } from "@/lib/api";
+import { apiOk, parseDate, parseLimit, requireNetworkAuthority } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
+  const access = await requireNetworkAuthority();
+  if (!access.ok) return access.response;
+
   const params = request.nextUrl.searchParams;
   const disease = params.get("disease")?.toUpperCase() ?? null;
   const from = parseDate(params.get("from"));

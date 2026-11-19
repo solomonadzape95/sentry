@@ -1,128 +1,141 @@
-# Cheta brand and interface direction
+# Sentry design direction
 
-Cheta is Igbo for **to remember**. The product is the memory of the medicine shelf:
-a live record of what facilities hold and a forecast of what they will need before
-the shelf is empty.
+Sentry is Igbo-adjacent in spirit only: the product is the memory of the medicine
+shelf. The landing page and the application share one warm, editorial system.
 
-The landing page and the dashboard share one design language. This note records the
-rules so the rebrand stays coherent as the dashboard is rebuilt.
+This document replaces the earlier Cheta-era design notes. It describes the
+current code, not an aspirational palette.
 
-## 1. Type
+## 1. Brand idea
 
-| Role | Family | Usage |
+- **Editorial, not clinical.** Warm paper, ink and clay instead of hospital blue.
+- **A field instrument, not a generic admin template.** The map, the forecast and
+  the next move are the product.
+- **Calm under pressure.** One primary action, generous silence, no decorative
+  metrics.
+- **Honest by default.** Observed, derived and simulated data are labelled in the
+  interface.
+
+## 2. Type
+
+Satoshi is the only family. The display and interface faces are the same.
+
+| Role | Size | Use |
 |---|---|---|
-| Display | **Instrument Serif** (`font-display`) | Editorial headlines, large numbers, pull quotes. Weight 400, tight tracking. Italic for emphasis. |
-| Interface | **Instrument Sans** | Body copy, labels, tables, forms, navigation. |
-| Data | Instrument Sans `tabular` utility | Metrics, quantities, dates in tables. |
+| Page title | 32–44px, 500, `-0.045em` | One per page, sentence case, ending with a full stop where it reads naturally. |
+| Panel title | 14–17px, 500 | Card titles, the one thing the panel is about. |
+| Body | 11–13px | Descriptions, explanatory copy, table content. |
+| Label | 8–10px, 600, uppercase, `0.14em` | Field labels, chart axes, eyebrows. |
+| Number | 24–44px, 500, `-0.04em`, tabular | Metrics and forecast quantities. |
 
 Rules:
 
-- Headlines are sentences, not slogans in caps. Use a full stop where it reads well.
-- Do not bold the serif. Scale and spacing carry the hierarchy.
-- Labels are 9–10px, uppercase, `0.14em` tracking, muted ink.
-- Body copy sits at 12–15px with generous line height (1.7–1.8).
+- Do not bold the display face. Use scale and space.
+- Tables use tabular numerals.
+- Avoid more than two type sizes inside one small card.
 
-## 2. Colour
+## 3. Colour
 
 Defined in `web/src/app/globals.css` under `@theme`.
 
 | Token | Hex | Use |
 |---|---|---|
-| `paper` | `#f8f5ee` | Default page ground |
-| `cream` | `#eeece5` | Footer panel, soft inset surfaces |
-| `canvas` | `#f4f2ec` | Dashboard ground |
-| `surface` | `#fdfcf8` | Cards, forms |
-| `ink` | `#1c1c18` | Primary text, black CTA cards |
-| `body` | `#3a3931` | Body text |
-| `muted` / `stone` | `#6f6d64` | Secondary text |
-| `line` | `#e2ded2` | Hairlines and card borders |
-| `sage` | `#cee6cc` | Full-bleed brand section, header CTA |
-| `sky` / `sky-soft` / `sky-deep` | `#a6dff0` / `#e4f9fc` / `#75d3eb` | Platform and forecast sections |
-| `butter` / `butter-deep` | `#faedb4` / `#efd88e` | Primary CTA, product section, testimonials |
-| `mint` | `#cff4d3` | Coordination section |
-| `charcoal` | `#2c2c26` | Proof, trust surround, footer ground |
-| `brand` | `#2f4a35` | Dashboard primary actions and data series |
-| `ok` / `warn` / `danger` | `#2c6e49` / `#9a5a16` / `#a23a2c` | Semantic status |
+| `bone` / `paper` | `#d2cac7` | Page ground and landing base. |
+| `surface` | `#e3dcd7` | Standard cards on the bone ground. |
+| `panel` | `#ece6e1` | Popovers, inset controls, tooltips. |
+| `sand` | `#ccb7a3` | Warm emphasis, data bands, selected states. |
+| `clay` | `#8e775c` | Forecast lines, secondary data, watch states. |
+| `ink` | `#190f0a` | Primary text, dark cards, sidebar, primary actions. |
+| `body` | `#492415` | Strong body copy. |
+| `muted` | `#6c4833` | Supporting copy and labels. |
+| `line` | `#bcb1aa` | 1px hairlines. |
+| `ok` | `#3d5a3f` | Stable stock. |
+| `warn` | `#7a4a17` | High risk, expiry, approvals. |
+| `danger` | `#8b2f1f` | Critical stockout risk and destructive actions. |
 
-Keep large fields flat. Colour changes at section boundaries, not inside a block.
-Cards stay near-white on colour. Avoid gradients except inside artwork and the
-occasional radial glow on the dashboard.
+There is no teal, cool blue or mint in the application palette. Colour changes
+at section boundaries, not inside a small block. Large fields stay flat. Avoid
+gradients except the live map wash and the uncertainty band.
 
-## 3. Shape, texture and layout
+## 4. Shape and surface
 
-- **Square section edges.** Full-bleed colour blocks are the primary rhythm. No
-  rounded page containers.
-- **Small radii on UI only.** Cards and inputs use 8–14px. The landing product cards
-  use 12px; dashboard cards use 14px.
-- **Hairlines, not shadows.** Use 1px `line` borders. Reserve shadows for floating
-  product cards (diffuse, low opacity).
-- **Offset shadows for editorial cards.** Testimonials and case-study cards use a
-  6px hard ink shadow and a slight rotation.
-- **Print grain.** `print-grain`, `riso-speckle` and `dotfield` utilities add the
-  risograph texture. Use them on large colour fields and artwork, never on form controls.
-- **Asymmetry.** The hero uses a half-width artwork plate with a rectangular notch
-  cut from its top-left. Product cards overlap panels and each other by a few pixels.
-- **Generous silence.** Sections breathe. Do not fill every quadrant.
+- Cards: `16px` radius, 1px `line` border, `surface` fill, no decorative shadow.
+- Inset controls and popovers: `panel`, `12–14px` radius.
+- Actions: pills. Primary is ink/bone; secondary is a hairline pill; the primary
+  page action adds a circular arrow chip, carried over from the landing page.
+- Status pills are annotations, not buttons. Keep them small and tinted.
+- Use hairlines and space instead of nested tinted boxes.
+- A dark card is a deliberate contrast moment, not a default. The network
+  dashboard uses exactly one for the next best move.
 
-## 4. Placeholder artwork
+## 5. Shell
 
-`web/src/components/landing/artwork.tsx` renders four procedural plates:
+- Desktop sidebar: ink ground, `248px` expanded, `76px` collapsed.
+- The collapsed state is persisted in the `sentry_sidebar` cookie.
+- Active navigation is a full bone pill with ink text and a small dot.
+- Section labels are uppercase micro-labels; collapsed sections become hairlines.
+- Bottom user block opens `/account`.
+- Top bar: 60px, sticky, translucent bone, breadcrumb on the left, utilities on
+  the right.
+- Mobile navigation is a left drawer with a backdrop and a close button. There
+  are no horizontal navigation chips.
+- One-line footer only. Do not repeat the full data disclaimer on every page.
 
-| Variant | Used on | Composition |
-|---|---|---|
-| `meadow` | Hero, proof card | Sky, cloud bank, green hills, dark treeline, stream |
-| `sky` | Platform section | Deep sky and textured cloud bank |
-| `shore` | Closing CTA | Aerial water, foam bands, floating paper |
-| `forest` | Footer | Dark forest edge, mist, water strip |
+## 6. Network dashboard
 
-Each plate is a labelled placeholder. To replace with final imagery:
+Composition, top to bottom:
 
-1. Add the asset to `web/public/art/` (e.g. `hero.jpg`, 2400×3000; `shore.jpg`,
-   2400×1400; `forest.jpg`, 2800×1200).
-2. In `Artwork`, replace the matching `<svg>` with
-   `<Image src="/art/hero.jpg" alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />`.
-3. Keep the `print-grain` layers on top so photography keeps the printed feel.
-4. Remove the “Placeholder artwork” labels in `page.tsx` and `site-footer.tsx`.
+1. Page header with one primary action.
+2. Four-metric strip divided by hairlines.
+3. Live facility map (8 columns) with the next best move and pipeline/assurance
+   (4 columns).
+4. Forecast explorer (7 columns) and risk horizon (5 columns).
 
-The artwork is decorative (`aria-hidden`); never put essential copy inside it.
+The map and risk horizon share a selection. Clicking a facility filters the risk
+rows and loads the first relevant forecast. Clicking a risk row focuses that
+facility and medicine in the forecast explorer. The next move can reveal its
+route on the map.
 
-## 5. Component patterns
+Do not add a separate alerts card, a demand-signals card, repeated facility
+tiles, or a second transfer list. The page should fit in one decision loop:
+**pressure → forecast → action**.
 
-- **Buttons:** flat rectangles. Butter for primary on light, ink for primary on
-  colour/dark, sage for the header CTA. No pill buttons on the landing page.
-- **Status pills:** tinted soft backgrounds (`ok-soft`, `warn-soft`, `danger-soft`)
-  with 9px text. Keep them small; they are annotations, not buttons.
-- **Cards:** bordered, 12–14px radius, white. A small label above a serif number is
-  the standard metric pattern.
-- **Charts:** ink line for actuals, `sky-ink` dashed line for forecast, `sky` 80%
-  band, thin dashed gridlines, no chart chrome.
+## 7. Facility and Today
 
-## 6. Dashboard carry-over
+- Facilities: forecast explorer and coverage in the first row; the medicine
+  register spans the full width underneath.
+- Today: work queue and audit trail; approvals and expiry appear only when
+  something is actually waiting. If both are clear, use one compact all-clear
+  strip instead of two empty cards.
+- Remove metadata cards that repeat the page header.
 
-Already applied:
+## 8. Charts and map
 
-- Global palette, warm canvas, charcoal sidebar and butter accents.
-- Instrument Sans/Serif and the serif page titles.
-- New wordmark and app icons.
-- 14px card radius and serif stat values.
+- Forecast: ink actual line, clay dashed forecast, sand 80% band, dotted
+  horizontal grid, no chart border, no vertical axis line. Always show a legend.
+- Risk horizon: dot plot. Every at-risk line gets a row, banded at 7, 14 and 30
+  days. Dots are keyboard-focusable and clickable.
+- Signals: small warm line/area charts, never the default Recharts look.
+- Map: Leaflet with Esri World Light Gray tiles, warmed through CSS to sit on the
+  bone ground. Use custom div-icon markers, custom zoom controls, a dashed route
+  and visible OSM/Esri attribution. Facility coordinates come from the seeded
+  facility records; the basemap is a live external service, so markers and
+  routes must remain usable if tiles fail.
+- Never rely on hover alone for information. Selected states have visible text.
 
-Next passes:
+## 9. Motion and accessibility
 
-1. Rework charts and the facility map to the Cheta chart palette (ink, sky, sage,
-   butter) and remove the last cool teal fills.
-2. Flatten the remaining dense cards: fewer shadows, hairline dividers, more space
-   between metric and label.
-3. Give the sidebar section labels and the demo-network block the editorial label
-   treatment; reduce the number of nested tinted boxes.
-4. Carry the header CTA language into empty states and page actions (one primary
-   action, flat, clear).
-5. Audit mobile screens for the same radius, label and status-pill rules.
+- Motion is functional: sidebar width, drawer slide, marker selection, chart
+  draw-in, hover crosshair.
+- Respect `prefers-reduced-motion`.
+- Charts have text summaries or accessible labels; markers and rows are real
+  buttons or focusable elements.
+- Every icon-only button has an `aria-label`.
+- The app is always behind sign-in; the landing page remains public.
 
-## 7. Voice
+## 10. Voice
 
 - Short declarative sentences. Concrete numbers.
-- Name the limitation before the reader finds it. “Simulated records”, “public
-  disease signals”, “not real-world impact”.
-- Never claim clinical validation, diagnosis, or that the demo proves stockout
-  reduction.
 - Prefer “shelf”, “facility”, “batch”, “cover” over platform jargon.
+- Name the limitation before the user finds it.
+- Never claim clinical validation or that the demo proves real-world impact.

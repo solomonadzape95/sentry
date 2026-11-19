@@ -34,7 +34,7 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          href="/dashboard"
+          href="/home"
           className="group ml-6 hidden h-[50px] items-center gap-4 rounded-full bg-ink/80 pl-6 pr-1.5 text-[13px] font-medium text-bone backdrop-blur-sm transition-colors hover:bg-ink md:inline-flex"
         >
           Dashboard
@@ -62,7 +62,7 @@ export function SiteHeader() {
               ))}
             </nav>
             <Link
-              href="/dashboard"
+              href="/home"
               className="mt-5 flex h-12 items-center justify-between rounded-full bg-ink pl-5 pr-1.5 text-[12px] font-medium text-bone"
             >
               Go to dashboard

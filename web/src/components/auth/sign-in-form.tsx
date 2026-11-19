@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { ArrowRight, FlaskConical } from "lucide-react";
 import { ROLE_LABEL } from "@/lib/config";
 import { Field, inputClass } from "@/components/ui/field";
+import { cn } from "@/lib/utils";
 import { FormFeedback, SubmitButton } from "@/components/auth/form-parts";
 import { signInAction, type FormState } from "@/app/(auth)/actions";
 
@@ -83,7 +84,10 @@ export function SignInForm({
                   setEmail(account.email);
                   setPassword(demoPassword);
                 }}
-                className="flex items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-surface"
+                className={cn(
+                  "flex items-center justify-between gap-3 rounded-full px-2.5 py-1.5 text-left transition-colors hover:bg-panel",
+                  email === account.email && "bg-panel",
+                )}
               >
                 <span className="min-w-0">
                   <span className="block truncate text-[11px] font-medium text-ink">

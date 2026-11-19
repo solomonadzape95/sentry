@@ -25,7 +25,7 @@ export function BarcodeLabel({
         width: 1.8,
         margin: 6,
         background: "#ffffff",
-        lineColor: "#10241e",
+        lineColor: "#190f0a",
       });
     } catch {
       // Ignore invalid demo barcodes; the numeric value is still shown.

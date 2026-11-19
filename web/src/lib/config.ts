@@ -15,14 +15,6 @@ export const APP_DESCRIPTION =
  */
 export const APP_PROFILE = process.env.APP_PROFILE ?? "demo";
 
-/**
- * Authentication is enforced by default outside the demo profile. Set
- * AUTH_REQUIRED=true to keep the demo dataset and clock but require sign-in.
- */
-export const AUTH_REQUIRED = process.env.AUTH_REQUIRED
-  ? process.env.AUTH_REQUIRED === "true"
-  : APP_PROFILE !== "demo";
-
 const PINNED_TODAY = process.env.APP_TODAY
   ? new Date(process.env.APP_TODAY)
   : new Date("2026-11-17T00:00:00.000Z");
@@ -97,10 +89,10 @@ export const TRANSFER_STATUS_LABEL: Record<string, string> = {
 
 export const NAV_SECTIONS = [
   {
-    label: "Command",
+    label: "Network",
     items: [
       { href: "/today", label: "Today", icon: "today" },
-      { href: "/dashboard", label: "Network overview", icon: "network" },
+      { href: "/dashboard", label: "Overview", icon: "network" },
       { href: "/facilities", label: "Facilities", icon: "building" },
     ],
   },
@@ -113,15 +105,14 @@ export const NAV_SECTIONS = [
     ],
   },
   {
-    label: "Intelligence",
+    label: "Assurance",
     items: [
       { href: "/model", label: "Model performance", icon: "activity" },
       { href: "/data", label: "Data provenance", icon: "database" },
-      { href: "/admin", label: "Administration", icon: "settings" },
     ],
   },
   {
-    label: "Account",
-    items: [{ href: "/account", label: "Account & security", icon: "user" }],
+    label: "Admin",
+    items: [{ href: "/admin", label: "Administration", icon: "settings" }],
   },
 ] as const;

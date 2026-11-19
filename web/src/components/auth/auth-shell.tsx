@@ -28,7 +28,7 @@ export function AuthShell({
           }}
         />
         <div className="relative">
-          <Logo theme="dark" mark={false} />
+          <Logo theme="dark" />
           <p className="mt-16 max-w-md text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
             {APP_TAGLINE}
           </p>

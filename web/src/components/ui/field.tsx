@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "h-9 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-sm outline-none transition-colors placeholder:text-muted/60 focus:border-brand/50 focus:ring-2 focus:ring-brand/10";
+  "h-10 w-full rounded-xl border border-line bg-panel/70 px-3.5 text-[13px] text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink/30 focus:ring-2 focus:ring-ink/10";
 
 export const labelClass = "mb-1 block text-[11px] font-medium text-muted";
 

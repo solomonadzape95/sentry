@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/config";
 import { PwaRegister } from "@/components/pwa-register";
 

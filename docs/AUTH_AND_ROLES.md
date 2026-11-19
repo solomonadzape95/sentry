@@ -15,10 +15,19 @@ not the source of truth for authorisation. `FacilityMember.role` is authoritativ
 for facility-scoped actions. Network authority and supplier accounts have no
 facility membership.
 
-The demo persona cookie is only honoured when `APP_PROFILE=demo` and
-`AUTH_REQUIRED` is not true. In any other configuration the app requires an
-Auth.js session. Use `AUTH_REQUIRED=true` with `APP_PROFILE=demo` to test the real
-login wall against the demo dataset.
+The application is always behind Auth.js. `APP_PROFILE=demo` only keeps the
+fixed demo clock and the simulated dataset; it never bypasses sign-in. The old
+demo persona cookie, the persona switcher and `/api/session` have been removed.
+
+Every app route is checked twice:
+
+1. `proxy.ts` rejects requests without a session cookie and redirects to
+   `/sign-in?next=…`.
+2. `getPersona()` re-reads the user from the database on every request and
+   rejects suspended users or a stale session epoch.
+
+API routes return `401` instead of redirecting. `/api/v1/health` is the only
+public data endpoint. The landing page remains public.
 
 ## Groups
 
@@ -78,8 +87,9 @@ Invite-only. There is no public sign-up.
 - `/account` — profile, password change, sign out all devices.
 - `/admin/users` — invite, suspend and change roles (network authority only).
 
-Auth.js v5 with the Prisma adapter and JWT sessions. The JWT carries the user id,
-role and a session epoch. Every server request re-reads the user from the database
+Auth.js v5 with the Prisma adapter and JWT sessions. Demo accounts are listed on
+the sign-in screen as credential shortcuts, but the user still has to submit the
+form. The JWT carries the user id, role and a session epoch. Every server request re-reads the user from the database
 and rejects suspended users or a stale epoch, so suspension, password changes and
 role changes revoke access immediately.
 
@@ -97,11 +107,13 @@ One application, three role homes, not four separate apps.
 - **Facility manager — `/facilities/[id]`** is facility health plus an approvals
   inbox: dispatch requests, receipts in transit, critical alerts, expiry exposure,
   staff activity and reporting.
-- **Network authority — `/dashboard`** is the command centre: network risk map,
-  stockout radar, surplus-to-shortage opportunities, transfer pipeline, model and
-  data assurance, and the admin console.
+- **Network authority — `/dashboard`** is the command centre: a live facility map,
+  the next best move, the forecast explorer, the risk horizon, pipeline status and
+  model/data assurance. `/facilities`, `/model`, `/data` and `/admin` are
+  drill-downs, not separate dashboards.
 - **Supplier — `/supplier`** is a deferred stub: orders only, no facility stock or
   consumption data.
 
-Login redirects through `/home`, which resolves to the role home. Navigation is
-derived from capabilities, not a separate hard-coded map.
+Login redirects through `/home`, which resolves to the role home. All landing and
+footer dashboard links point at `/home`, so a signed-in user lands in the right
+place. Navigation is derived from capabilities, not a separate hard-coded map.

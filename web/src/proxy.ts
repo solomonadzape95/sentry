@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { AUTH_REQUIRED } from "@/lib/config";
 
 const PROTECTED_PREFIXES = [
   "/home",
@@ -34,8 +33,6 @@ function hasSessionCookie(request: NextRequest): boolean {
  * forged. Next.js 16 calls this file `proxy.ts` (formerly middleware).
  */
 export function proxy(request: NextRequest) {
-  if (!AUTH_REQUIRED) return NextResponse.next();
-
   const path = request.nextUrl.pathname;
   const protectedRoute = PROTECTED_PREFIXES.some(
     (prefix) => path === prefix || path.startsWith(`${prefix}/`),

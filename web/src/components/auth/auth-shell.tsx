@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ShieldCheck, Smartphone, TrendingUp } from "lucide-react";
-import { APP_NAME, APP_TAGLINE } from "@/lib/config";
+import Image from "next/image";
+import { APP_NAME } from "@/lib/config";
 import { Logo } from "@/components/logo";
 
 export function AuthShell({
@@ -18,67 +18,22 @@ export function AuthShell({
 }) {
   return (
     <div className="min-h-dvh bg-paper lg:grid lg:grid-cols-[1.02fr_0.98fr]">
-      <aside className="relative hidden overflow-hidden bg-brand-deep p-10 text-bone lg:flex lg:flex-col lg:justify-between xl:p-14">
-        <div
+      <aside className="relative hidden overflow-hidden bg-ink lg:block">
+        <Image
+          src="/sentry/hero-desktop.jpg"
+          alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-70"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 18% 12%, rgba(204,183,163,0.24), transparent 62%), radial-gradient(ellipse 55% 45% at 92% 88%, rgba(142,119,92,0.28), transparent 66%)",
-          }}
+          fill
+          priority
+          sizes="52vw"
+          className="object-cover object-[62%_center]"
         />
-        <div className="relative">
+        <div className="absolute inset-0 bg-ink/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/5 to-ink/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-transparent" />
+        <div className="print-grain opacity-20" />
+        <div className="relative flex h-full flex-col p-10 xl:p-14">
           <Logo theme="dark" />
-          <p className="mt-16 max-w-md text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
-            {APP_TAGLINE}
-          </p>
-          <h2 className="mt-4 max-w-lg text-[42px] font-medium leading-[1.02] tracking-[-0.045em] text-bone xl:text-[52px]">
-            The shortage is visible before the shelf is empty.
-          </h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-bone/65">
-            Forecast demand, protect batch expiry and move verified surplus between
-            facilities, with every decision attributable to a person.
-          </p>
-
-          <div className="mt-12 grid max-w-md gap-4">
-            {[
-              {
-                icon: TrendingUp,
-                title: "Forecast before the gap",
-                body: "Thirty-day demand curves with uncertainty, stockout dates and reorder gaps.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Two-party stock control",
-                body: "The sending facility dispatches; the receiving facility confirms. Every step audited.",
-              },
-              {
-                icon: Smartphone,
-                title: "Works on the ward round",
-                body: "Mobile issue, receive and count with an offline queue that syncs when the signal returns.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="flex gap-3.5">
-                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-bone/15 bg-bone/[0.06]">
-                    <Icon className="h-4 w-4 text-sand" />
-                  </span>
-                  <div>
-                    <p className="text-[13px] font-medium text-bone">{item.title}</p>
-                    <p className="mt-1 text-[12px] leading-relaxed text-bone/50">{item.body}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="relative mt-12 border-t border-bone/10 pt-5">
-          <p className="text-[10px] leading-relaxed text-bone/35">
-            {APP_NAME} demo build. Facility inventory and consumption are simulated.
-            Disease signals mix real NCDC reports with derived indices.
-          </p>
         </div>
       </aside>
 

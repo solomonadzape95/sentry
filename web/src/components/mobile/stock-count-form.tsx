@@ -2,7 +2,8 @@
 
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ClipboardCheck, Loader2, Search } from "lucide-react";
+import { ClipboardCheck, Search } from "lucide-react";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
 
@@ -192,7 +193,7 @@ export function StockCountForm({
       ) : null}
 
       <Button type="submit" size="lg" className="w-full" disabled={busy || counted === ""}>
-        {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <ClipboardCheck className="h-4 w-4" />}
+        {busy ? <WingSpinner size="sm" label="Working" /> : <ClipboardCheck className="h-4 w-4" />}
         Record physical count
       </Button>
       <p className="pb-2 text-center text-[9px] leading-relaxed text-muted">

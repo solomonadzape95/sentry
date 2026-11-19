@@ -12,6 +12,7 @@ import {
 import { formatDays, formatNumber, formatShortDate } from "@/lib/format";
 import { ActionLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import type { NextMove, TransferPipeline } from "@/components/dashboard/types";
 
 export function NextMoveCard({
@@ -63,10 +64,9 @@ export function NextMoveCard({
           <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-sand">
             Next best move
           </p>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-bone/15 bg-bone/[0.06] px-2 py-0.5 text-[8.5px] font-medium text-bone/65">
-            <span className="h-1 w-1 rounded-full bg-sand" />
+          <Badge className="border-0 bg-bone/10 text-bone/70 ring-0" dot>
             Needs approval
-          </span>
+          </Badge>
         </div>
 
         <p className="mt-4 font-display text-[38px] leading-[0.9] tracking-[-0.05em] text-bone">

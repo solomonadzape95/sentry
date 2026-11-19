@@ -28,7 +28,7 @@ export function AssuranceCard({
       </div>
 
       <div className="mt-3 space-y-2 border-t border-line pt-3 text-[9.5px]">
-        <Row label="Model" value={model.toLowerCase().replace("_", " ")} />
+        <Row label="Model" value={model === "XGBOOST" ? "XGBoost" : model.toLowerCase().replace("_", " ")} />
         <Row label="Held-out WAPE" value={`${(wape * 100).toFixed(1)}%`} />
         <Row label="Forecast lines" value={String(seriesCount)} />
         <Row label="Latest NCDC" value={latestNcdc} />
@@ -50,7 +50,7 @@ function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between gap-3">
       <span className="text-muted">{label}</span>
-      <span className="tabular max-w-[120px] truncate text-right font-medium capitalize text-ink">
+      <span className="tabular max-w-[120px] truncate text-right font-medium text-ink">
         {value}
       </span>
     </div>

@@ -4,6 +4,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import { APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/config";
+import { Toaster } from "sonner";
 import { PwaRegister } from "@/components/pwa-register";
 
 const satoshi = localFont({
@@ -53,6 +54,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-dvh">
         <PwaRegister />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "#ece6e1",
+              color: "#190f0a",
+              border: "1px solid #bcb1aa",
+              borderRadius: "12px",
+              fontSize: "12px",
+            },
+          }}
+        />
         {children}
       </body>
     </html>

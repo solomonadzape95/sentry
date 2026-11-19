@@ -2,8 +2,11 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Loader2, Truck } from "lucide-react";
+import { Check, Truck } from "lucide-react";
+import { toast } from "sonner";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { TRANSFER_STATUS_LABEL } from "@/lib/config";
 
 export function TransferActions({
@@ -27,9 +30,12 @@ export function TransferActions({
       const res = await fetch(`/api/transfers/${id}/${kind}`, { method: "POST" });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Action failed");
+      toast.success(kind === "approve" ? "Transfer approved and dispatched" : "Receipt confirmed");
       startTransition(() => router.refresh());
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Action failed");
+      const message = err instanceof Error ? err.message : "Action failed";
+      setError(message);
+      toast.error(message);
     } finally {
       setBusy(null);
     }
@@ -46,20 +52,20 @@ export function TransferActions({
       <div className="flex flex-wrap items-center gap-2">
         {status === "PENDING_APPROVAL" || status === "RECOMMENDED" ? (
           <Button size="sm" onClick={() => act("approve")} disabled={busy !== null}>
-            {busy === "approve" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
+            {busy === "approve" ? <WingSpinner size="xs" label="Approving" /> : <Check className="h-3.5 w-3.5" />}
             Approve & dispatch
           </Button>
         ) : null}
         {status === "IN_TRANSIT" ? (
           <Button size="sm" onClick={() => act("receive")} disabled={busy !== null}>
-            {busy === "receive" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Truck className="h-3.5 w-3.5" />}
+            {busy === "receive" ? <WingSpinner size="xs" label="Receiving" /> : <Truck className="h-3.5 w-3.5" />}
             Confirm receipt
           </Button>
         ) : null}
         {status === "COMPLETED" ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-ok-soft px-2 py-0.5 text-[10px] font-medium text-ok">
-            <Check className="h-3 w-3" /> {TRANSFER_STATUS_LABEL[status]}
-          </span>
+          <Badge tone="success" dot>
+            {TRANSFER_STATUS_LABEL[status]}
+          </Badge>
         ) : null}
       </div>
       {error ? <p className="mt-1.5 text-[10px] font-medium text-danger">{error}</p> : null}

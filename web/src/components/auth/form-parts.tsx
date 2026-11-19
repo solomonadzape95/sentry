@@ -1,7 +1,8 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { WingSpinner } from "@/components/ui/loader";
 import { buttonClass } from "@/components/ui/button";
 import type { FormState } from "@/app/(auth)/actions";
 
@@ -21,7 +22,7 @@ export function SubmitButton({
       disabled={pending}
       className={buttonClass({ size: "lg", className: `w-full ${className ?? ""}` })}
     >
-      {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+      {pending ? <WingSpinner size="sm" label="Working" /> : null}
       {pending ? pendingLabel : children}
     </button>
   );

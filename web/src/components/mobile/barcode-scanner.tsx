@@ -7,12 +7,12 @@ import {
   Camera,
   CameraOff,
   Check,
-  Loader2,
   Package,
   ScanLine,
   Search,
   X,
 } from "lucide-react";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import { BarcodeLabel } from "@/components/mobile/barcode-label";
 import { enqueue } from "@/lib/offline";
@@ -264,7 +264,7 @@ export function BarcodeScanner({
                 />
               </label>
               <Button type="button" onClick={quickIssue} disabled={busy}>
-                {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Package className="h-4 w-4" />}
+                {busy ? <WingSpinner size="sm" label="Working" /> : <Package className="h-4 w-4" />}
                 Issue now
               </Button>
             </div>

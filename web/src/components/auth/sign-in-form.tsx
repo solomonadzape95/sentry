@@ -5,6 +5,7 @@ import { ArrowRight, FlaskConical } from "lucide-react";
 import { ROLE_LABEL } from "@/lib/config";
 import { Field, inputClass } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
+import { Avatar } from "@/components/ui/avatar";
 import { FormFeedback, SubmitButton } from "@/components/auth/form-parts";
 import { signInAction, type FormState } from "@/app/(auth)/actions";
 
@@ -89,7 +90,8 @@ export function SignInForm({
                   email === account.email && "bg-panel",
                 )}
               >
-                <span className="min-w-0">
+                <Avatar name={account.name} className="h-7 w-7 shrink-0" />
+                <span className="min-w-0 flex-1">
                   <span className="block truncate text-[11px] font-medium text-ink">
                     {account.name}
                   </span>

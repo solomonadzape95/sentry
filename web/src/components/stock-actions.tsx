@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowDownLeft, ArrowUpRight, Loader2, X } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, X } from "lucide-react";
+import { toast } from "sonner";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
 import { DEMO_TODAY } from "@/lib/config";
@@ -38,21 +40,13 @@ export function StockActions({
   const [supplierId, setSupplierId] = useState(suppliers[0]?.id ?? "");
   const [unitCost, setUnitCost] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [, startTransition] = useTransition();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!success) return;
-    const timer = setTimeout(() => setSuccess(null), 4000);
-    return () => clearTimeout(timer);
-  }, [success]);
-
   function open(next: "issue" | "receive") {
     setMode(next);
     setError(null);
-    setSuccess(null);
     setQuantity("");
     setBatchNumber(next === "receive" ? `BATCH-${Date.now().toString().slice(-6)}` : "");
     setExpiryDate("");
@@ -90,7 +84,7 @@ export function StockActions({
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Request failed");
       const med = medicines.find((m) => m.id === medicineId);
-      setSuccess(
+      toast.success(
         mode === "issue"
           ? `${quantity} ${med?.unit ?? "unit"}s issued. Stock projection updated.`
           : `${quantity} ${med?.unit ?? "unit"}s received into ${batchNumber}.`,
@@ -98,7 +92,9 @@ export function StockActions({
       setMode(null);
       startTransition(() => router.refresh());
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Request failed");
+      const message = err instanceof Error ? err.message : "Request failed";
+      setError(message);
+      toast.error(message);
     } finally {
       setBusy(false);
     }
@@ -122,12 +118,6 @@ export function StockActions({
           <ArrowDownLeft className="h-3.5 w-3.5" /> Receive stock
         </Button>
       </div>
-
-      {success ? (
-        <div className="fixed bottom-20 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-xl bg-brand-dark px-4 py-3 text-xs font-medium text-white shadow-xl lg:bottom-8">
-          {success}
-        </div>
-      ) : null}
 
       {mode ? (
         <div
@@ -262,7 +252,7 @@ export function StockActions({
                   Cancel
                 </Button>
                 <Button type="submit" size="sm" disabled={busy || !quantity}>
-                  {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
+                  <span className="grid h-3.5 w-3.5 shrink-0 place-items-center">{busy ? <WingSpinner size="xs" label="Saving stock movement" /> : null}</span>
                   {mode === "issue" ? "Confirm issue" : "Confirm receipt"}
                 </Button>
               </div>

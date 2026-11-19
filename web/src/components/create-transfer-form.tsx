@@ -2,7 +2,9 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { toast } from "sonner";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
 
@@ -51,12 +53,15 @@ export function CreateTransferForm({
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Could not create transfer");
+      toast.success("Transfer request created");
       startTransition(() => {
         router.push("/transfers#pipeline");
         router.refresh();
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not create transfer");
+      const message = err instanceof Error ? err.message : "Could not create transfer";
+      setError(message);
+      toast.error(message);
     } finally {
       setBusy(false);
     }
@@ -92,7 +97,7 @@ export function CreateTransferForm({
         <p className="rounded-lg bg-danger-soft px-3 py-2 text-[11px] font-medium text-danger">{error}</p>
       ) : null}
       <Button type="submit" size="md" disabled={busy || !qty} className="w-full">
-        {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
+        {busy ? <WingSpinner size="sm" label="Creating transfer" /> : <ArrowRight className="h-4 w-4" />}
         Create transfer request
       </Button>
       <p className="text-center text-[9px] text-muted">

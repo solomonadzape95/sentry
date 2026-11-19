@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
+import { WingSpinner } from "@/components/ui/loader";
 
 export function ForecastControls({
   facilities,
@@ -27,7 +28,7 @@ export function ForecastControls({
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {pending ? <Loader2 className="h-3.5 w-3.5 animate-spin text-muted" /> : null}
+      <span className="grid h-3.5 w-3.5 shrink-0 place-items-center">{pending ? <WingSpinner size="xs" label="Updating forecast" className="text-muted" /> : null}</span>
       <label className={cn("inline-flex h-9 items-center gap-2 rounded-full border border-line bg-panel px-3 text-[10px] shadow-none")}>
         <span className="text-[8px] font-medium uppercase tracking-[0.1em] text-muted">Facility</span>
         <select

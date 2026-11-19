@@ -1,11 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeftRight,
   ArrowRight,
-  Check,
   CheckCircle2,
   Clock3,
-  Package,
   ShieldCheck,
 } from "lucide-react";
 import { DEMO_TODAY, TRANSFER_STATUS_LABEL } from "@/lib/config";
@@ -18,12 +17,13 @@ import {
 import { getNetworkData, getTransfers } from "@/lib/queries";
 import { getScope } from "@/lib/session";
 import { PageHeader } from "@/components/ui/page-header";
-import { Card, CardBody, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { Badge, RiskBadge } from "@/components/ui/badge";
 import { buttonClass } from "@/components/ui/button";
 import { CreateTransferForm } from "@/components/create-transfer-form";
 import { TransferActions } from "@/components/transfer-actions";
 import { EmptyState } from "@/components/ui/page-header";
+import { MetricStrip } from "@/components/ui/stat";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Transfers" };
@@ -221,213 +221,248 @@ export default async function TransfersPage({
         </Card>
       ) : null}
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-        <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">Pending approval</p>
-          <p className="tabular mt-2 text-[28px] font-semibold leading-none text-warn">{pending.length}</p>
-          <p className="mt-2 text-xs text-muted">Awaiting authorised sign-off</p>
-        </div>
-        <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">In transit</p>
-          <p className="tabular mt-2 text-[28px] font-semibold leading-none text-info">{inTransit.length}</p>
-          <p className="mt-2 text-xs text-muted">Dispatched, not yet received</p>
-        </div>
-        <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">Completed</p>
-          <p className="tabular mt-2 text-[28px] font-semibold leading-none text-ok">{completed.length}</p>
-          <p className="mt-2 text-xs text-muted">Stock received and reconciled</p>
-        </div>
-        <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">Units moved</p>
-          <p className="tabular mt-2 text-[28px] font-semibold leading-none text-ink">{formatNumber(unitsMoved)}</p>
-          <p className="mt-2 text-xs text-muted">Across completed transfers</p>
-        </div>
-      </div>
+      <MetricStrip
+        className="mb-5"
+        items={[
+          {
+            label: "Pending approval",
+            value: pending.length,
+            sub: "Awaiting authorised sign-off",
+            tone: pending.length > 0 ? "warning" : "default",
+          },
+          {
+            label: "In transit",
+            value: inTransit.length,
+            sub: "Dispatched, not yet received",
+          },
+          {
+            label: "Completed",
+            value: completed.length,
+            sub: "Stock received and reconciled",
+            tone: completed.length > 0 ? "success" : "default",
+          },
+          {
+            label: "Units moved",
+            value: formatNumber(unitsMoved),
+            sub: "Across completed transfers",
+          },
+        ]}
+      />
 
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.55fr)_minmax(340px,1fr)]">
-        <div className="space-y-5" id="pipeline">
-          <Card>
-            <CardHeader
-              title="Transfer pipeline"
-              subtitle="Every movement is batch-level and reversible only through a new audited movement"
-              action={<Badge tone="neutral">{transfers.length} total</Badge>}
-            />
-            <div className="divide-y divide-line">
-              {transfers.map((transfer) => {
-                const step = transfer.status === "COMPLETED" ? 3 : transfer.status === "IN_TRANSIT" || transfer.status === "APPROVED" ? 2 : transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED" ? 1 : 0;
-                return (
-                  <div key={transfer.id} id={`transfer-${transfer.id}`} className="p-5">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <p className="font-mono text-[10px] font-medium text-muted">{transfer.reference}</p>
-                          <Badge tone={statusTone[transfer.status] ?? "neutral"}>
-                            {TRANSFER_STATUS_LABEL[transfer.status] ?? transfer.status}
-                          </Badge>
-                        </div>
-                        <p className="mt-1 text-sm font-semibold text-ink">
-                          {transfer.medicine.genericName} · {formatNumber(transfer.quantity)} {transfer.medicine.unit}s
-                        </p>
-                        <p className="mt-0.5 text-[11px] text-muted">
-                          {transfer.fromFacility.shortName} → {transfer.toFacility.shortName}
-                        </p>
-                      </div>
-                      <div className="text-right text-[10px] text-muted">
-                        <p>Created {formatShortDate(transfer.createdAt)}</p>
-                        {transfer.completedAt ? <p>Received {formatShortDate(transfer.completedAt)}</p> : null}
-                      </div>
+      <section className="mb-5">
+        <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-muted">
+              Coordination
+            </p>
+            <h2 className="mt-1 text-[19px] font-medium tracking-[-0.03em] text-ink">
+              Move surplus to shortage.
+            </h2>
+            <p className="mt-1 text-[11px] text-muted">
+              Live matches between verified surplus and projected shortage.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-[8.5px] uppercase tracking-[0.1em] text-muted">Scroll →</span>
+            <Badge tone="brand">{opportunities.length} matches</Badge>
+          </div>
+        </div>
+
+        {opportunities.length > 0 ? (
+          <div
+            className="scrollbar-thin -mx-1 flex snap-x gap-3 overflow-x-auto px-1 pb-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+            tabIndex={0}
+            aria-label="Transfer opportunities. Scroll horizontally for more."
+          >
+            {opportunities.slice(0, 8).map((opportunity, index) => {
+              const href = `/transfers?${new URLSearchParams({
+                from: opportunity.fromFacilityId,
+                to: opportunity.toFacilityId,
+                medicine: opportunity.medicineId,
+                qty: String(opportunity.quantity),
+                batch: opportunity.batchId ?? "",
+              }).toString()}`;
+              const images = [
+                "/sentry/signal-shelves.jpg",
+                "/sentry/signal-pharmacy.jpg",
+                "/sentry/signal-counter.jpg",
+                "/sentry/signal-clinic.jpg",
+              ];
+              return (
+                <Link
+                  key={opportunity.id}
+                  href={href}
+                  className="group w-[272px] shrink-0 snap-start overflow-hidden rounded-[16px] border border-line bg-surface transition-colors hover:border-ink/25"
+                >
+                  <div className="relative h-[104px] overflow-hidden">
+                    <Image
+                      src={images[index % images.length]}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      sizes="272px"
+                      className="photo-warm object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-ink/25" />
+                    <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-3">
+                      <RiskBadge risk={opportunity.urgency} compact />
+                      <span className="rounded-none border border-bone/20 bg-ink/30 px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.1em] text-bone/70 backdrop-blur-sm">
+                        {formatDays(opportunity.daysToStockout)} cover
+                      </span>
                     </div>
-
-                    <div className="mt-4 flex items-center gap-1.5">
-                      {[
-                        { label: "Requested", icon: Clock3, at: transfer.createdAt },
-                        { label: "Approved", icon: ShieldCheck, at: transfer.approvedAt },
-                        { label: "Received", icon: CheckCircle2, at: transfer.completedAt },
-                      ].map((s, i) => {
-                        const active = step > i;
-                        const Icon = s.icon;
-                        return (
-                          <div key={s.label} className="flex flex-1 items-center gap-1.5">
-                            <div className={`flex items-center gap-1.5 rounded-full px-2 py-1 text-[9px] font-medium ${active ? "bg-brand-soft text-brand-dark" : "bg-canvas text-muted"}`}>
-                              <Icon className="h-3 w-3" />
-                              {s.label}
-                            </div>
-                            {i < 2 ? <div className={`h-px flex-1 ${step > i + 1 ? "bg-brand/35" : "bg-line"}`} /> : null}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-1 gap-3 rounded-lg bg-canvas/50 px-3 py-2.5 text-[10px] text-muted sm:grid-cols-3">
-                      <p>
-                        <span className="text-muted">Batch:</span>{" "}
-                        <span className="font-mono text-ink">{transfer.batch?.batchNumber ?? "N/A"}</span>
+                    <div className="absolute inset-x-0 bottom-0 p-3">
+                      <p className="truncate text-[10px] font-medium text-bone/85">
+                        {opportunity.fromFacilityName}
+                        <span className="mx-1.5 text-sand">→</span>
+                        {opportunity.toFacilityName}
                       </p>
-                      <p>
-                        <span className="text-muted">Expiry:</span>{" "}
-                        <span className="text-ink">{transfer.batch ? formatDate(transfer.batch.expiryDate) : "N/A"}</span>
-                      </p>
-                      <p>
-                        <span className="text-muted">Requested by:</span>{" "}
-                        <span className="text-ink">{transfer.requestedBy?.name ?? "System recommendation"}</span>
-                      </p>
-                    </div>
-
-                    <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-                      <p className="max-w-xl text-[10px] leading-relaxed text-muted">{transfer.reason}</p>
-                      <TransferActions
-                        id={transfer.id}
-                        status={transfer.status}
-                        canApprove={
-                          scope.isNetworkAuthority ||
-                          (transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED"
-                            ? scope.facilities.some((f) => f.id === transfer.fromFacilityId)
-                            : scope.facilities.some((f) => f.id === transfer.toFacilityId))
-                        }
-                      />
                     </div>
                   </div>
-                );
-              })}
-              {transfers.length === 0 ? (
-                <EmptyState
-                  title="No transfers yet"
-                  description="Prepare a transfer from the network opportunities to start the approval workflow."
-                  icon={<ArrowLeftRight className="h-5 w-5" />}
-                />
-              ) : null}
-            </div>
-          </Card>
-
-          <Card>
-            <CardHeader title="Workflow safeguards" subtitle="What the platform will not do automatically" />
-            <CardBody className="grid grid-cols-1 gap-3 text-[11px] text-muted sm:grid-cols-3">
-              <div className="rounded-lg border border-line p-3">
-                <ShieldCheck className="mb-2 h-4 w-4 text-brand" />
-                <p className="font-medium text-ink">Authorised approval</p>
-                <p className="mt-1 leading-relaxed">No stock moves without a manager or network authority.</p>
-              </div>
-              <div className="rounded-lg border border-line p-3">
-                <Package className="mb-2 h-4 w-4 text-brand" />
-                <p className="font-medium text-ink">FEFO batch selection</p>
-                <p className="mt-1 leading-relaxed">The earliest safe-expiry batch is selected and traced end to end.</p>
-              </div>
-              <div className="rounded-lg border border-line p-3">
-                <Check className="mb-2 h-4 w-4 text-brand" />
-                <p className="font-medium text-ink">Receipt confirmation</p>
-                <p className="mt-1 leading-relaxed">Source stock is deducted at dispatch; destination stock is added only on receipt.</p>
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-
-        <div className="space-y-5">
-          <Card>
-            <CardHeader
-              title="Network opportunities"
-              subtitle="Live matches between shortage and surplus"
-              action={<Badge tone="brand">{opportunities.length}</Badge>}
-            />
-            <div className="divide-y divide-line">
-              {opportunities.slice(0, 6).map((o) => {
-                const href = `/transfers?${new URLSearchParams({
-                  from: o.fromFacilityId,
-                  to: o.toFacilityId,
-                  medicine: o.medicineId,
-                  qty: String(o.quantity),
-                  batch: o.batchId ?? "",
-                }).toString()}`;
-                return (
-                  <div key={o.id} className="px-5 py-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[11px] font-semibold text-ink">{o.genericName}</p>
-                        <p className="text-[10px] text-muted">
-                          {o.fromFacilityName} → {o.toFacilityName}
-                        </p>
-                      </div>
-                      <RiskBadge risk={o.urgency} compact />
-                    </div>
-                    <div className="mt-2 flex items-center justify-between gap-2">
-                      <p className="text-[10px] text-muted">
-                        <span className="tabular font-medium text-ink">{formatNumber(o.quantity)}</span> {o.unit}s ·{" "}
-                        {formatDays(o.daysToStockout)} cover
-                      </p>
-                      <Link href={href} className="text-[10px] font-medium text-brand hover:underline">
+                  <div className="p-4">
+                    <p className="truncate text-[10px] text-muted">{opportunity.genericName}</p>
+                    <p className="tabular mt-1 font-display text-[30px] leading-none tracking-[-0.04em] text-ink">
+                      {formatNumber(opportunity.quantity)}
+                      <span className="ml-1.5 font-sans text-[9px] font-medium tracking-normal text-muted">
+                        {opportunity.unit}s
+                      </span>
+                    </p>
+                    <div className="mt-3 flex items-center justify-between gap-3 border-t border-line pt-2.5">
+                      <span className="text-[9px] text-muted">
+                        From {formatNumber(opportunity.surplus)} surplus
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[9.5px] font-medium text-ink">
                         Prepare
-                      </Link>
+                        <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </span>
                     </div>
                   </div>
-                );
-              })}
-              {opportunities.length === 0 ? (
-                <EmptyState title="No matches right now" description="Shortages and verified surpluses will appear here." />
-              ) : null}
-            </div>
-          </Card>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-[16px] border border-dashed border-line px-5 py-10 text-center">
+            <p className="text-[12px] font-medium text-ink">No matches right now.</p>
+            <p className="mt-1 text-[10px] text-muted">
+              Shortages and verified surpluses will appear here.
+            </p>
+          </div>
+        )}
+      </section>
 
-          <Card>
-            <CardHeader title="Why transfers help" />
-            <CardBody className="space-y-3 text-[11px] leading-relaxed text-muted">
-              <p className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                A transfer can prevent a stockout days before a supplier order could arrive.
-              </p>
-              <p className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                Moving short-dated stock protects both access and working capital.
-              </p>
-              <p className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                Every recommendation is a suggestion. Clinical suitability and storage conditions remain a human decision.
-              </p>
-              <div className="rounded-lg bg-warn-soft/70 px-3 py-2 text-[10px] text-warn">
-                Do not use this demo to move real medicines. Batch, storage and regulatory checks must be completed by authorised staff.
+      <Card className="overflow-hidden" id="pipeline">
+        <CardHeader
+          title="Transfer pipeline"
+          subtitle="Every movement is batch-level and auditable end to end"
+          action={<Badge tone="neutral">{transfers.length} total</Badge>}
+        />
+        <div className="divide-y divide-line">
+          {transfers.map((transfer) => {
+            const step =
+              transfer.status === "COMPLETED"
+                ? 3
+                : transfer.status === "IN_TRANSIT" || transfer.status === "APPROVED"
+                  ? 2
+                  : transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED"
+                    ? 1
+                    : 0;
+            return (
+              <div key={transfer.id} id={`transfer-${transfer.id}`} className="p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="font-mono text-[10px] font-medium text-muted">{transfer.reference}</p>
+                      <Badge tone={statusTone[transfer.status] ?? "neutral"}>
+                        {TRANSFER_STATUS_LABEL[transfer.status] ?? transfer.status}
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-ink">
+                      {transfer.medicine.genericName} · {formatNumber(transfer.quantity)}{" "}
+                      {transfer.medicine.unit}s
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-muted">
+                      {transfer.fromFacility.shortName} → {transfer.toFacility.shortName}
+                    </p>
+                  </div>
+                  <div className="text-right text-[10px] text-muted">
+                    <p>Created {formatShortDate(transfer.createdAt)}</p>
+                    {transfer.completedAt ? (
+                      <p>Received {formatShortDate(transfer.completedAt)}</p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center gap-1.5">
+                  {[
+                    { label: "Requested", icon: Clock3, at: transfer.createdAt },
+                    { label: "Approved", icon: ShieldCheck, at: transfer.approvedAt },
+                    { label: "Received", icon: CheckCircle2, at: transfer.completedAt },
+                  ].map((stage, index) => {
+                    const active = step > index;
+                    const Icon = stage.icon;
+                    return (
+                      <div key={stage.label} className="flex flex-1 items-center gap-1.5">
+                        <div
+                          className={`flex items-center gap-1.5 rounded-none px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.08em] ${
+                            active ? "bg-brand-soft text-brand-dark" : "bg-canvas text-muted"
+                          }`}
+                        >
+                          <Icon className="h-3 w-3" />
+                          {stage.label}
+                        </div>
+                        {index < 2 ? (
+                          <div className={`h-px flex-1 ${step > index + 1 ? "bg-brand/35" : "bg-line"}`} />
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 gap-3 rounded-none bg-canvas/50 px-3 py-2.5 text-[10px] text-muted sm:grid-cols-3">
+                  <p>
+                    <span className="text-muted">Batch:</span>{" "}
+                    <span className="font-mono text-ink">{transfer.batch?.batchNumber ?? "N/A"}</span>
+                  </p>
+                  <p>
+                    <span className="text-muted">Expiry:</span>{" "}
+                    <span className="text-ink">
+                      {transfer.batch ? formatDate(transfer.batch.expiryDate) : "N/A"}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="text-muted">Requested by:</span>{" "}
+                    <span className="text-ink">
+                      {transfer.requestedBy?.name ?? "System recommendation"}
+                    </span>
+                  </p>
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                  <p className="max-w-xl text-[10px] leading-relaxed text-muted">{transfer.reason}</p>
+                  <TransferActions
+                    id={transfer.id}
+                    status={transfer.status}
+                    canApprove={
+                      scope.isNetworkAuthority ||
+                      (transfer.status === "PENDING_APPROVAL" ||
+                      transfer.status === "RECOMMENDED"
+                        ? scope.facilities.some((facility) => facility.id === transfer.fromFacilityId)
+                        : scope.facilities.some((facility) => facility.id === transfer.toFacilityId))
+                    }
+                  />
+                </div>
               </div>
-            </CardBody>
-          </Card>
+            );
+          })}
+          {transfers.length === 0 ? (
+            <EmptyState
+              title="No transfers yet"
+              description="Prepare a transfer from the network opportunities above to start the approval workflow."
+              icon={<ArrowLeftRight className="h-5 w-5" />}
+            />
+          ) : null}
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

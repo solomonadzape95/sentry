@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Locate, MapPin, Minus, Plus } from "lucide-react";
+import { ArrowUpRight, Locate, Minus, Plus } from "lucide-react";
 import type * as Leaflet from "leaflet";
 import { formatDays, formatNaira } from "@/lib/format";
 import { RiskBadge } from "@/components/ui/badge";
+import { BrandLoader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 
 export type MapFacility = {
@@ -44,10 +45,21 @@ const LABEL_SIDE: Record<string, "left" | "right" | "top" | "bottom"> = {
 const MARKER_COLOURS = {
   CRITICAL: { mark: "#8b2f1f", soft: "rgba(139,47,31,0.22)" },
   HIGH: { mark: "#7a4a17", soft: "rgba(122,74,23,0.2)" },
-  MEDIUM: { mark: "#8e775c", soft: "rgba(142,119,92,0.2)" },
+  MEDIUM: { mark: "#6f5a3f", soft: "rgba(111,90,63,0.18)" },
   LOW: { mark: "#3d5a3f", soft: "rgba(61,90,63,0.18)" },
   NONE: { mark: "#3d5a3f", soft: "rgba(61,90,63,0.18)" },
 } as const;
+
+const MARKER_ICONS: Record<string, string> = {
+  PHC: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 21v-4h6v4"/><path d="M12 9v4M10 11h4"/></svg>',
+  GENERAL: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M9 21v-4h6v4"/><path d="M12 7v6M9 10h6"/><path d="M3 21h18"/></svg>',
+  PRIVATE: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg>',
+  PHARMACY: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>',
+};
+
+function markerIcon(type: string): string {
+  return MARKER_ICONS[type] ?? MARKER_ICONS.GENERAL;
+}
 
 export function NetworkMap({
   facilities,
@@ -220,7 +232,9 @@ export function NetworkMap({
           html: `
             <div class="sentry-marker sentry-marker--label-${labelSide} ${facility.id === selectedId ? "is-selected" : ""} ${facility.risk === "CRITICAL" ? "is-critical" : ""}" style="--marker:${colour.mark};--marker-soft:${colour.soft}">
               <span class="sentry-marker__halo"></span>
-              <span class="sentry-marker__dot"></span>
+              <span class="sentry-marker__pin">
+                <span class="sentry-marker__icon">${markerIcon(facility.type)}</span>
+              </span>
               <span class="sentry-marker__label">${escapeHtml(facility.shortName)}</span>
             </div>
           `,
@@ -373,11 +387,12 @@ export function NetworkMap({
         <div ref={containerRef} className="absolute inset-0" aria-label="Facility network map" />
 
         {!tilesLoaded ? (
-          <div className="pointer-events-none absolute inset-0 z-[450] flex items-center justify-center bg-canvas">
-            <div className="dotfield absolute inset-0 text-line/60" aria-hidden="true" />
-            <div className="relative flex items-center gap-2 rounded-full border border-line bg-panel/90 px-3 py-1.5 text-[9px] font-medium text-muted shadow-sm">
-              <MapPin className="h-3 w-3" strokeWidth={1.5} />
-              {tilesFailed ? "Basemap offline · markers remain live" : "Loading live map"}
+          <div className="pointer-events-none absolute inset-0 z-[450] grid place-items-center bg-canvas/45 backdrop-blur-[1px]">
+            <div className="flex h-9 items-center rounded-full border border-line bg-panel/95 px-4 shadow-sm">
+              <BrandLoader
+                size="sm"
+                label={tilesFailed ? "Basemap offline · markers remain live" : "Loading live map"}
+              />
             </div>
           </div>
         ) : null}

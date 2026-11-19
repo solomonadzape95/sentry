@@ -6,11 +6,11 @@ import {
   ArrowUpRight,
   CheckCircle2,
   CloudOff,
-  Loader2,
   RefreshCw,
   Trash2,
   Wifi,
 } from "lucide-react";
+import { WingSpinner } from "@/components/ui/loader";
 import { Button } from "@/components/ui/button";
 import {
   readQueue,
@@ -100,7 +100,7 @@ export function OfflineQueue() {
           </div>
         </div>
         <Button size="sm" variant="secondary" onClick={sync} disabled={syncing || ops.length === 0 || !online}>
-          {syncing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
+          {syncing ? <WingSpinner size="xs" label="Syncing" /> : <RefreshCw className="h-3.5 w-3.5" />}
           Sync now
         </Button>
       </div>
@@ -111,7 +111,7 @@ export function OfflineQueue() {
 
       {!loaded ? (
         <div className="flex justify-center py-10 text-muted">
-          <Loader2 className="h-5 w-5 animate-spin" />
+          <WingSpinner size="md" label="Syncing" />
         </div>
       ) : ops.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-line bg-surface px-6 py-10 text-center">
@@ -144,7 +144,7 @@ export function OfflineQueue() {
                 ) : null}
               </div>
               <div className="flex shrink-0 flex-col items-end gap-1.5">
-                <span className={`rounded-full px-2 py-0.5 text-[9px] font-medium ${op.status === "error" ? "bg-danger-soft text-danger" : "bg-warn-soft text-warn"}`}>
+                <span className={`rounded-none px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.1em] ${op.status === "error" ? "bg-danger-soft text-danger" : "bg-warn-soft text-warn"}`}>
                   {op.status === "error" ? "Failed" : "Pending"}
                 </span>
                 <button

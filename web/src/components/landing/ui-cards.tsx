@@ -32,7 +32,7 @@ export function StockHealthCard({
           <p className="label text-muted">Stock health</p>
           <p className="mt-1.5 text-[14px] font-medium tracking-[-0.01em] text-ink">{facility}</p>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-sage/60 px-2.5 py-1 text-[9px] font-medium text-ink/70">
+        <span className="inline-flex items-center gap-1.5 rounded-none bg-sage/60 px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.1em] text-ink/70">
           <span className="h-1.5 w-1.5 rounded-full bg-ok" />
           Demo · {date}
         </span>
@@ -55,7 +55,7 @@ export function StockHealthCard({
               </div>
               <span
                 className={cn(
-                  "inline-flex w-[64px] justify-center rounded-full px-2 py-1 text-[9px] font-medium",
+                  "inline-flex w-[64px] justify-center rounded-none px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.08em]",
                   tone.className,
                 )}
               >
@@ -97,7 +97,7 @@ export function TransferCard({
     <div className="w-full min-w-0 max-w-[330px] rounded-[12px] border border-line bg-surface p-4 shadow-[0_26px_50px_-30px_rgba(28,28,24,0.6)]">
       <div className="flex items-center justify-between">
         <p className="label text-muted">Recommended transfer</p>
-        <span className="inline-flex items-center gap-1 rounded-full bg-butter px-2 py-0.5 text-[9px] font-medium text-ink">
+        <span className="inline-flex items-center gap-1 rounded-none bg-butter px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.1em] text-ink">
           Needs approval
         </span>
       </div>
@@ -206,7 +206,7 @@ export function ForecastCard({
           </p>
           <p className="mt-0.5 text-[10px] text-muted">{facility}</p>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-warn-soft px-2.5 py-1 text-[9px] font-medium text-warn">
+        <span className="inline-flex items-center gap-1.5 rounded-none bg-warn-soft px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.1em] text-warn">
           <Clock3 className="h-3 w-3" />
           {daysToStockout} days of cover
         </span>
@@ -368,7 +368,7 @@ export function NetworkMoveCard({
     <div className="w-full min-w-0 rounded-[12px] border border-line bg-surface p-5 shadow-[0_30px_60px_-38px_rgba(28,28,24,0.5)]">
       <div className="flex items-center justify-between gap-3">
         <p className="label text-muted">Network move</p>
-        <span className="rounded-full bg-butter px-2 py-0.5 text-[9px] font-medium text-ink">
+        <span className="rounded-none bg-butter px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.1em] text-ink">
           Needs approval
         </span>
       </div>

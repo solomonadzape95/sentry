@@ -16,13 +16,30 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   if (scope.persona.role === "SUPPLIER") redirect("/supplier");
 
-  const alertCount = data.alerts.filter(
-    (a) =>
-      a.severity !== "LOW" &&
-      (scope.isNetworkAuthority || scope.facilities.some((f) => f.id === a.facilityId)),
-  ).length;
+  const scopedAlerts = data.alerts.filter(
+    (alert) =>
+      alert.severity !== "LOW" &&
+      (scope.isNetworkAuthority ||
+        scope.facilities.some((facility) => facility.id === alert.facilityId)),
+  );
 
-  const alertHref = scope.isNetworkAuthority
+  const notifications = scopedAlerts.slice(0, 8).map((alert) => ({
+    id: alert.id,
+    severity: alert.severity,
+    title: alert.message,
+    detail: alert.detail,
+    facilityName: alert.facilityName,
+    medicineName: alert.medicineName,
+    date: alert.date,
+    href:
+      alert.type === "STOCKOUT_RISK"
+        ? `/forecasts?facility=${alert.facilityId}&medicine=${alert.medicineId}`
+        : alert.type === "EXPIRY"
+          ? `/inventory?facility=${alert.facilityId}&tab=expiry`
+          : "/transfers",
+  }));
+
+  const notificationViewAllHref = scope.isNetworkAuthority
     ? "/dashboard#risk"
     : scope.activeFacility
       ? `/facilities/${scope.activeFacility.id}#risk`
@@ -36,7 +53,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         title: scope.persona.title,
         role: scope.persona.role,
       }}
-      alertCount={alertCount}
+      alertCount={scopedAlerts.length}
       facilityCount={scope.facilities.length}
       demo={APP_PROFILE === "demo"}
       initialCollapsed={store.get("sentry_sidebar")?.value === "1"}
@@ -45,7 +62,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           ? { id: scope.activeFacility.id, shortName: scope.activeFacility.shortName }
           : null
       }
-      alertHref={alertHref}
+      notifications={notifications}
+      notificationViewAllHref={notificationViewAllHref}
     >
       {children}
     </AppShell>

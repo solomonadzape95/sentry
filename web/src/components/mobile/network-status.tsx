@@ -21,7 +21,7 @@ export function NetworkStatus({ compact = false }: { compact?: boolean }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[10px] font-medium",
+        "inline-flex items-center gap-1.5 rounded-none px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.1em]",
         online ? "bg-ok-soft text-ok" : "bg-warn-soft text-warn",
       )}
     >

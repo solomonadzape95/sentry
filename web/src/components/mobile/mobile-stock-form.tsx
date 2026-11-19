@@ -6,12 +6,12 @@ import {
   ArrowDownLeft,
   ArrowUpRight,
   CloudOff,
-  Loader2,
   Minus,
   Plus,
   ScanLine,
   Wifi,
 } from "lucide-react";
+import { WingSpinner } from "@/components/ui/loader";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
@@ -332,7 +332,7 @@ export function MobileStockForm({
       ) : null}
 
       <Button type="submit" size="lg" className="w-full" disabled={busy || qty <= 0}>
-        {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+        {busy ? <WingSpinner size="sm" label="Working" /> : null}
         {mode === "issue" ? `Issue ${qty || 0} ${selected?.unit ?? "unit"}${qty === 1 ? "" : "s"}` : `Receive ${qty || 0} ${selected?.unit ?? "unit"}${qty === 1 ? "" : "s"}`}
       </Button>
       <p className="pb-2 text-center text-[9px] leading-relaxed text-muted">

@@ -4,20 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Bell,
   Menu,
   PanelLeftClose,
   PanelLeftOpen,
   Smartphone,
   X,
 } from "lucide-react";
-import { APP_NAME, DEMO_TODAY, ROLE_LABEL } from "@/lib/config";
+import { DEMO_TODAY, ROLE_LABEL } from "@/lib/config";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/nav";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import {
+  NotificationsMenu,
+  type AppNotification,
+} from "@/components/notifications-menu";
 
 type Persona = {
   id: string;
@@ -50,7 +53,8 @@ export function AppShell({
   demo,
   initialCollapsed,
   activeFacility,
-  alertHref,
+  notifications,
+  notificationViewAllHref,
 }: {
   children: React.ReactNode;
   persona: Persona;
@@ -59,7 +63,8 @@ export function AppShell({
   demo: boolean;
   initialCollapsed: boolean;
   activeFacility: { id: string; shortName: string } | null;
-  alertHref: string;
+  notifications: AppNotification[];
+  notificationViewAllHref: string;
 }) {
   const [collapsed, setCollapsed] = useState(initialCollapsed);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -180,18 +185,11 @@ export function AppShell({
                 <span className="h-1.5 w-1.5 rounded-full bg-clay" />
                 {demo ? "Demo clock" : "Live"} · {formatDate(DEMO_TODAY)}
               </span>
-              <Link
-                href={alertHref}
-                className="relative grid h-9 w-9 place-items-center rounded-full border border-line bg-panel/70 text-muted transition-colors hover:border-ink/20 hover:text-ink"
-                aria-label={`View ${alertCount} open alerts`}
-              >
-                <Bell className="h-4 w-4" strokeWidth={1.5} />
-                {alertCount > 0 ? (
-                  <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-danger px-1 text-[8.5px] font-semibold text-bone">
-                    {alertCount > 9 ? "9+" : alertCount}
-                  </span>
-                ) : null}
-              </Link>
+              <NotificationsMenu
+                notifications={notifications}
+                count={alertCount}
+                viewAllHref={notificationViewAllHref}
+              />
               <Link
                 href="/m"
                 className="hidden h-9 items-center gap-1.5 rounded-full border border-line bg-panel/70 px-3 text-[10.5px] font-medium text-muted transition-colors hover:border-ink/20 hover:text-ink sm:inline-flex"
@@ -206,7 +204,7 @@ export function AppShell({
               >
                 <Avatar name={persona.name} className="h-8 w-8" />
                 <span className="hidden leading-tight xl:block">
-                  <span className="block max-w-[130px] truncate text-[10.5px] font-medium text-ink">
+                  <span className="block max-w-[160px] truncate text-[10.5px] font-medium text-ink">
                     {persona.name}
                   </span>
                   <span className="block text-[9px] text-muted">{roleLabel}</span>
@@ -220,22 +218,7 @@ export function AppShell({
           {children}
         </main>
 
-        <footer className="mx-auto w-full max-w-[1560px] px-4 pb-8 pt-2 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-line/70 pt-4 text-[9px] leading-relaxed text-muted">
-            <span className="font-medium text-ink/70">{APP_NAME} demo</span>
-            <span className="h-1 w-1 rounded-full bg-line-strong" />
-            <span>Facility data simulated</span>
-            <span className="h-1 w-1 rounded-full bg-line-strong" />
-            <span>Weather: Open-Meteo ERA5</span>
-            <span className="h-1 w-1 rounded-full bg-line-strong" />
-            <Link href="/data" className="hover:text-ink">
-              Data provenance
-            </Link>
-            <Link href="/account" className="ml-auto hover:text-ink lg:hidden">
-              Account
-            </Link>
-          </div>
-        </footer>
+        <div className="h-8" aria-hidden="true" />
       </div>
     </div>
   );

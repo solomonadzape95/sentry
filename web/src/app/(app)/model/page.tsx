@@ -19,7 +19,8 @@ import { redirect } from "next/navigation";
 import { PageHeader } from "@/components/ui/page-header";
 import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import { Badge, ConfidenceBadge } from "@/components/ui/badge";
-import { MiniBar, Stat } from "@/components/ui/stat";
+import { MetricStrip } from "@/components/ui/stat";
+import { ModelScatter, type ModelPoint } from "@/components/charts/model-scatter";
 import { buttonClass } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
@@ -72,7 +73,16 @@ export default async function ModelPage() {
     .sort((a, b) => (b.forecast?.wape ?? 0) - (a.forecast?.wape ?? 0))
     .slice(0, 6);
 
-  const maxWape = Math.max(...runs.map((r) => r.overallWape), 0.01);
+  const scatterPoints: ModelPoint[] = runs.map((run) => ({
+    id: run.id,
+    model: run.model,
+    label: modelName[run.model] ?? run.model,
+    wape: run.overallWape,
+    mae: run.overallMae,
+    notes: run.notes ?? "",
+    best: best?.id === run.id,
+    baseline: run.model === "SEASONAL_NAIVE",
+  }));
 
   return (
     <div>
@@ -93,34 +103,37 @@ export default async function ModelPage() {
         }
       />
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-        <Stat
-          label="Best backtest WAPE"
-          value={formatPct(best?.overallWape ?? 0, 1)}
-          sub={`${modelName[best?.model ?? ""] ?? best?.model} · weighted absolute % error`}
-          icon={<Gauge className="h-4 w-4" />}
-          tone="success"
-        />
-        <Stat
-          label="Improvement vs baseline"
-          value={formatPct(improvement, 0)}
-          sub={`Seasonal baseline WAPE ${formatPct(baseline?.overallWape ?? 0, 1)}`}
-          icon={<BarChart3 className="h-4 w-4" />}
-          tone="brand"
-        />
-        <Stat
-          label="Lines using learned models"
-          value={`${learned.length} / ${data.series.length}`}
-          sub={`${baselineUsed.length} lines kept simpler baselines`}
-          icon={<Layers className="h-4 w-4" />}
-        />
-        <Stat
-          label="High-confidence lines"
-          value={confidence.HIGH ?? 0}
-          sub={`${confidence.MEDIUM ?? 0} medium · ${confidence.LOW ?? 0} low`}
-          icon={<ShieldCheck className="h-4 w-4" />}
-        />
-      </div>
+      <MetricStrip
+        className="mb-5"
+        items={[
+          {
+            label: "Best backtest WAPE",
+            value: formatPct(best?.overallWape ?? 0, 1),
+            sub: `${modelName[best?.model ?? ""] ?? best?.model} · weighted absolute % error`,
+            tone: "success",
+            icon: <Gauge className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "Improvement vs baseline",
+            value: formatPct(improvement, 0),
+            sub: `Seasonal baseline WAPE ${formatPct(baseline?.overallWape ?? 0, 1)}`,
+            tone: "brand",
+            icon: <BarChart3 className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "Lines using learned models",
+            value: `${learned.length} / ${data.series.length}`,
+            sub: `${baselineUsed.length} lines kept simpler baselines`,
+            icon: <Layers className="h-3.5 w-3.5" />,
+          },
+          {
+            label: "High-confidence lines",
+            value: confidence.HIGH ?? 0,
+            sub: `${confidence.MEDIUM ?? 0} medium · ${confidence.LOW ?? 0} low`,
+            icon: <ShieldCheck className="h-3.5 w-3.5" />,
+          },
+        ]}
+      />
 
       <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.55fr)_minmax(340px,1fr)]">
         <div className="space-y-5">
@@ -130,29 +143,8 @@ export default async function ModelPage() {
               subtitle="Rolling-origin backtest · 28-day horizon · 48 facility-medicine series"
               action={<Badge tone="brand">Backtested</Badge>}
             />
-            <CardBody>
-              <div className="space-y-4">
-                {runs.map((run) => (
-                  <div key={run.id}>
-                    <div className="mb-1.5 flex items-center justify-between gap-3 text-[11px]">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-ink">{modelName[run.model] ?? run.model}</span>
-                        {best?.id === run.id ? <Badge tone="success">Best</Badge> : null}
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="tabular font-semibold text-ink">{formatPct(run.overallWape, 1)}</span>
-                        <span className="tabular w-16 text-right text-muted">MAE {run.overallMae.toFixed(2)}</span>
-                      </div>
-                    </div>
-                    <MiniBar
-                      value={run.overallWape}
-                      max={maxWape}
-                      tone={best?.id === run.id ? "brand" : run.model === "SEASONAL_NAIVE" ? "danger" : "muted"}
-                    />
-                    <p className="mt-1 text-[9px] text-muted">{run.notes}</p>
-                  </div>
-                ))}
-              </div>
+            <CardBody className="pt-2">
+              <ModelScatter points={scatterPoints} />
             </CardBody>
           </Card>
 
@@ -164,12 +156,12 @@ export default async function ModelPage() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[680px] text-left text-xs">
                 <thead>
-                  <tr className="border-b border-line text-[10px] uppercase tracking-[0.08em] text-muted">
-                    <th className="px-5 py-2.5 font-medium">Model</th>
-                    <th className="px-3 py-2.5 font-medium">Lines</th>
-                    <th className="px-3 py-2.5 font-medium">Mean WAPE</th>
-                    <th className="px-3 py-2.5 font-medium">High confidence</th>
-                    <th className="px-5 py-2.5 text-right font-medium">Use</th>
+                  <tr className="border-b border-line text-[8px] uppercase tracking-[0.11em] text-muted">
+                    <th className="px-5 py-2 font-medium">Model</th>
+                    <th className="px-3 py-2 font-medium">Lines</th>
+                    <th className="px-3 py-2 font-medium">Mean WAPE</th>
+                    <th className="px-3 py-2 font-medium">High confidence</th>
+                    <th className="px-5 py-2 text-right font-medium">Use</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -177,15 +169,24 @@ export default async function ModelPage() {
                     .sort(([, a], [, b]) => b.count - a.count)
                     .map(([model, entry]) => {
                       const mean = entry.wape.reduce((s, x) => s + x, 0) / entry.wape.length;
+                      const high = entry.confidences.filter((c) => c === "HIGH").length;
                       return (
-                        <tr key={model} className="border-b border-line/70 last:border-0">
-                          <td className="px-5 py-2.5 font-medium text-ink">{modelName[model] ?? model}</td>
-                          <td className="tabular px-3 py-2.5">{entry.count}</td>
-                          <td className="tabular px-3 py-2.5">{formatPct(mean, 1)}</td>
-                          <td className="tabular px-3 py-2.5 text-muted">
-                            {entry.confidences.filter((c) => c === "HIGH").length}
+                        <tr key={model} className="border-b border-line/70 transition-colors last:border-0 hover:bg-ink/[0.025]">
+                          <td className="px-5 py-3 font-medium text-ink">{modelName[model] ?? model}</td>
+                          <td className="px-3 py-3">
+                            <p className="tabular text-[10px] font-medium text-ink">{entry.count}</p>
+                            <div className="mt-1 h-1 w-16 bg-canvas">
+                              <div
+                                className="h-1 bg-brand"
+                                style={{ width: `${(entry.count / Math.max(1, data.series.length)) * 100}%` }}
+                              />
+                            </div>
                           </td>
-                          <td className="px-5 py-2.5 text-right text-[10px] text-muted">
+                          <td className="tabular px-3 py-3 text-[10px] font-medium text-ink">{formatPct(mean, 1)}</td>
+                          <td className="px-3 py-3">
+                            <Badge tone={high > 0 ? "success" : "neutral"}>{high} lines</Badge>
+                          </td>
+                          <td className="px-5 py-3 text-right text-[9px] leading-relaxed text-muted">
                             {model === "SEASONAL_NAIVE"
                               ? "Low-data / stable seasonal demand"
                               : model === "MOVING_AVERAGE"
@@ -209,30 +210,38 @@ export default async function ModelPage() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] text-left text-xs">
                 <thead>
-                  <tr className="border-b border-line text-[10px] uppercase tracking-[0.08em] text-muted">
-                    <th className="px-5 py-2.5 font-medium">Facility / medicine</th>
-                    <th className="px-3 py-2.5 font-medium">Model</th>
-                    <th className="px-3 py-2.5 font-medium">WAPE</th>
-                    <th className="px-3 py-2.5 font-medium">MAE</th>
-                    <th className="px-3 py-2.5 font-medium">Bias</th>
-                    <th className="px-5 py-2.5 text-right font-medium">Confidence</th>
+                  <tr className="border-b border-line text-[8px] uppercase tracking-[0.11em] text-muted">
+                    <th className="px-5 py-2 font-medium">Facility / medicine</th>
+                    <th className="px-3 py-2 font-medium">Model</th>
+                    <th className="px-3 py-2 font-medium">WAPE</th>
+                    <th className="px-3 py-2 font-medium">MAE</th>
+                    <th className="px-3 py-2 font-medium">Bias</th>
+                    <th className="px-5 py-2 text-right font-medium">Confidence</th>
                   </tr>
                 </thead>
                 <tbody>
                   {worst.map((s) => (
-                    <tr key={`${s.facilityId}:${s.medicineId}`} className="border-b border-line/70 last:border-0">
-                      <td className="px-5 py-2.5">
-                        <p className="font-medium text-ink">{s.genericName}</p>
-                        <p className="text-[10px] text-muted">{s.facilityShortName}</p>
+                    <tr key={`${s.facilityId}:${s.medicineId}`} className="border-b border-line/70 transition-colors last:border-0 hover:bg-ink/[0.025]">
+                      <td className="px-5 py-3">
+                        <p className="text-[10.5px] font-medium text-ink">{s.genericName}</p>
+                        <p className="mt-0.5 text-[8.5px] text-muted">{s.facilityShortName}</p>
                       </td>
-                      <td className="px-3 py-2.5 text-[10px] text-muted">{s.forecast?.modelLabel}</td>
-                      <td className="tabular px-3 py-2.5 font-medium">{formatPct(s.forecast?.wape ?? 0, 1)}</td>
-                      <td className="tabular px-3 py-2.5 text-muted">{s.forecast?.mae.toFixed(2)}</td>
-                      <td className="tabular px-3 py-2.5 text-muted">
+                      <td className="px-3 py-3 text-[9px] text-muted">{s.forecast?.modelLabel}</td>
+                      <td className="px-3 py-3">
+                        <p className="tabular text-[10px] font-medium text-ink">{formatPct(s.forecast?.wape ?? 0, 1)}</p>
+                        <div className="mt-1 h-1 w-14 bg-canvas">
+                          <div
+                            className={`h-1 ${(s.forecast?.wape ?? 0) > 0.3 ? "bg-danger" : "bg-warn"}`}
+                            style={{ width: `${Math.min(100, ((s.forecast?.wape ?? 0) / 0.5) * 100)}%` }}
+                          />
+                        </div>
+                      </td>
+                      <td className="tabular px-3 py-3 text-[10px] text-muted">{s.forecast?.mae.toFixed(2)}</td>
+                      <td className="tabular px-3 py-3 text-[10px] text-muted">
                         {(s.forecast?.bias ?? 0) > 0 ? "+" : ""}
                         {formatPct(s.forecast?.bias ?? 0, 1)}
                       </td>
-                      <td className="px-5 py-2.5 text-right">
+                      <td className="px-5 py-3 text-right">
                         <ConfidenceBadge confidence={s.forecast?.confidence ?? "LOW"} />
                       </td>
                     </tr>

@@ -5,6 +5,7 @@
 | [BACKEND_DATA_PLAN.md](./BACKEND_DATA_PLAN.md) | Living plan for the backend, data pipeline, schema, API and model work. Update checkboxes and the progress log as work lands. |
 | [DATA_SOURCES.md](./DATA_SOURCES.md) | Source catalogue: URLs, access status, licences, parser notes and honesty rules. |
 | [DESIGN.md](./DESIGN.md) | Sentry brand direction: type, palette, layout rules, placeholder artwork and the dashboard carry-over plan. |
+| [DEPLOYMENT.md](./DEPLOYMENT.md) | Render Postgres + Vercel deployment: environment variables, seeding, verification and troubleshooting. |
 | [../README.md](../README.md) | Product overview, demo instructions and architecture summary. |
 | [../PLAN.md](../PLAN.md) | Original product and hackathon plan. |
 | [../DEMO.md](../DEMO.md) | Demo script. |

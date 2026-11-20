@@ -1,0 +1,22 @@
+# Render Blueprint — database only.
+#
+# The Next.js frontend is deployed on Vercel; Render only hosts PostgreSQL.
+# Import this repository at https://dashboard.render.com/blueprints to create
+# the database, or copy these settings into a manually created Postgres.
+#
+# After the database exists:
+#   1. Open it in the Render dashboard and copy the **External Database URL**.
+#      Vercel cannot reach Render's internal-only hostname.
+#   2. Append `sslmode=require` if it is not already present.
+#   3. Apply the schema and demo seed from your machine (see docs/DEPLOYMENT.md).
+#   4. Add the same external URL to the Vercel project as DATABASE_URL.
+databases:
+  - name: sentry-db
+    databaseName: sentry
+    user: sentry
+    # Free is 1 GB, allows one free database per workspace, and expires 30 days
+    # after creation. Use a paid plan for anything that must outlive the demo.
+    plan: free
+    # Keep the database in the same region as the Vercel functions (default iad1).
+    region: virginia
+    postgresMajorVersion: "17"

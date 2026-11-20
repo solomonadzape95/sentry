@@ -14,6 +14,7 @@ surplus stock is — before the shelf is empty.
 
 **Backend and data plan:** [`docs/BACKEND_DATA_PLAN.md`](docs/BACKEND_DATA_PLAN.md) ·
 **Source catalogue:** [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) ·
+**Deployment:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) ·
 **Provenance page:** `/data` · **API:** `/api/v1/*`
 
 ---
@@ -175,6 +176,17 @@ schema. The Postgres schema validated, but this environment did not have a
 running Docker daemon during the build, so the live Postgres seed is not yet
 verified here.
 
+### Deploy
+
+The included deployment target is **Render Postgres + Vercel** (app root
+directory `web/`). Render creates the database from [`render.yaml`](render.yaml),
+the schema and demo data are seeded once from your machine, and Vercel builds the
+Next.js app with the Postgres Prisma client.
+
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full runbook, environment
+variables and troubleshooting. The demo password and `APP_PROFILE` must match
+between the seed run and the Vercel environment.
+
 ---
 
 ## Architecture
@@ -303,7 +315,8 @@ consumption data and a versioned regimen conversion layer.
 - Facility-scoped access checks on every mutation.
 - Capability-based approve/receive gates and an audit log for inventory and
   transfer actions.
-- SQLite for the hackathon; production moves to Supabase Postgres with RLS.
+- SQLite for the hackathon; production moves to managed Postgres with RLS
+  (the included deployment uses Render Postgres).
 - MFA for approvers and per-facility row-level security remain before a pilot.
 
 ---

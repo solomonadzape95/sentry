@@ -1,15 +1,48 @@
-# Render Blueprint — database only.
+# Render Blueprint — the whole app in one place.
 #
-# The Next.js frontend is deployed on Vercel; Render only hosts PostgreSQL.
-# Import this repository at https://dashboard.render.com/blueprints to create
-# the database, or copy these settings into a manually created Postgres.
+# Import this repository at https://dashboard.render.com/blueprints and Render
+# creates both the Postgres database and the Next.js web service.
 #
-# After the database exists:
-#   1. Open it in the Render dashboard and copy the **External Database URL**.
-#      Vercel cannot reach Render's internal-only hostname.
-#   2. Append `sslmode=require` if it is not already present.
-#   3. Apply the schema and demo seed from your machine (see docs/DEPLOYMENT.md).
-#   4. Add the same external URL to the Vercel project as DATABASE_URL.
+# First deploy:
+#   1. The service builds with the Postgres Prisma client (DATABASE_URL is wired
+#      from the database below).
+#   2. The start command applies the schema with `prisma db push`.
+#   3. `initialDeployHook` seeds the demo dataset once, after the first
+#      successful deploy.
+#
+# No manual seeding is required. See docs/DEPLOYMENT.md for recovery commands.
+services:
+  - type: web
+    name: sentry
+    runtime: node
+    plan: free
+    region: virginia
+    # No rootDir: the seed reads data/seed/ from the repo root, and Render makes
+    # files outside rootDir unavailable at runtime. Commands cd into web/.
+    buildCommand: cd web && npm install --production=false && npm run build:render
+    # Push is idempotent; it keeps the schema current on every cold start.
+    # Bind explicitly to all interfaces for Render's proxy.
+    startCommand: cd web && npm run db:pg:push && npm run start -- -H 0.0.0.0
+    healthCheckPath: /api/v1/health
+    # Runs once, after the first successful deploy, with DATABASE_URL available.
+    initialDeployHook: cd web && npm run db:pg:push && npm run db:pg:seed
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sentry-db
+          property: connectionString
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: APP_PROFILE
+        value: demo
+      # Must match the password used by the seed. The demo sign-in page shows it.
+      - key: DEMO_PASSWORD
+        value: sentry-demo-2026
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: NODE_ENV
+        value: production
+
 databases:
   - name: sentry-db
     databaseName: sentry
@@ -17,6 +50,5 @@ databases:
     # Free is 1 GB, allows one free database per workspace, and expires 30 days
     # after creation. Use a paid plan for anything that must outlive the demo.
     plan: free
-    # Keep the database in the same region as the Vercel functions (default iad1).
     region: virginia
     postgresMajorVersion: "17"

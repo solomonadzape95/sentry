@@ -172,20 +172,21 @@ npm run db:sqlite:generate
 
 Prisma cannot switch providers from an environment variable, so
 `db:pg:schema` generates `prisma/schema.postgres.prisma` from the canonical
-schema. The Postgres schema validated, but this environment did not have a
-running Docker daemon during the build, so the live Postgres seed is not yet
-verified here.
+schema. The Postgres schema and seed are verified against PostgreSQL 17.8, and
+the checked-in Render deployment runs the same `db:pg:push` + `db:pg:seed` path
+automatically.
 
 ### Deploy
 
-The included deployment target is **Render Postgres + Vercel** (app root
-directory `web/`). Render creates the database from [`render.yaml`](render.yaml),
-the schema and demo data are seeded once from your machine, and Vercel builds the
-Next.js app with the Postgres Prisma client.
+The simplest deployment is **everything on Render** (app + Postgres). The
+checked-in [`render.yaml`](render.yaml) Blueprint creates both resources, applies
+the schema on boot, and seeds the demo data automatically after the first
+successful deploy.
 
-See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full runbook, environment
-variables and troubleshooting. The demo password and `APP_PROFILE` must match
-between the seed run and the Vercel environment.
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full runbook, free-plan
+limits and recovery commands. Deploying the frontend on Vercel instead remains
+supported, but the database then has to use its external URL and be seeded
+manually.
 
 ---
 
@@ -193,7 +194,7 @@ between the seed run and the Vercel environment.
 
 ```
 web/   Next.js 16 App Router · TypeScript · Tailwind v4 · Recharts
-       Prisma + SQLite (Postgres-ready schema)
+       Prisma + SQLite locally / Postgres on Render
        Dashboard routes + mobile PWA + API route handlers
        Auth.js sessions with capability-scoped facility access
 

@@ -10,6 +10,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/ensure-env.mjs",
     "build": "node scripts/prisma-generate.mjs && next build",
+    "build:render": "node scripts/make-postgres-schema.mjs && prisma generate --schema=prisma/schema.postgres.prisma && next build",
     "postinstall": "node scripts/prisma-generate.mjs",
     "prestart": "node scripts/ensure-env.mjs",
     "start": "next start",

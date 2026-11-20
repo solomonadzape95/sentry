@@ -6,9 +6,9 @@ import { join } from "node:path";
  * Ensures a local env file exists and contains a usable Auth.js secret. Safe to
  * run from the repository root or from web/.
  */
-// Build environments (Vercel, Render, CI) must get their secrets from the
+// Build environments (Render, Vercel, CI) must get their secrets from the
 // platform. Never create an ephemeral .env file there.
-if (process.env.VERCEL || process.env.CI) process.exit(0);
+if (process.env.RENDER || process.env.VERCEL || process.env.CI) process.exit(0);
 
 const cwd = process.cwd();
 const inWeb = cwd.endsWith("/web") || cwd.endsWith("\\web");

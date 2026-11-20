@@ -436,7 +436,7 @@ export default async function ForecastsPage({
               </div>
               {selected.expedite ? (
                 <Link href={`/transfers?${transferParams}`} className={buttonClass({ variant: "primary", size: "md", className: "w-full" })}>
-                  Create transfer request
+                  Request this stock
                 </Link>
               ) : (
                 <div className="rounded-lg border border-dashed border-line px-3 py-2 text-[10px] text-muted">

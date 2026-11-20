@@ -194,6 +194,13 @@ export async function acceptInviteAction(
     return { error: "This invitation has expired or has already been used." };
   }
 
+  if (invite.role === "SUPPLIER" && !invite.supplierId) {
+    return { error: "This invitation is not linked to a supplier organisation." };
+  }
+  if (invite.role !== "SUPPLIER" && invite.supplierId) {
+    return { error: "This invitation is not valid. Ask for a new one." };
+  }
+
   const existing = await prisma.user.findUnique({ where: { email: invite.email } });
   if (existing) {
     return { error: "An account already exists for this email. Sign in instead." };
@@ -207,6 +214,7 @@ export async function acceptInviteAction(
         email: invite.email,
         role: invite.role,
         title: invite.title ?? invite.role.replaceAll("_", " ").toLowerCase(),
+        supplierId: invite.supplierId ?? null,
         passwordHash,
         status: "ACTIVE",
         emailVerified: new Date(),
@@ -325,6 +333,7 @@ export async function createInviteAction(
   const role = formData.get("role");
   const title = formData.get("title");
   const facilityId = formData.get("facilityId");
+  const supplierId = formData.get("supplierId");
   if (!email.success) return { error: "Enter a valid email address." };
   if (typeof name !== "string" || name.trim().length < 2) {
     return { error: "Enter the person's full name." };
@@ -339,6 +348,10 @@ export async function createInviteAction(
   const needsFacility = role === "INVENTORY_OFFICER" || role === "FACILITY_MANAGER";
   if (needsFacility && (typeof facilityId !== "string" || !facilityId)) {
     return { error: "Choose a facility for this role." };
+  }
+  const needsSupplier = role === "SUPPLIER";
+  if (needsSupplier && (typeof supplierId !== "string" || !supplierId)) {
+    return { error: "Choose a supplier organisation for this role." };
   }
 
   const existing = await prisma.user.findUnique({ where: { email: email.data } });
@@ -360,6 +373,10 @@ export async function createInviteAction(
     const facility = await prisma.facility.findUnique({ where: { id: facilityId as string } });
     if (!facility) return { error: "Facility not found." };
   }
+  if (needsSupplier) {
+    const supplier = await prisma.supplier.findUnique({ where: { id: supplierId as string } });
+    if (!supplier) return { error: "Supplier not found." };
+  }
 
   const { token, hash } = createOpaqueToken();
   const invitation = await prisma.invitation.create({
@@ -369,6 +386,7 @@ export async function createInviteAction(
       role,
       title: typeof title === "string" && title.trim() ? title.trim() : null,
       facilityId: needsFacility ? (facilityId as string) : null,
+      supplierId: needsSupplier ? (supplierId as string) : null,
       invitedById: persona.id,
       tokenHash: hash,
       expiresAt: new Date(Date.now() + INVITE_TTL_MS),
@@ -397,7 +415,11 @@ export async function createInviteAction(
       entity: "Invitation",
       entityId: email.data,
       action: "INVITE_SENT",
-      detail: JSON.stringify({ role, email: email.data }),
+      detail: JSON.stringify({
+        role,
+        email: email.data,
+        supplierId: needsSupplier ? supplierId : null,
+      }),
     },
   });
 

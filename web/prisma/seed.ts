@@ -172,6 +172,26 @@ async function main() {
     });
   }
 
+  // A supplier login always represents an organisation: enforce the link in
+  // both directions so the portal can never fall back to an unscoped query.
+  const supplierIds = new Set(suppliers.map((s) => s.id));
+  for (const u of users) {
+    const memberships = u.memberships ?? [];
+    if (u.role === "SUPPLIER") {
+      if (!u.supplierId) {
+        throw new Error(`Supplier user ${u.email} must be linked to a supplier organisation`);
+      }
+      if (!supplierIds.has(u.supplierId)) {
+        throw new Error(`Supplier user ${u.email} references unknown supplier ${u.supplierId}`);
+      }
+      if (memberships.length > 0) {
+        throw new Error(`Supplier user ${u.email} cannot hold facility memberships`);
+      }
+    } else if (u.supplierId) {
+      throw new Error(`Only SUPPLIER users may reference a supplier organisation (${u.email})`);
+    }
+  }
+
   const demoPassword = process.env.DEMO_PASSWORD ?? "sentry-demo-2026";
   const demoPasswordHash = await hashPassword(demoPassword);
   for (const u of users) {
@@ -183,6 +203,7 @@ async function main() {
         role: u.role,
         title: u.title,
         phone: u.phone,
+        supplierId: u.supplierId ?? null,
         passwordHash: demoPasswordHash,
         status: "ACTIVE",
         emailVerified: new Date(),

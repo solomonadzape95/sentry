@@ -15,8 +15,10 @@ const ROLES = [
 
 export function CreateInviteForm({
   facilities,
+  suppliers,
 }: {
   facilities: { id: string; name: string }[];
+  suppliers: { id: string; name: string }[];
 }) {
   const [state, action] = useActionState<FormState, FormData>(
     createInviteAction,
@@ -24,6 +26,7 @@ export function CreateInviteForm({
   );
   const [role, setRole] = useState("INVENTORY_OFFICER");
   const needsFacility = role === "INVENTORY_OFFICER" || role === "FACILITY_MANAGER";
+  const needsSupplier = role === "SUPPLIER";
 
   return (
     <form action={action} className="space-y-4">
@@ -71,6 +74,22 @@ export function CreateInviteForm({
             {facilities.map((facility) => (
               <option key={facility.id} value={facility.id}>
                 {facility.name}
+              </option>
+            ))}
+          </select>
+        </Field>
+      ) : null}
+
+      {needsSupplier ? (
+        <Field
+          label="Supplier organisation"
+          hint="The account will only see purchase orders addressed to this organisation."
+        >
+          <select className={inputClass} name="supplierId" required>
+            <option value="">Choose a supplier</option>
+            {suppliers.map((supplier) => (
+              <option key={supplier.id} value={supplier.id}>
+                {supplier.name}
               </option>
             ))}
           </select>

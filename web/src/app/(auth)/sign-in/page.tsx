@@ -44,14 +44,48 @@ export default async function SignInPage({
     ? (
         await prisma.user.findMany({
           where: { status: "ACTIVE" },
-          select: { name: true, email: true, role: true, title: true },
+          select: {
+            name: true,
+            email: true,
+            role: true,
+            title: true,
+            memberships: {
+              select: {
+                isPrimary: true,
+                facility: { select: { shortName: true } },
+              },
+            },
+            supplier: { select: { name: true } },
+          },
           orderBy: { name: "asc" },
         })
-      ).sort(
-        (a, b) =>
-          (DEMO_ROLE_ORDER[a.role] ?? 9) - (DEMO_ROLE_ORDER[b.role] ?? 9) ||
-          a.name.localeCompare(b.name),
       )
+        .map((account) => {
+          const facilities = account.memberships
+            .map((membership) => membership.facility.shortName)
+            .filter(Boolean)
+            .sort((a, b) => a.localeCompare(b));
+          const scope =
+            account.role === "SUPPLIER"
+              ? (account.supplier?.name ?? "No supplier linked")
+              : account.role === "NETWORK_AUTHORITY"
+                ? facilities.length > 0
+                  ? `All ${facilities.length} facilities`
+                  : "Whole network"
+                : (facilities.join(", ") || "No facility assigned");
+          return {
+            name: account.name,
+            email: account.email,
+            role: account.role,
+            title: account.title,
+            scope,
+          };
+        })
+        .sort(
+          (a, b) =>
+            (DEMO_ROLE_ORDER[a.role] ?? 9) - (DEMO_ROLE_ORDER[b.role] ?? 9) ||
+            a.name.localeCompare(b.name),
+        )
     : [];
   const demoPassword = demo
     ? (process.env.DEMO_PASSWORD ?? "sentry-demo-2026")

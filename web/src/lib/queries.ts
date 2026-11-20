@@ -131,7 +131,7 @@ export async function getAdminData() {
   const [facilities, users, medicines, suppliers] = await Promise.all([
     prisma.facility.findMany({ orderBy: { name: "asc" } }),
     prisma.user.findMany({
-      include: { memberships: { include: { facility: true } } },
+      include: { memberships: { include: { facility: true } }, supplier: true },
       orderBy: { name: "asc" },
     }),
     prisma.medicine.findMany({ orderBy: { name: "asc" } }),

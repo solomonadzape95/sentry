@@ -12,11 +12,13 @@ import { TRANSFER_STATUS_LABEL } from "@/lib/config";
 export function TransferActions({
   id,
   status,
-  canApprove,
+  canAct,
+  waitingOn,
 }: {
   id: string;
   status: string;
-  canApprove: boolean;
+  canAct: boolean;
+  waitingOn?: string;
 }) {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"approve" | "receive" | null>(null);
@@ -41,9 +43,11 @@ export function TransferActions({
     }
   }
 
-  if (!canApprove) {
+  if (!canAct) {
     return (
-      <p className="text-[10px] text-muted">Awaiting an authorised manager or network authority.</p>
+      <p className="text-[10px] text-muted">
+        {waitingOn ?? "Awaiting the next authorised action."}
+      </p>
     );
   }
 

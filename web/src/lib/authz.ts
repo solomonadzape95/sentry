@@ -25,7 +25,15 @@ export type Capability =
   | "account:manage";
 
 const CAPABILITIES: Record<Role, readonly Capability[]> = {
-  INVENTORY_OFFICER: ["inventory:write", "facility:view", "account:manage"],
+  INVENTORY_OFFICER: [
+    "inventory:write",
+    // A facility that needs stock raises the request; the donor approves the
+    // dispatch. Receipt confirmation stays with the receiving facility.
+    "transfer:request",
+    "transfer:receive",
+    "facility:view",
+    "account:manage",
+  ],
   FACILITY_MANAGER: [
     "inventory:write",
     "transfer:request",

@@ -61,21 +61,46 @@ export default async function TransfersPage({
   const transfers = allTransfers.filter(
     (t) => inScope(t.fromFacilityId) || inScope(t.toFacilityId),
   );
-  const opportunities = data.opportunities.filter(
-    (o) => inScope(o.fromFacilityId) || inScope(o.toFacilityId),
-  );
+  // A facility raises requests for stock it needs (it is the destination).
+  // Approval and dispatch belong to the releasing facility.
+  const canRequestFor = (facilityId: string) =>
+    scope.isNetworkAuthority || scope.facilities.some((f) => f.id === facilityId);
+  const canApproveFor = (facilityId: string) =>
+    scope.canApproveTransfers && canRequestFor(facilityId);
+  const canReceiveFor = (facilityId: string) =>
+    scope.canReceiveTransfers && canRequestFor(facilityId);
 
-  const fromFacility = data.facilities.find((f) => f.id === params.from);
+  const opportunities = data.opportunities
+    .filter((o) => inScope(o.fromFacilityId) || inScope(o.toFacilityId))
+    .sort((a, b) => {
+      if (scope.isNetworkAuthority) return 0;
+      // Requests the user can actually raise come first.
+      const aIncoming = canRequestFor(a.toFacilityId) ? 0 : 1;
+      const bIncoming = canRequestFor(b.toFacilityId) ? 0 : 1;
+      return aIncoming - bIncoming;
+    });
+
+  // A forecast link knows only the receiving facility and medicine. Resolve
+  // the recommended donor so the request opens pre-filled.
+  const requestedFromId =
+    params.from ??
+    (params.to && params.medicine
+      ? opportunities.find(
+          (o) => o.toFacilityId === params.to && o.medicineId === params.medicine,
+        )?.fromFacilityId
+      : undefined);
+
+  const fromFacility = data.facilities.find((f) => f.id === requestedFromId);
   const toFacility = data.facilities.find((f) => f.id === params.to);
   const sourceSeries = data.series.find(
-    (s) => s.facilityId === params.from && s.medicineId === params.medicine,
+    (s) => s.facilityId === requestedFromId && s.medicineId === params.medicine,
   );
   const destSeries = data.series.find(
     (s) => s.facilityId === params.to && s.medicineId === params.medicine,
   );
   const opportunity = opportunities.find(
     (o) =>
-      o.fromFacilityId === params.from &&
+      o.fromFacilityId === requestedFromId &&
       o.toFacilityId === params.to &&
       o.medicineId === params.medicine,
   );
@@ -88,7 +113,11 @@ export default async function TransfersPage({
     null;
 
   const draft =
-    fromFacility && toFacility && sourceSeries && destSeries
+    fromFacility &&
+    toFacility &&
+    sourceSeries &&
+    destSeries &&
+    (inScope(fromFacility.id) || inScope(toFacility.id))
       ? {
           fromFacility,
           toFacility,
@@ -118,7 +147,7 @@ export default async function TransfersPage({
           </>
         }
         title="Stock transfers"
-        description="Move verified surplus to facilities that need it, with batch traceability, approvals and a complete audit trail."
+        description="A facility in shortage requests stock, the facility holding surplus approves and dispatches, and the requester confirms receipt. Every movement is batch-traced."
         actions={
           <Link
             href={
@@ -137,8 +166,8 @@ export default async function TransfersPage({
 
       {!scope.canApproveTransfers ? (
         <div className="mb-5 rounded-xl border border-info/20 bg-info-soft px-4 py-3 text-xs text-info">
-          You are viewing in read-only mode. Approvals are restricted to facility managers and network
-          authorities.
+          You can request stock for your facility and confirm receipt. Dispatch approval belongs to
+          the releasing facility or the network authority.
         </div>
       ) : null}
 
@@ -200,8 +229,15 @@ export default async function TransfersPage({
             </div>
 
             <div className="border-t border-line bg-canvas/40 p-5 lg:border-l lg:border-t-0">
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted">
-                Create request
+              <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-muted">
+                {canRequestFor(draft.toFacility.id) ? "Request stock" : "Awaiting a request"}
+              </p>
+              <p className="mb-3 text-[10px] leading-relaxed text-muted">
+                {scope.isNetworkAuthority
+                  ? `Raised for ${draft.toFacility.shortName}; ${draft.fromFacility.shortName} approves and dispatches.`
+                  : canRequestFor(draft.toFacility.id)
+                    ? `You are requesting for ${draft.toFacility.shortName}. ${draft.fromFacility.shortName} approves and dispatches.`
+                    : `${draft.toFacility.shortName} must raise this request. As the releasing facility you approve and dispatch once it arrives.`}
               </p>
               <CreateTransferForm
                 fromFacilityId={draft.fromFacility.id}
@@ -211,10 +247,8 @@ export default async function TransfersPage({
                 unit={draft.sourceSeries.unit}
                 batchId={draft.batch?.id}
                 reason={draft.reason}
-                canApprove={
-                  scope.isNetworkAuthority ||
-                  scope.facilities.some((f) => f.id === draft.fromFacility.id)
-                }
+                canRequest={canRequestFor(draft.toFacility.id)}
+                blockedReason={`${draft.toFacility.shortName} must raise this request. As the releasing facility you approve and dispatch once it arrives.`}
               />
             </div>
           </div>
@@ -282,6 +316,12 @@ export default async function TransfersPage({
                 qty: String(opportunity.quantity),
                 batch: opportunity.batchId ?? "",
               }).toString()}`;
+              const incoming = canRequestFor(opportunity.toFacilityId);
+              const cue = scope.isNetworkAuthority
+                ? "Coordinate"
+                : incoming
+                  ? "You receive"
+                  : "You release";
               const images = [
                 "/sentry/signal-shelves.jpg",
                 "/sentry/signal-pharmacy.jpg",
@@ -316,6 +356,9 @@ export default async function TransfersPage({
                         <span className="mx-1.5 text-sand">→</span>
                         {opportunity.toFacilityName}
                       </p>
+                      <p className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.1em] text-bone/60">
+                        {cue}
+                      </p>
                     </div>
                   </div>
                   <div className="p-4">
@@ -331,7 +374,7 @@ export default async function TransfersPage({
                         From {formatNumber(opportunity.surplus)} surplus
                       </span>
                       <span className="inline-flex items-center gap-1 text-[9.5px] font-medium text-ink">
-                        Prepare
+                        {incoming ? "Request" : "View"}
                         <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
                       </span>
                     </div>
@@ -442,12 +485,19 @@ export default async function TransfersPage({
                   <TransferActions
                     id={transfer.id}
                     status={transfer.status}
-                    canApprove={
-                      scope.isNetworkAuthority ||
-                      (transfer.status === "PENDING_APPROVAL" ||
-                      transfer.status === "RECOMMENDED"
-                        ? scope.facilities.some((facility) => facility.id === transfer.fromFacilityId)
-                        : scope.facilities.some((facility) => facility.id === transfer.toFacilityId))
+                    waitingOn={
+                      transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED"
+                        ? `Awaiting approval and dispatch from ${transfer.fromFacility.shortName}.`
+                        : transfer.status === "IN_TRANSIT"
+                          ? `Awaiting receipt confirmation from ${transfer.toFacility.shortName}.`
+                          : undefined
+                    }
+                    canAct={
+                      transfer.status === "PENDING_APPROVAL" || transfer.status === "RECOMMENDED"
+                        ? canApproveFor(transfer.fromFacilityId)
+                        : transfer.status === "IN_TRANSIT"
+                          ? canReceiveFor(transfer.toFacilityId)
+                          : false
                     }
                   />
                 </div>
@@ -457,7 +507,7 @@ export default async function TransfersPage({
           {transfers.length === 0 ? (
             <EmptyState
               title="No transfers yet"
-              description="Prepare a transfer from the network opportunities above to start the approval workflow."
+              description="Request stock from a network opportunity to start the approval workflow."
               icon={<ArrowLeftRight className="h-5 w-5" />}
             />
           ) : null}

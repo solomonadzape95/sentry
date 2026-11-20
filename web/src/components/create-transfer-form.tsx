@@ -16,7 +16,8 @@ export function CreateTransferForm({
   unit,
   batchId,
   reason,
-  canApprove,
+  canRequest,
+  blockedReason,
 }: {
   fromFacilityId: string;
   toFacilityId: string;
@@ -25,7 +26,8 @@ export function CreateTransferForm({
   unit: string;
   batchId?: string | null;
   reason: string;
-  canApprove: boolean;
+  canRequest: boolean;
+  blockedReason?: string;
 }) {
   const [qty, setQty] = useState(String(quantity));
   const [note, setNote] = useState(reason);
@@ -67,11 +69,11 @@ export function CreateTransferForm({
     }
   }
 
-  if (!canApprove) {
+  if (!canRequest) {
     return (
-      <div className="rounded-lg border border-dashed border-line px-3 py-2 text-[11px] text-muted">
-        Your persona can view this recommendation but not create transfers. Switch to the network
-        authority or a facility manager.
+      <div className="rounded-lg border border-dashed border-line px-3 py-2 text-[11px] leading-relaxed text-muted">
+        {blockedReason ??
+          "The facility that needs the stock raises the request. You approve and dispatch once it arrives."}
       </div>
     );
   }
@@ -97,11 +99,11 @@ export function CreateTransferForm({
         <p className="rounded-lg bg-danger-soft px-3 py-2 text-[11px] font-medium text-danger">{error}</p>
       ) : null}
       <Button type="submit" size="md" disabled={busy || !qty} className="w-full">
-        {busy ? <WingSpinner size="sm" label="Creating transfer" /> : <ArrowRight className="h-4 w-4" />}
-        Create transfer request
+        {busy ? <WingSpinner size="sm" label="Requesting transfer" /> : <ArrowRight className="h-4 w-4" />}
+        Request this transfer
       </Button>
       <p className="text-center text-[9px] text-muted">
-        Creates a pending request. Stock moves only after approval and receipt.
+        Sends the request to the releasing facility. Stock moves only after they approve and dispatch.
       </p>
     </form>
   );

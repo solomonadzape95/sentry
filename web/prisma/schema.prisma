@@ -68,7 +68,11 @@ model User {
   lastLoginAt   DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @default(now()) @updatedAt
+  // Required for SUPPLIER accounts: a supplier login always represents an
+  // organisation, and every order query is scoped by this link.
+  supplierId    String?
 
+  supplier           Supplier?          @relation(fields: [supplierId], references: [id])
   memberships        FacilityMember[]
   movements          StockMovement[]
   requestedTransfers TransferRequest[]    @relation("TransferRequestedBy")
@@ -131,6 +135,8 @@ model Supplier {
 
   batches        InventoryBatch[]
   purchaseOrders PurchaseOrder[]
+  users          User[]
+  invitations    Invitation[]
 }
 
 model InventoryBatch {
@@ -457,6 +463,7 @@ model Invitation {
   role        String // INVENTORY_OFFICER | FACILITY_MANAGER | NETWORK_AUTHORITY | SUPPLIER
   title       String?
   facilityId  String?
+  supplierId  String?
   invitedById String?
   tokenHash   String    @unique
   expiresAt   DateTime
@@ -466,6 +473,7 @@ model Invitation {
 
   invitedBy User?     @relation("InvitationInvitedBy", fields: [invitedById], references: [id])
   facility  Facility? @relation(fields: [facilityId], references: [id])
+  supplier  Supplier? @relation(fields: [supplierId], references: [id])
 
   @@index([email])
 }

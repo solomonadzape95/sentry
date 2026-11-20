@@ -24,7 +24,7 @@ export default async function AdminUsersPage() {
   const [data, invitations] = await Promise.all([
     getAdminData(),
     prisma.invitation.findMany({
-      include: { facility: true, invitedBy: true },
+      include: { facility: true, supplier: true, invitedBy: true },
       orderBy: { createdAt: "desc" },
       take: 20,
     }),
@@ -74,6 +74,10 @@ export default async function AdminUsersPage() {
               id: facility.id,
               name: facility.name,
             }))}
+            suppliers={data.suppliers.map((supplier) => ({
+              id: supplier.id,
+              name: supplier.name,
+            }))}
           />
         </CardBody>
       </Card>
@@ -110,8 +114,11 @@ export default async function AdminUsersPage() {
                       </Badge>
                     </td>
                     <td className="px-3 py-3 text-muted">
-                      {user.memberships.map((membership) => membership.facility.shortName).join(", ") ||
-                        "Network / supplier"}
+                      {user.memberships.length > 0
+                        ? user.memberships
+                            .map((membership) => membership.facility.shortName)
+                            .join(", ")
+                        : user.supplier?.name ?? "Network"}
                     </td>
                     <td className="px-3 py-3 text-muted">
                       {user.lastLoginAt ? formatDateTime(user.lastLoginAt) : "Never"}
@@ -141,7 +148,11 @@ export default async function AdminUsersPage() {
                       <p className="truncate text-[11px] font-medium text-ink">{invite.email}</p>
                       <p className="truncate text-[10px] text-muted">
                         {ROLE_LABEL[invite.role] ?? invite.role}
-                        {invite.facility ? ` · ${invite.facility.shortName}` : ""}
+                        {invite.facility
+                          ? ` · ${invite.facility.shortName}`
+                          : invite.supplier
+                            ? ` · ${invite.supplier.name}`
+                            : ""}
                       </p>
                     </div>
                     <Badge

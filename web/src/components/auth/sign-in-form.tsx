@@ -14,6 +14,7 @@ type DemoAccount = {
   email: string;
   role: string;
   title: string;
+  scope: string;
 };
 
 export function SignInForm({
@@ -96,7 +97,8 @@ export function SignInForm({
                     {account.name}
                   </span>
                   <span className="block truncate text-[10px] text-muted">
-                    {ROLE_LABEL[account.role] ?? account.role} · {account.title}
+                    {ROLE_LABEL[account.role] ?? account.role} · {account.scope} ·{" "}
+                    {account.title}
                   </span>
                 </span>
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 text-muted" />

@@ -1,52 +1,50 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
-const PROTECTED_PREFIXES = [
-  "/home",
-  "/today",
-  "/dashboard",
-  "/facilities",
-  "/inventory",
-  "/forecasts",
-  "/transfers",
-  "/model",
-  "/data",
-  "/admin",
-  "/account",
-  "/supplier",
-  "/m",
-];
-
-function hasSessionCookie(request: NextRequest): boolean {
-  return request.cookies
-    .getAll()
-    .some(
-      (cookie) =>
-        cookie.name === "authjs.session-token" ||
-        cookie.name === "__Secure-authjs.session-token",
-    );
-}
+import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Optimistic route guard only. The real check is the database-backed session
- * guard in `getPersona()` / `getApiPersona()`, because a cookie can be stale or
- * forged. Next.js 16 calls this file `proxy.ts` (formerly middleware).
+ * Must match FACILITY_COOKIE in src/lib/session.ts. Kept inline because Proxy
+ * runs before the render graph and should not pull in server-only modules.
+ */
+const FACILITY_COOKIE = "cheta_facility";
+const FACILITY_ID = /^[a-z0-9][a-z0-9_-]{0,63}$/i;
+
+/**
+ * The active facility is stored in a cookie and used by pages that do not name
+ * a facility themselves (/today, /m). Facility-scoped URLs, however, carry the
+ * facility in the path (/facilities/:id) or query (?facility=:id). Without this
+ * sync the cookie keeps its old value, so navigating from General Hospital to
+ * "Today" or the mobile workspace silently falls back to the default facility
+ * (Gwagwalada PHC).
+ *
+ * Access control is still enforced by buildScope and each page: the cookie can
+ * only ever select a facility the persona is already allowed to see.
  */
 export function proxy(request: NextRequest) {
-  const path = request.nextUrl.pathname;
-  const protectedRoute = PROTECTED_PREFIXES.some(
-    (prefix) => path === prefix || path.startsWith(`${prefix}/`),
-  );
+  const { pathname, searchParams } = request.nextUrl;
+  const fromQuery = searchParams.get("facility");
+  const fromPath = pathname.match(/^\/facilities\/([^/]+)\/?$/)?.[1];
+  const candidate = fromQuery ?? fromPath;
 
-  if (protectedRoute && !hasSessionCookie(request)) {
-    const url = new URL("/sign-in", request.url);
-    url.searchParams.set("next", path);
-    return NextResponse.redirect(url);
+  if (!candidate || !FACILITY_ID.test(candidate)) return NextResponse.next();
+  if (request.cookies.get(FACILITY_COOKIE)?.value === candidate) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.cookies.set(FACILITY_COOKIE, candidate, {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 12,
+  });
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: [
+    /*
+     * Skip API routes, static assets and metadata files. Pages and RSC
+     * navigations still run through the proxy.
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };

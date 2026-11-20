@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T23:55:50.167452+00:00",
+  "generatedAt": "2026-11-19T12:04:49.831983+00:00",
   "totals": {
     "sources": 12,
     "activeSources": 6,
@@ -241,7 +241,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387084+00:00"
+      "generated_at": "2026-11-19T12:03:50.439913+00:00"
     },
     {
       "signal": "MENINGITIS",
@@ -250,7 +250,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387110+00:00"
+      "generated_at": "2026-11-19T12:03:50.440080+00:00"
     },
     {
       "signal": "LASSA_FEVER",
@@ -259,7 +259,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387115+00:00"
+      "generated_at": "2026-11-19T12:03:50.440134+00:00"
     },
     {
       "signal": "MEASLES",
@@ -268,7 +268,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387119+00:00"
+      "generated_at": "2026-11-19T12:03:50.440174+00:00"
     },
     {
       "signal": "DIPHTHERIA",
@@ -277,7 +277,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387122+00:00"
+      "generated_at": "2026-11-19T12:03:50.440208+00:00"
     },
     {
       "signal": "AFP",
@@ -286,7 +286,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387126+00:00"
+      "generated_at": "2026-11-19T12:03:50.440240+00:00"
     },
     {
       "signal": "MALARIA",
@@ -295,7 +295,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": 34.6,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387129+00:00"
+      "generated_at": "2026-11-19T12:03:50.440271+00:00"
     },
     {
       "signal": "RESPIRATORY",
@@ -304,7 +304,7 @@
       "is_illustrative": false,
       "fct_malaria_rdt_pct": NaN,
       "latest_observation": "2026-08-17",
-      "generated_at": "2026-11-17T23:55:43.387133+00:00"
+      "generated_at": "2026-11-19T12:03:50.440303+00:00"
     }
   ]
 }

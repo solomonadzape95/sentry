@@ -33,7 +33,7 @@ public data endpoint. The landing page remains public.
 
 | Group | Scope | Core job | Home |
 |---|---|---|---|
-| Inventory officer | Assigned facility/facilities | Record stock accurately | `/today`, `/m` |
+| Inventory officer | Assigned facility/facilities | Record stock, request redistribution, confirm receipt | `/today`, `/m` |
 | Facility manager | Their facility | Run the facility, approve dispatch, confirm receipt, report | `/facilities/[id]` |
 | Network authority | Whole network | Coordinate redistribution, approve overrides, assure data and model quality | `/dashboard` |
 | Supplier | Own purchase orders | Fulfil orders (portal deferred) | `/supplier` |
@@ -50,9 +50,9 @@ should be encoded.
 | Capability | Inventory officer | Facility manager | Network authority | Supplier |
 |---|---|---|---|---|
 | `inventory:write` | yes | yes | yes | no |
-| `transfer:request` | no | yes | yes | no |
+| `transfer:request` | yes (destination) | yes (destination) | yes | no |
 | `transfer:approve` | no | yes (source) | yes | no |
-| `transfer:receive` | no | yes (destination) | yes | no |
+| `transfer:receive` | yes (destination) | yes (destination) | yes | no |
 | `network:view` | no | no | yes | no |
 | `facility:view` | own | own | all | no |
 | `admin:manage` | no | no | yes | no |
@@ -62,19 +62,22 @@ should be encoded.
 
 ## Transfer approvals
 
-Two-party control:
+Transfers are pull-based, with two-party control:
 
-1. A network authority or the source facility manager requests a transfer.
-2. The **source** facility manager approves dispatch. Stock is deducted and the
-   transfer becomes `IN_TRANSIT`.
-3. The **destination** facility manager confirms receipt. Stock is added and the
+1. The **destination** facility (the one in shortage) raises the request, naming
+   the facility with verified surplus. Inventory officers can do this for their
+   own facility; network authorities can do it for any facility.
+2. The **source** facility approves dispatch. Stock is deducted and the transfer
+   becomes `IN_TRANSIT`.
+3. The **destination** facility confirms receipt. Stock is added and the
    transfer becomes `COMPLETED`.
 
-A network authority may act on either side. Every action is written to
-`AuditLog`. The demo retains single-manager facilities, so a source manager can
-request and then approve. Production should add maker-checker: a requester cannot
-approve their own request unless an override reason is recorded, and an override
-is audited.
+A network authority may act on either side. The source facility cannot raise a
+request on the destination's behalf — it approves and dispatches once the request
+exists. Every action is written to `AuditLog`. Production should add
+maker-checker within a facility: the person who requests should not also be the
+person who confirms receipt unless an override reason is recorded, and an
+override is audited.
 
 ## Auth surface
 

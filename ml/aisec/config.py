@@ -292,7 +292,7 @@ USERS = [
     {
         "id": "usr_tunde", "name": "Tunde Bakare", "email": "tunde@aisec.health",
         "role": "SUPPLIER", "title": "Key Accounts Manager",
-        "phone": "+234 802 444 9080",
+        "phone": "+234 802 444 9080", "supplierId": "sup_emzor",
         "memberships": [],
     },
 ]

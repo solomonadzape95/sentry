@@ -70,7 +70,7 @@ surplus stock is — before the shelf is empty.
 - Network overview of facilities at risk and transferable surplus.
 - Shortage-to-surplus matching by medicine, shelf life and safe cover.
 - Transfer recommendation with quantity, batch and expiry.
-- Request → approve/dispatch → confirm receipt workflow with audit trail.
+- Destination-requested → source-approved dispatch → receipt confirmation, with an audit trail.
 - Stockout date recalculates after receipt; the alert clears automatically.
 
 ### Mobile PWA
@@ -212,7 +212,7 @@ change the answer immediately.
 | `POST /api/facility` | Set active facility scope |
 | `POST /api/stock/issue` | FEFO issue + consumption + audit |
 | `POST /api/stock/receive` | Create batch + receipt movement |
-| `POST /api/transfers` | Create transfer request |
+| `POST /api/transfers` | Destination facility raises a stock request |
 | `POST /api/transfers/:id/approve` | Deduct source stock, mark in transit |
 | `POST /api/transfers/:id/receive` | Add destination batch, complete transfer |
 

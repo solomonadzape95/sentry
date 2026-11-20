@@ -9,7 +9,8 @@ Render Postgres (private URL)
 ```
 
 One Blueprint creates both resources. On the first deploy Render builds the app,
-applies the schema, and seeds the demo data automatically.
+then a background bootstrap applies the schema and seeds the demo data
+automatically.
 
 > The previous Blueprint created **only** the database. Seeding was a manual
 > `npm run db:pg:setup` step, so an empty database was expected if that command
@@ -46,19 +47,34 @@ No environment variables need to be entered manually. The Blueprint sets:
    - **Forces the PostgreSQL Prisma client**, even if the build environment has
      not injected `DATABASE_URL` yet.
    - Builds the Next.js app.
-2. **Start:** `cd web && npm run db:pg:push && npm run start -- -H 0.0.0.0`
-   - Applies the schema with `prisma db push` (idempotent).
-   - Starts Next.js on Render's `$PORT` and all interfaces.
-3. **Seed:** `initialDeployHook` runs
-   `cd web && npm run db:pg:push && npm run db:pg:seed`
-   once, after the first successful deploy.
-   - Seeds 4 facilities, 12 medicines, 6 demo users, inventory, 35k
-     consumption rows and 48 forecasts.
-   - The app is live while this runs; pages that need data may show errors for
-     the first minute or two. The health endpoint already passes.
+2. **Start:** `cd web && node scripts/render-start.mjs`
+   - Starts Next.js immediately on Render's `$PORT` and `0.0.0.0`, so Render's
+     port scan succeeds quickly.
+   - In the background, waits 3 seconds and applies the schema with
+     `prisma db push`.
+   - Reads the `SeedState` marker. If it is missing, runs the demo seed.
+3. **Seed marker:** `prisma/seed.ts` deletes the marker when it starts and
+   recreates it after all data is written. An interrupted seed therefore retries
+   on the next start instead of leaving a half-populated database.
 
-After it finishes, open the `onrender.com` URL shown on the service page and sign
-in with a demo account. The sign-in page lists them.
+Watch the service logs. You should see:
+
+```
+[bootstrap] seed marker missing; seeding demo data...
+Clearing existing data...
+...
+Seeded: { facilities: 4, medicines: 12, ... }
+[bootstrap] demo data seeded.
+```
+
+The app is reachable while seeding; pages that need data may show 0/errors for
+the first minute or two. Refresh when the logs show `demo data seeded`.
+
+On later cold starts the bootstrap logs
+`[bootstrap] demo data is already seeded; nothing to do.`
+
+After the seed finishes, open the `onrender.com` URL shown on the service page
+and sign in with a demo account. The sign-in page lists them.
 
 Verify:
 
@@ -74,9 +90,9 @@ curl https://sentry-xxxx.onrender.com/api/v1/health
 | Render web service | 0.1 CPU / 512 MB; **spins down after 15 minutes idle**; first request after idle takes ~30–60s |
 | Render Postgres | 1 GB, one free database per workspace, **expires 30 days after creation**, no backups |
 
-Upgrade both before the demo if it must stay warm or survive past 30 days. A
-free web service also cold-starts `prisma db push` on the first request, adding a
-few seconds.
+Upgrade both before the demo if it must stay warm or survive past 30 days. On
+each cold start the bootstrap re-checks the schema and seed marker in the
+background; the HTTP server still binds immediately.
 
 ## Manual recovery and reseeding
 
@@ -108,12 +124,30 @@ To force the seed on an existing service, use the external URL command above. If
 your Render plan includes Shell access, you can also open the service's Shell and
 run `npm run db:pg:seed`.
 
+## If the app loads but the values are 0
+
+The pages are rendering, but the demo data has not been written. Check the
+service logs for `[bootstrap]` and `Seeded:`. On the current deployment the seed
+can be run immediately from your machine against the external URL:
+
+```bash
+cd web
+DATABASE_URL="postgresql://.../sentry?sslmode=require" npm run db:pg:setup
+```
+
+`db:pg:setup` applies the schema and runs the seed. It prints a
+`Seeded: { ... }` summary. Refresh the site afterwards.
+
+The automatic bootstrap runs again on the next deploy or cold start if the
+`SeedState` marker is missing. If the logs show `[bootstrap] seed failed`, rerun
+the command above and check the database connection.
+
 ## Schema changes after the first deploy
 
-The start command runs `prisma db push` on every boot, so additive schema changes
-apply automatically when the new code deploys. If a change would lose data,
-`db push` refuses to run non-interactively and the service will not start. Apply
-that change manually first:
+The bootstrap runs `prisma db push` after the server starts, so additive schema
+changes apply automatically when the new code deploys. If a change would lose
+data, `db push` refuses to run non-interactively and logs an error; the server
+keeps running with the old schema. Apply that change manually first:
 
 ```bash
 cd web
@@ -130,7 +164,8 @@ Vercel is no longer required, but the repo still supports it. The important
 differences are:
 
 - Vercel must use the database's **External Database URL**, not the internal one.
-- Vercel cannot run the Render `initialDeployHook`, so the seed is manual.
+- Vercel does not run `web/scripts/render-start.mjs`, so the schema and seed are
+  manual.
 - Set the Vercel project **Root Directory** to `web`.
 - Set `DATABASE_URL` (external, with `sslmode=require`), `AUTH_SECRET`, and
   optionally `APP_PROFILE`/`DEMO_PASSWORD`.

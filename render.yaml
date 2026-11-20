@@ -6,9 +6,9 @@
 # First deploy:
 #   1. The service builds with the Postgres Prisma client (DATABASE_URL is wired
 #      from the database below).
-#   2. The start command applies the schema with `prisma db push`.
-#   3. `initialDeployHook` seeds the demo dataset once, after the first
-#      successful deploy.
+#   2. Next.js starts and binds to Render's port.
+#   3. A background bootstrap applies the schema and seeds the demo data if the
+#      SeedState marker is missing.
 #
 # No manual seeding is required. See docs/DEPLOYMENT.md for recovery commands.
 services:
@@ -20,12 +20,10 @@ services:
     # No rootDir: the seed reads data/seed/ from the repo root, and Render makes
     # files outside rootDir unavailable at runtime. Commands cd into web/.
     buildCommand: cd web && npm install --production=false && npm run build:render
-    # Push is idempotent; it keeps the schema current on every cold start.
-    # Bind explicitly to all interfaces for Render's proxy.
-    startCommand: cd web && npm run db:pg:push && npm run start -- -H 0.0.0.0
+    # Start Next immediately, then push the schema and seed if the DB is empty.
+    # See web/scripts/render-start.mjs. Bind explicitly to all interfaces.
+    startCommand: cd web && node scripts/render-start.mjs
     healthCheckPath: /api/v1/health
-    # Runs once, after the first successful deploy, with DATABASE_URL available.
-    initialDeployHook: cd web && npm run db:pg:push && npm run db:pg:seed
     envVars:
       - key: DATABASE_URL
         fromDatabase:

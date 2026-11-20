@@ -490,3 +490,11 @@ model PasswordResetToken {
 
   @@index([userId])
 }
+
+/// One-time bootstrap marker. The demo seed deletes this row when it starts and
+/// recreates it after every table is written, so an interrupted seed is retried
+/// automatically on the next service start.
+model SeedState {
+  id       String   @id
+  seededAt DateTime @default(now())
+}

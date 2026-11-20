@@ -34,6 +34,9 @@ const performedBy: Record<string, string> = {
 
 async function main() {
   console.log("Clearing existing data...");
+  // Clear the seed marker first: if this run fails halfway, the bootstrap will
+  // retry on the next start instead of treating a partial dataset as complete.
+  await prisma.seedState.deleteMany();
   await prisma.ingestRun.deleteMany();
   await prisma.dataSource.deleteMany();
   await prisma.forecastPoint.deleteMany();
@@ -367,6 +370,7 @@ async function main() {
     forecastPoints: await prisma.forecastPoint.count(),
     movements: await prisma.stockMovement.count(),
   };
+  await prisma.seedState.create({ data: { id: "demo" } });
   console.log("Seeded:", counts);
 }
 

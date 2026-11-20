@@ -179,9 +179,9 @@ automatically.
 ### Deploy
 
 The simplest deployment is **everything on Render** (app + Postgres). The
-checked-in [`render.yaml`](render.yaml) Blueprint creates both resources, applies
-the schema on boot, and seeds the demo data automatically after the first
-successful deploy.
+checked-in [`render.yaml`](render.yaml) Blueprint creates both resources; the
+service starts serving, then a background bootstrap applies the schema and seeds
+the demo data if it is missing.
 
 See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full runbook, free-plan
 limits and recovery commands. Deploying the frontend on Vercel instead remains
